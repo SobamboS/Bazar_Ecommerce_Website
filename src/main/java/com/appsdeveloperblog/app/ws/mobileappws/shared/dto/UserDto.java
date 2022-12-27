@@ -1,9 +1,11 @@
 package com.appsdeveloperblog.app.ws.mobileappws.shared.dto;
 
+import java.io.Serial;
 import java.io.Serializable;
 
 public class UserDto implements Serializable{
-    private static final long serialVersionId = 486590303919050223L;
+
+    private static final long serialVersionUID=7783027761266995405L;
     private long id;
     private String userId;
     private String firstName;
@@ -11,7 +13,7 @@ public class UserDto implements Serializable{
     private String email;
     private String password;
     private String encryptedPassword;
-    private String emailVerificationToken;
+    private boolean emailVerificationToken = false;
 
     public long getId( ){
         return id;
@@ -69,11 +71,11 @@ public class UserDto implements Serializable{
         this.encryptedPassword=encryptedPassword;
     }
 
-    public String getEmailVerificationToken( ){
+    public boolean getEmailVerificationToken( ){
         return emailVerificationToken;
     }
 
-    public void setEmailVerificationToken(String emailVerificationToken){
+    public void setEmailVerificationToken(boolean emailVerificationToken){
         this.emailVerificationToken=emailVerificationToken;
     }
 

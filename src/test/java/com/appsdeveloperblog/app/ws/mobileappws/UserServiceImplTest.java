@@ -6,6 +6,7 @@ import com.appsdeveloperblog.app.ws.mobileappws.dto.User.response.DeleteResponse
 import com.appsdeveloperblog.app.ws.mobileappws.dto.User.response.LoginResponse;
 import com.appsdeveloperblog.app.ws.mobileappws.dto.User.response.UpdateResponse;
 import com.appsdeveloperblog.app.ws.mobileappws.dto.User.response.UserResponse;
+import com.appsdeveloperblog.app.ws.mobileappws.dto.Vendor.response.VendorDeleteResponse;
 import com.appsdeveloperblog.app.ws.mobileappws.service.UserImplementation.UserService;
 import com.appsdeveloperblog.app.ws.mobileappws.dto.User.request.DeleteRequest;
 import com.appsdeveloperblog.app.ws.mobileappws.dto.User.request.LoginRequest;
@@ -67,6 +68,13 @@ class UserServiceImplTest {
         DeleteResponse deleteResponse = userService.delete(deleteRequest);
         assertEquals("Deleted", deleteResponse.getMessage());
 
+    }
+
+    @Test
+    void canDeleteUser(){
+        DeleteResponse deleteResponse = userService.userDelete("");
+        System.out.println(userDeleteResponse);
+        assertEquals("Deleted", userDeleteResponse.getMessage());
     }
 
 

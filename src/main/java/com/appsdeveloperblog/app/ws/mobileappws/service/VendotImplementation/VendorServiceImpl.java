@@ -5,10 +5,7 @@ import com.appsdeveloperblog.app.ws.mobileappws.dto.Vendor.request.VendorDeleteR
 import com.appsdeveloperblog.app.ws.mobileappws.dto.Vendor.request.VendorLoginRequest;
 import com.appsdeveloperblog.app.ws.mobileappws.dto.Vendor.request.VendorRegistrationRequest;
 import com.appsdeveloperblog.app.ws.mobileappws.dto.Vendor.request.VendorUpdateRequest;
-import com.appsdeveloperblog.app.ws.mobileappws.dto.Vendor.response.VendorDeleteResponse;
-import com.appsdeveloperblog.app.ws.mobileappws.dto.Vendor.response.VendorLoginResponse;
-import com.appsdeveloperblog.app.ws.mobileappws.dto.Vendor.response.VendorRegistrationResponse;
-import com.appsdeveloperblog.app.ws.mobileappws.dto.Vendor.response.VendorUpdateResponse;
+import com.appsdeveloperblog.app.ws.mobileappws.dto.Vendor.response.*;
 import com.appsdeveloperblog.app.ws.mobileappws.models.Vendor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -65,19 +62,17 @@ return vendorLoginResponse;
         return updateResponse;
     }
 
+
     @Override
-    public VendorDeleteResponse vendorDelete(VendorDeleteRequest vendorDeleteRequest){
-Vendor deleteVendor = vendorRepository.findById(vendorDeleteRequest.getId())
-        .orElseThrow(()-> new RuntimeException("Sorry couldn't delete"));
-VendorDeleteResponse vendorDeleteResponse = new VendorDeleteResponse();
+    public VendorDeleteResponse vendorDelete(String id){
+        vendorRepository.deleteById(id);
+        return new VendorDeleteResponse("Vendor Deleted");
+    }
 
-if(deleteVendor.getId().equals(vendorDeleteRequest.getId())){
-    vendorRepository.delete(deleteVendor);
-    vendorDeleteResponse.setMessage("Deleted");
-
-    return vendorDeleteResponse;
-}else
-    vendorDeleteResponse.setMessage("Unsuccessful");
-return vendorDeleteResponse;
+    @Override
+    public VendorDeleteAllResponse vendorDeleteAll(String id){
+//        vendorRepository.deleteAll(id);
+//        return  new VendorDeleteAllResponse("All vendors deleted ");
+   return null;
     }
 }

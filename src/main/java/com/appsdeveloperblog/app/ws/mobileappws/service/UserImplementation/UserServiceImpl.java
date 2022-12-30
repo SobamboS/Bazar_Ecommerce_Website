@@ -7,9 +7,10 @@ import com.appsdeveloperblog.app.ws.mobileappws.dto.User.response.DeleteResponse
 import com.appsdeveloperblog.app.ws.mobileappws.dto.User.response.LoginResponse;
 import com.appsdeveloperblog.app.ws.mobileappws.dto.User.response.UpdateResponse;
 import com.appsdeveloperblog.app.ws.mobileappws.dto.User.response.UserResponse;
+
 import com.appsdeveloperblog.app.ws.mobileappws.models.User;
 
-import com.appsdeveloperblog.app.ws.mobileappws.dto.User.request.DeleteRequest;
+
 import com.appsdeveloperblog.app.ws.mobileappws.dto.User.request.LoginRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -70,21 +71,11 @@ public class UserServiceImpl implements UserService{
     }
 
 
+
     @Override
-    public DeleteResponse delete(DeleteRequest deleteRequest){
-        User deleteUser = userRepository.findById(deleteRequest.getId())
-                .orElseThrow(()-> new RuntimeException("Sorry"));
-
-        DeleteResponse deleteResponse = new DeleteResponse();
-
-        if(deleteUser.getId().equals(deleteRequest.getId())){
-            userRepository.delete(deleteUser);
-            deleteResponse.setMessage("Deleted");
-
-        return deleteResponse;
-        }else
-            deleteResponse.setMessage("Unsuccessful");
-        return deleteResponse;
+    public DeleteResponse delete(String id){
+        userRepository.deleteById(id);
+        return new DeleteResponse("Vendor Deleted");
     }
 
 

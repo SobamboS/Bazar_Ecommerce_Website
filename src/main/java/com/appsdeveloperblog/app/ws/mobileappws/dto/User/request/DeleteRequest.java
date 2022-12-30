@@ -7,8 +7,5 @@ import lombok.Data;
 public class DeleteRequest{
         @Id
     private String id;
-        private String firstName;
-        private String lastName;
-        private String email;
 
 }

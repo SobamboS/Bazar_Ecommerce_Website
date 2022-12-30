@@ -4,7 +4,7 @@ import jakarta.persistence.Id;
 import lombok.Data;
 
 @Data
-public class VendorDeleteRequest{
+public class VendorDeleteAllRequest{
+    @Id
     private String id;
-
 }

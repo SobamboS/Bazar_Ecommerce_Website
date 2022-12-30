@@ -19,6 +19,6 @@ public interface UserService{
 
     UpdateResponse update(UpdateRequest updateRequest );
 
-    DeleteResponse delete(DeleteRequest deleteRequest);
+    DeleteResponse delete(String id);
 
 }

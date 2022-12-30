@@ -1,6 +1,5 @@
 package com.appsdeveloperblog.app.ws.mobileappws;
 
-import com.appsdeveloperblog.app.ws.mobileappws.dto.Vendor.request.VendorDeleteRequest;
 import com.appsdeveloperblog.app.ws.mobileappws.dto.Vendor.request.VendorLoginRequest;
 import com.appsdeveloperblog.app.ws.mobileappws.dto.Vendor.request.VendorRegistrationRequest;
 import com.appsdeveloperblog.app.ws.mobileappws.dto.Vendor.request.VendorUpdateRequest;
@@ -60,10 +59,7 @@ class VendorServiceImplTest{
     }
     @Test
     void canDeleteVendor(){
-        VendorDeleteRequest vendorDeleteRequest = new VendorDeleteRequest();
-        vendorDeleteRequest.setId("63ae4f8a1747d719d27aa4ac");
-        vendorDeleteRequest.setEmail("felix@gmail.com");
-        VendorDeleteResponse vendorDeleteResponse = vendorService.vendorDelete(vendorDeleteRequest);
+        VendorDeleteResponse vendorDeleteResponse = vendorService.vendorDelete("");
         System.out.println(vendorDeleteResponse);
         assertEquals("Deleted", vendorDeleteResponse.getMessage());
     }

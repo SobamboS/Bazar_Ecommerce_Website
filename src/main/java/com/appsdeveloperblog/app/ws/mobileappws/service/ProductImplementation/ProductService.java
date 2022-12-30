@@ -8,7 +8,9 @@ import com.appsdeveloperblog.app.ws.mobileappws.dto.Product.response.ProductDele
 import com.appsdeveloperblog.app.ws.mobileappws.dto.Product.response.ProductUpdateResponse;
 
 public interface ProductService{
-    ProductDeleteResponse deleteProduct (ProductDeleteRequest ProductdeleteRequest);
+    ProductDeleteResponse deleteProduct (String id);
     ProductCreateResponse createProduct(ProductCreateRequest productCreateRequest);
     ProductUpdateResponse UpdateProduct(ProductUpdateRequest productUpdateRequest);
+
+    void showAllProducts();
 }

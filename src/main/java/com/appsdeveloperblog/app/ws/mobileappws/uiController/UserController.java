@@ -1,7 +1,7 @@
 //package com.appsdeveloperblog.app.ws.mobileappws.uiController;
 //
 //import com.appsdeveloperblog.app.ws.mobileappws.models.User;
-//import com.appsdeveloperblog.app.ws.mobileappws.service.UserService;
+//import com.appsdeveloperblog.app.ws.mobileappws.service.UserImplementation.UserService;
 //import com.appsdeveloperblog.app.ws.mobileappws.shared.dto.RegistrationRequest;
 ////import com.appsdeveloperblog.app.ws.mobileappws.shared.dto.UserDto;
 //import com.appsdeveloperblog.app.ws.mobileappws.shared.dto.UserResponse;

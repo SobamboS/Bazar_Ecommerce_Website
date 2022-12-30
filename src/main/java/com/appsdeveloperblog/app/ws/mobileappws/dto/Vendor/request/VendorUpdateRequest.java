@@ -1,18 +1,15 @@
-package com.appsdeveloperblog.app.ws.mobileappws.models;
+package com.appsdeveloperblog.app.ws.mobileappws.dto.Vendor.request;
 
 import jakarta.persistence.Id;
 import lombok.Data;
-import org.springframework.data.mongodb.core.mapping.Document;
 
-@Document
 @Data
-public class User {
+public class VendorUpdateRequest{
     @Id
     private String id;
+
     private String firstName;
     private String lastName;
     private String email;
     private String password;
-
 }
-

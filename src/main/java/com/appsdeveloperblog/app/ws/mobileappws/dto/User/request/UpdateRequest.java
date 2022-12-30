@@ -1,18 +1,16 @@
-package com.appsdeveloperblog.app.ws.mobileappws.models;
+package com.appsdeveloperblog.app.ws.mobileappws.dto.User.request;
 
 import jakarta.persistence.Id;
 import lombok.Data;
-import org.springframework.data.mongodb.core.mapping.Document;
 
-@Document
 @Data
-public class User {
-    @Id
+public class UpdateRequest{
+     @Id
     private String id;
+
     private String firstName;
     private String lastName;
     private String email;
     private String password;
 
 }
-

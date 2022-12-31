@@ -1,12 +1,12 @@
 package com.appsdeveloperblog.app.ws.mobileappws;
 
-import com.appsdeveloperblog.app.ws.mobileappws.User.User.request.RegistrationRequest;
-import com.appsdeveloperblog.app.ws.mobileappws.User.User.request.UpdateRequest;
-import com.appsdeveloperblog.app.ws.mobileappws.User.User.response.*;
+import com.appsdeveloperblog.app.ws.mobileappws.User.reponseAndrequest.request.RegistrationRequest;
+import com.appsdeveloperblog.app.ws.mobileappws.User.reponseAndrequest.request.UpdateRequest;
+import com.appsdeveloperblog.app.ws.mobileappws.User.reponseAndrequest.response.*;
 
-import com.appsdeveloperblog.app.ws.mobileappws.User.UserImplementation.UserService;
+import com.appsdeveloperblog.app.ws.mobileappws.User.service.UserService;
 
-import com.appsdeveloperblog.app.ws.mobileappws.User.User.request.LoginRequest;
+import com.appsdeveloperblog.app.ws.mobileappws.User.reponseAndrequest.request.LoginRequest;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;

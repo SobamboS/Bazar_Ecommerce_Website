@@ -1,17 +1,17 @@
 package com.appsdeveloperblog.app.ws.mobileappws.service.ProductImplementation;
 
-import com.appsdeveloperblog.app.ws.mobileappws.Product.Product.request.ProductCreateRequest;
-import com.appsdeveloperblog.app.ws.mobileappws.Product.Product.request.ProductUpdateRequest;
-import com.appsdeveloperblog.app.ws.mobileappws.Product.Product.response.ProductCreateResponse;
-import com.appsdeveloperblog.app.ws.mobileappws.Product.Product.response.ProductDeleteResponse;
-import com.appsdeveloperblog.app.ws.mobileappws.Product.Product.response.ProductUpdateResponse;
-import com.appsdeveloperblog.app.ws.mobileappws.Product.ProductImplementation.ProductService;
+import com.appsdeveloperblog.app.ws.mobileappws.Product.responseAndrequest.request.ProductCreateRequest;
+import com.appsdeveloperblog.app.ws.mobileappws.Product.responseAndrequest.request.ProductUpdateRequest;
+import com.appsdeveloperblog.app.ws.mobileappws.Product.responseAndrequest.response.ProductCreateResponse;
+import com.appsdeveloperblog.app.ws.mobileappws.Product.responseAndrequest.response.ProductDeleteResponse;
+import com.appsdeveloperblog.app.ws.mobileappws.Product.responseAndrequest.response.ProductUpdateResponse;
+import com.appsdeveloperblog.app.ws.mobileappws.Product.service.ProductService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
-import static com.appsdeveloperblog.app.ws.mobileappws.Product.ProductCategory.SUPERMARKET;
+import static com.appsdeveloperblog.app.ws.mobileappws.Product.model.ProductCategory.SUPERMARKET;
 import static org.junit.jupiter.api.Assertions.*;
 @SpringBootTest
 class ProductServiceImplTest{

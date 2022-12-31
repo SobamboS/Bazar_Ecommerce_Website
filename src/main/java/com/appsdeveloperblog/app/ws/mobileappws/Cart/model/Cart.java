@@ -1,4 +1,4 @@
-package com.appsdeveloperblog.app.ws.mobileappws.Order.requestAndresponse.request;
+package com.appsdeveloperblog.app.ws.mobileappws.Cart.model;
 
 import com.appsdeveloperblog.app.ws.mobileappws.Product.model.Product;
 import jakarta.persistence.Id;
@@ -8,10 +8,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Data
-public class CreateOrderRequest{
+public class Cart{
     @Id
     private String id;
-    private String userId;
     private double total;
-    private List<Product> orderProducts = new ArrayList<>();
+    private List<Product> cartProducts = new ArrayList<>();
+
 }

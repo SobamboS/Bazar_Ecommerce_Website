@@ -1,10 +1,10 @@
 package com.appsdeveloperblog.app.ws.mobileappws;
 
-import com.appsdeveloperblog.app.ws.mobileappws.Vendor.Vendor.request.VendorLoginRequest;
-import com.appsdeveloperblog.app.ws.mobileappws.Vendor.Vendor.request.VendorRegistrationRequest;
-import com.appsdeveloperblog.app.ws.mobileappws.Vendor.Vendor.request.VendorUpdateRequest;
-import com.appsdeveloperblog.app.ws.mobileappws.Vendor.Vendor.response.*;
-import com.appsdeveloperblog.app.ws.mobileappws.Vendor.VendotImplementation.VendorService;
+import com.appsdeveloperblog.app.ws.mobileappws.Vendor.ResponseAndRequest.request.VendorLoginRequest;
+import com.appsdeveloperblog.app.ws.mobileappws.Vendor.ResponseAndRequest.request.VendorRegistrationRequest;
+import com.appsdeveloperblog.app.ws.mobileappws.Vendor.ResponseAndRequest.request.VendorUpdateRequest;
+import com.appsdeveloperblog.app.ws.mobileappws.Vendor.ResponseAndRequest.response.*;
+import com.appsdeveloperblog.app.ws.mobileappws.Vendor.service.VendorService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;

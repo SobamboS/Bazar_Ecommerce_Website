@@ -12,7 +12,7 @@ public class Order{
     @Id
     private String id;
     private String userId;
-    private double total;
+    private double price;
     private List<Product> productList = new ArrayList<>();
     private Category category;
     private String productName;

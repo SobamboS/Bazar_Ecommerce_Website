@@ -10,7 +10,6 @@ public interface UserService{
     //create, read, update and delete
     UserResponse createUser(RegistrationRequest registrationRequest);
 
-
     LoginResponse login(LoginRequest loginRequest);
 
     UpdateResponse update(UpdateRequest updateRequest );

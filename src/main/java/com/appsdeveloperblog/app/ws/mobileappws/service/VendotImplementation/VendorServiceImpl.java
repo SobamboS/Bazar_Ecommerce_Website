@@ -1,7 +1,6 @@
 package com.appsdeveloperblog.app.ws.mobileappws.service.VendotImplementation;
 
 import com.appsdeveloperblog.app.ws.mobileappws.Repository.VendorRepository;
-import com.appsdeveloperblog.app.ws.mobileappws.dto.Vendor.request.VendorDeleteRequest;
 import com.appsdeveloperblog.app.ws.mobileappws.dto.Vendor.request.VendorLoginRequest;
 import com.appsdeveloperblog.app.ws.mobileappws.dto.Vendor.request.VendorRegistrationRequest;
 import com.appsdeveloperblog.app.ws.mobileappws.dto.Vendor.request.VendorUpdateRequest;
@@ -71,8 +70,8 @@ return vendorLoginResponse;
 
     @Override
     public VendorDeleteAllResponse vendorDeleteAll(String id){
-//        vendorRepository.deleteAll(id);
-//        return  new VendorDeleteAllResponse("All vendors deleted ");
-   return null;
+      vendorRepository.deleteAll();
+    return  new VendorDeleteAllResponse("All vendors deleted ");
+
     }
 }

@@ -2,13 +2,10 @@ package com.appsdeveloperblog.app.ws.mobileappws;
 
 import com.appsdeveloperblog.app.ws.mobileappws.dto.User.request.RegistrationRequest;
 import com.appsdeveloperblog.app.ws.mobileappws.dto.User.request.UpdateRequest;
-import com.appsdeveloperblog.app.ws.mobileappws.dto.User.response.DeleteResponse;
-import com.appsdeveloperblog.app.ws.mobileappws.dto.User.response.LoginResponse;
-import com.appsdeveloperblog.app.ws.mobileappws.dto.User.response.UpdateResponse;
-import com.appsdeveloperblog.app.ws.mobileappws.dto.User.response.UserResponse;
-import com.appsdeveloperblog.app.ws.mobileappws.dto.Vendor.response.VendorDeleteResponse;
+import com.appsdeveloperblog.app.ws.mobileappws.dto.User.response.*;
+
 import com.appsdeveloperblog.app.ws.mobileappws.service.UserImplementation.UserService;
-import com.appsdeveloperblog.app.ws.mobileappws.dto.User.request.DeleteRequest;
+
 import com.appsdeveloperblog.app.ws.mobileappws.dto.User.request.LoginRequest;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -54,27 +51,25 @@ class UserServiceImplTest {
     @Test
     void canUpdateUser(){
         UpdateRequest updateRequest = new UpdateRequest();
-        updateRequest.setId("63adbcbe4676504dadd974d5");
+        updateRequest.setId("63aec937cae85f4d8694f2a4");
         updateRequest.setEmail("Femi@gmail.com");
         UpdateResponse updateResponse = userService.update(updateRequest);
-        assertEquals("Id found", updateResponse.getMessage());
+        System.out.println(updateResponse);
+        assertEquals("User info updated", updateResponse.getMessage());
     }
+
 
     @Test
     void canDeleteUser(){
-        DeleteRequest deleteRequest = new DeleteRequest();
-        deleteRequest.setId("63adbcbe4676504dadd974d5");
-        deleteRequest.setEmail("Femi@gmail.com");
-        DeleteResponse deleteResponse = userService.delete(deleteRequest);
-        assertEquals("Deleted", deleteResponse.getMessage());
-
+       DeleteResponse deleteResponse = userService.delete("63aec937cae85f4d8694f2a4");
+        System.out.println(deleteResponse);
+        assertEquals("User Deleted", deleteResponse.getMessage());
     }
-
     @Test
-    void canDeleteUser(){
-        DeleteResponse deleteResponse = userService.userDelete("");
-        System.out.println(userDeleteResponse);
-        assertEquals("Deleted", userDeleteResponse.getMessage());
+    void canDeleteAll(){
+        DeleteAllResponse deleteAllResponse = userService.deleteAll("");
+        System.out.println(deleteAllResponse);
+        assertEquals("All user Deleted", deleteAllResponse.getMessage());
     }
 
 

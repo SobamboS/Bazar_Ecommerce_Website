@@ -2,9 +2,9 @@ package com.appsdeveloperblog.app.ws.mobileappws.service.ProductImplementation;
 
 import com.appsdeveloperblog.app.ws.mobileappws.Repository.ProductRepository;
 import com.appsdeveloperblog.app.ws.mobileappws.dto.Product.request.ProductCreateRequest;
-import com.appsdeveloperblog.app.ws.mobileappws.dto.Product.request.ProductDeleteRequest;
 import com.appsdeveloperblog.app.ws.mobileappws.dto.Product.request.ProductUpdateRequest;
 import com.appsdeveloperblog.app.ws.mobileappws.dto.Product.response.ProductCreateResponse;
+import com.appsdeveloperblog.app.ws.mobileappws.dto.Product.response.ProductDeleteAllResponse;
 import com.appsdeveloperblog.app.ws.mobileappws.dto.Product.response.ProductDeleteResponse;
 import com.appsdeveloperblog.app.ws.mobileappws.dto.Product.response.ProductUpdateResponse;
 import com.appsdeveloperblog.app.ws.mobileappws.models.Product;
@@ -48,16 +48,20 @@ public class ProductServiceImpl implements ProductService{
         return productUpdateResponse;
     }
 
-
     @Override
-    public void showAllProducts( ){
-        productRepository.findAll();
+    public ProductDeleteAllResponse deleteAllProduct( ){
+        productRepository.deleteAll();;
+        return new ProductDeleteAllResponse("All Product Deleted");
     }
 
     @Override
     public ProductDeleteResponse deleteProduct(String id){
         productRepository.deleteById(id);
-        return new ProductDeleteResponse("Vendor Deleted");
+        return new ProductDeleteResponse("Product Deleted");
+    }
+    @Override
+    public void showAllProducts( ){
+        productRepository.findAll();
     }
 
 }

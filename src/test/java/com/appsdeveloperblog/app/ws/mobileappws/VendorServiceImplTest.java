@@ -3,10 +3,7 @@ package com.appsdeveloperblog.app.ws.mobileappws;
 import com.appsdeveloperblog.app.ws.mobileappws.dto.Vendor.request.VendorLoginRequest;
 import com.appsdeveloperblog.app.ws.mobileappws.dto.Vendor.request.VendorRegistrationRequest;
 import com.appsdeveloperblog.app.ws.mobileappws.dto.Vendor.request.VendorUpdateRequest;
-import com.appsdeveloperblog.app.ws.mobileappws.dto.Vendor.response.VendorDeleteResponse;
-import com.appsdeveloperblog.app.ws.mobileappws.dto.Vendor.response.VendorLoginResponse;
-import com.appsdeveloperblog.app.ws.mobileappws.dto.Vendor.response.VendorRegistrationResponse;
-import com.appsdeveloperblog.app.ws.mobileappws.dto.Vendor.response.VendorUpdateResponse;
+import com.appsdeveloperblog.app.ws.mobileappws.dto.Vendor.response.*;
 import com.appsdeveloperblog.app.ws.mobileappws.service.VendotImplementation.VendorService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -51,7 +48,7 @@ class VendorServiceImplTest{
     @Test
     void canUpdateVendor(){
         VendorUpdateRequest vendorUpdateRequest = new VendorUpdateRequest();
-        vendorUpdateRequest.setId("63ae4f8a1747d719d27aa4ac");
+        vendorUpdateRequest.setId("63aec8205d9b477d67a80f6d");
         vendorUpdateRequest.setEmail("felix@gmail.com");
         VendorUpdateResponse vendorUpdateResponse = vendorService.vendorUpdate(vendorUpdateRequest);
         System.out.println(vendorUpdateResponse);
@@ -59,8 +56,15 @@ class VendorServiceImplTest{
     }
     @Test
     void canDeleteVendor(){
-        VendorDeleteResponse vendorDeleteResponse = vendorService.vendorDelete("");
+        VendorDeleteResponse vendorDeleteResponse = vendorService.vendorDelete("63aec8205d9b477d67a80f6d");
         System.out.println(vendorDeleteResponse);
-        assertEquals("Deleted", vendorDeleteResponse.getMessage());
+        assertEquals("Vendor Deleted", vendorDeleteResponse.getMessage());
+    }
+
+    @Test
+    void canDeleteAllVendor(){
+        VendorDeleteAllResponse vendorDeleteAllResponse = vendorService.vendorDeleteAll("");
+        System.out.println(vendorDeleteAllResponse);
+        assertEquals("All vendors deleted ", vendorDeleteAllResponse.getMessage());
     }
 }

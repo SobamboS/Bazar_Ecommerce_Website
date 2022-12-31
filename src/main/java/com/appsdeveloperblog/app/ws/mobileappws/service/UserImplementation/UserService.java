@@ -1,13 +1,9 @@
 package com.appsdeveloperblog.app.ws.mobileappws.service.UserImplementation;
 
-import com.appsdeveloperblog.app.ws.mobileappws.dto.User.request.DeleteRequest;
 import com.appsdeveloperblog.app.ws.mobileappws.dto.User.request.LoginRequest;
 import com.appsdeveloperblog.app.ws.mobileappws.dto.User.request.RegistrationRequest;
 import com.appsdeveloperblog.app.ws.mobileappws.dto.User.request.UpdateRequest;
-import com.appsdeveloperblog.app.ws.mobileappws.dto.User.response.DeleteResponse;
-import com.appsdeveloperblog.app.ws.mobileappws.dto.User.response.LoginResponse;
-import com.appsdeveloperblog.app.ws.mobileappws.dto.User.response.UpdateResponse;
-import com.appsdeveloperblog.app.ws.mobileappws.dto.User.response.UserResponse;
+import com.appsdeveloperblog.app.ws.mobileappws.dto.User.response.*;
 
 public interface UserService{
 
@@ -20,5 +16,5 @@ public interface UserService{
     UpdateResponse update(UpdateRequest updateRequest );
 
     DeleteResponse delete(String id);
-
+    DeleteAllResponse deleteAll(String id);
 }

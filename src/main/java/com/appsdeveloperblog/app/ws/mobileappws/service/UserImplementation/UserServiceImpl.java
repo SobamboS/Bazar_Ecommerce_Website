@@ -3,10 +3,7 @@ package com.appsdeveloperblog.app.ws.mobileappws.service.UserImplementation;
 import com.appsdeveloperblog.app.ws.mobileappws.Repository.UserRepository;
 import com.appsdeveloperblog.app.ws.mobileappws.dto.User.request.RegistrationRequest;
 import com.appsdeveloperblog.app.ws.mobileappws.dto.User.request.UpdateRequest;
-import com.appsdeveloperblog.app.ws.mobileappws.dto.User.response.DeleteResponse;
-import com.appsdeveloperblog.app.ws.mobileappws.dto.User.response.LoginResponse;
-import com.appsdeveloperblog.app.ws.mobileappws.dto.User.response.UpdateResponse;
-import com.appsdeveloperblog.app.ws.mobileappws.dto.User.response.UserResponse;
+import com.appsdeveloperblog.app.ws.mobileappws.dto.User.response.*;
 
 import com.appsdeveloperblog.app.ws.mobileappws.models.User;
 
@@ -63,10 +60,10 @@ public class UserServiceImpl implements UserService{
             updateUser.setPassword(updateRequest.getPassword());
 
             userRepository.save(updateUser);
-            updateResponse.setMessage("Id found");
+            updateResponse.setMessage("User info updated");
             return updateResponse;
         }else
-            updateResponse.setMessage("Id not found");
+            updateResponse.setMessage("Not successful");
         return updateResponse;
     }
 
@@ -75,7 +72,14 @@ public class UserServiceImpl implements UserService{
     @Override
     public DeleteResponse delete(String id){
         userRepository.deleteById(id);
-        return new DeleteResponse("Vendor Deleted");
+        return new DeleteResponse("User Deleted");
+    }
+
+    @Override
+    public DeleteAllResponse deleteAll(String id){
+        userRepository.deleteAll();
+        return new DeleteAllResponse("All user Deleted");
+
     }
 
 

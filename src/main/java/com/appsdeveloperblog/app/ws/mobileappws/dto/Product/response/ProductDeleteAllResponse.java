@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 
 @Data
-public class ProductUpdateResponse{
+@AllArgsConstructor
+public class ProductDeleteAllResponse{
     private String message;
 }

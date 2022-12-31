@@ -3,6 +3,7 @@ package com.appsdeveloperblog.app.ws.mobileappws.service.ProductImplementation;
 import com.appsdeveloperblog.app.ws.mobileappws.dto.Product.request.ProductCreateRequest;
 import com.appsdeveloperblog.app.ws.mobileappws.dto.Product.request.ProductUpdateRequest;
 import com.appsdeveloperblog.app.ws.mobileappws.dto.Product.response.ProductCreateResponse;
+import com.appsdeveloperblog.app.ws.mobileappws.dto.Product.response.ProductDeleteResponse;
 import com.appsdeveloperblog.app.ws.mobileappws.dto.Product.response.ProductUpdateResponse;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -38,7 +39,7 @@ class ProductServiceImplTest{
     @Test
     void canUpdateProduct( ){
         ProductUpdateRequest productUpdateRequest = new ProductUpdateRequest();
-        productUpdateRequest.setId("63ae98f62f13997653e4b9db");
+        productUpdateRequest.setId("63aecaad1a21453e6c5f46a7");
         productUpdateRequest.setPrice(400);
         ProductUpdateResponse productUpdateResponse = productService.UpdateProduct(productUpdateRequest);
         System.out.println(productUpdateResponse);
@@ -48,6 +49,9 @@ class ProductServiceImplTest{
 
     @Test
     void deleteProduct( ){
+        ProductDeleteResponse productDeleteResponse = productService.deleteProduct("63aecaad1a21453e6c5f46a7");
+        System.out.println(productDeleteResponse);
+        assertEquals("Product Deleted", productDeleteResponse.getMessage());
 
     }
 

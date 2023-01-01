@@ -12,8 +12,7 @@ public interface ProductService{
     ProductCreateResponse createProduct(ProductCreateRequest productCreateRequest);
     ProductUpdateResponse UpdateProduct(ProductUpdateRequest productUpdateRequest);
 
-
-    ProductDeleteAllResponse deleteAllProduct ();
+    ProductDeleteAllResponse deleteAllProduct();
 
     void showAllProducts();
 }

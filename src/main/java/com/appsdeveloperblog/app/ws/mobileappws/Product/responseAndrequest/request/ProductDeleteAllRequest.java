@@ -5,6 +5,5 @@ import lombok.Data;
 
 @Data
 public class ProductDeleteAllRequest{
-    @Id
-    private String id;
+
 }

@@ -23,16 +23,18 @@ public class VendorServiceImpl implements VendorService{
         vendor.setEmail(vendorRegistrationRequest.getEmail());
         vendor.setFirstName(vendorRegistrationRequest.getFirstName());
         vendor.setLastName(vendorRegistrationRequest.getLastName());
+        vendor.setPhoneNumber(vendorRegistrationRequest.getPhoneNumber());
         vendor.setPassword(vendorRegistrationRequest.getPassword());
         if(!VendorDetailValidator.isValidEmail(vendorRegistrationRequest.getEmail())){
             throw new VendorRegistrationException(String.format("Email %s is invalid", vendorRegistrationRequest.getEmail()));
         }
         if(!VendorDetailValidator.isValidPassword(vendorRegistrationRequest.getPassword())){
-            throw  new VendorRegistrationException(String.format("Password %s is incorrect", vendorRegistrationRequest.getPassword()));
+            throw  new VendorRegistrationException(String.format("%s your password must contain special character", vendorRegistrationRequest.getPassword()));
         }
         if(!VendorDetailValidator.isValidPhoneNumber(vendorRegistrationRequest.getPhoneNumber())){
             throw  new VendorRegistrationException(String.format("Phone number %s is not complete", vendorRegistrationRequest.getPhoneNumber()));
         }
+        
         Vendor savedVendor = vendorRepository.save(vendor);
         VendorRegistrationResponse response = new VendorRegistrationResponse();
         response.setId(savedVendor.getId());
@@ -77,7 +79,7 @@ return vendorLoginResponse;
 
 
     @Override
-    public VendorDeleteAllResponse vendorDeleteAll(String id){
+    public VendorDeleteAllResponse vendorDeleteAll( ){
       vendorRepository.deleteAll();
     return  new VendorDeleteAllResponse("All vendors deleted ");
 

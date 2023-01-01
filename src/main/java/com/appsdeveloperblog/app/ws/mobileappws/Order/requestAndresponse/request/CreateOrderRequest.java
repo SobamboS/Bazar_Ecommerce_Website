@@ -9,9 +9,8 @@ import java.util.List;
 
 @Data
 public class CreateOrderRequest{
-    @Id
-    private String id;
     private String userId;
     private double total;
     private List<Product> orderProducts = new ArrayList<>();
+    private String productName;
 }

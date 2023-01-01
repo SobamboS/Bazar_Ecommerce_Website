@@ -5,4 +5,5 @@ import lombok.Data;
 @Data
 public class ProductCreateResponse{
     private String message;
+    private int statusCode;
 }

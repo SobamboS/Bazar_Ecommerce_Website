@@ -28,6 +28,7 @@ class UserServiceImplTest {
         registrationRequest.setFirstName("David");
         registrationRequest.setLastName("Halland");
         registrationRequest.setPassword("Qwertyuo@13");
+        registrationRequest.setPhoneNumber("12345678910");
     }
 
     @Test
@@ -67,7 +68,7 @@ class UserServiceImplTest {
     }
     @Test
     void canDeleteAll(){
-        DeleteAllResponse deleteAllResponse = userService.deleteAll("");
+        DeleteAllResponse deleteAllResponse = userService.deleteAll();
         System.out.println(deleteAllResponse);
         assertEquals("All user Deleted", deleteAllResponse.getMessage());
     }

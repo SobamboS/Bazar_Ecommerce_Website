@@ -3,7 +3,10 @@ package com.appsdeveloperblog.app.ws.mobileappws.Vendor.controller;
 import com.appsdeveloperblog.app.ws.mobileappws.Vendor.ResponseAndRequest.request.VendorLoginRequest;
 import com.appsdeveloperblog.app.ws.mobileappws.Vendor.ResponseAndRequest.request.VendorRegistrationRequest;
 import com.appsdeveloperblog.app.ws.mobileappws.Vendor.ResponseAndRequest.request.VendorUpdateRequest;
+import com.appsdeveloperblog.app.ws.mobileappws.Vendor.ResponseAndRequest.response.VendorDeleteResponse;
+import com.appsdeveloperblog.app.ws.mobileappws.Vendor.ResponseAndRequest.response.VendorLoginResponse;
 import com.appsdeveloperblog.app.ws.mobileappws.Vendor.ResponseAndRequest.response.VendorRegistrationResponse;
+import com.appsdeveloperblog.app.ws.mobileappws.Vendor.ResponseAndRequest.response.VendorUpdateResponse;
 import com.appsdeveloperblog.app.ws.mobileappws.Vendor.exception.VendorRegistrationException;
 import com.appsdeveloperblog.app.ws.mobileappws.Vendor.service.VendorService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +15,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
+//@RequestMapping("/vendor") // http://localhost:8080/vendor
 public class VendorController{
     @Autowired
     private VendorService vendorService;
@@ -29,17 +33,17 @@ public class VendorController{
     }
 
     @GetMapping("/loginVendor")
-    public ResponseEntity<?> vendorLogin (@RequestBody VendorLoginRequest vendorLoginRequest){
+    public ResponseEntity<VendorLoginResponse> vendorLogin (@RequestBody VendorLoginRequest vendorLoginRequest){
         return  ResponseEntity.ok(vendorService.vendorLogin(vendorLoginRequest));
     }
 
     @PatchMapping("/updateVendorDetails")
-    public ResponseEntity<?> vendorUpdate(@RequestBody VendorUpdateRequest vendorUpdateRequest){
+    public ResponseEntity<VendorUpdateResponse> vendorUpdate(@RequestBody VendorUpdateRequest vendorUpdateRequest){
         return ResponseEntity.ok(vendorService.vendorUpdate(vendorUpdateRequest));
     }
 
     @DeleteMapping("/deleteVendor/{id}")
-    public  ResponseEntity<?> vendorDelete(@PathVariable String id){
+    public  ResponseEntity<VendorDeleteResponse> vendorDelete(@PathVariable String id){
         return ResponseEntity.ok(vendorService.vendorDelete(id));
     }
 

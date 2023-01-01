@@ -12,5 +12,6 @@ public class ProductCreateRequest{
     @Id
     private String id;
     private ProductCategory productCategory;
+    private int quantity;
 
 }

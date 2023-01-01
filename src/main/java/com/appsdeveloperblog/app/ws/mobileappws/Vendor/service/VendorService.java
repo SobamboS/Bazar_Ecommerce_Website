@@ -11,5 +11,5 @@ public interface VendorService{
     VendorUpdateResponse vendorUpdate(VendorUpdateRequest vendorUpdateRequest);
     VendorDeleteResponse vendorDelete(String id);
 
-    VendorDeleteAllResponse vendorDeleteAll(String id);
+    VendorDeleteAllResponse vendorDeleteAll();
 }

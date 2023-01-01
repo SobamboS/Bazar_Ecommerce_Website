@@ -25,6 +25,7 @@ class VendorServiceImplTest{
         vendorRegistrationRequest.setPassword("eleven112@");
         vendorRegistrationRequest.setFirstName("Olusola");
         vendorRegistrationRequest.setLastName("Sobambo");
+        vendorRegistrationRequest.setPhoneNumber("08144357336");
     }
 
     @Test
@@ -63,7 +64,7 @@ class VendorServiceImplTest{
 
     @Test
     void canDeleteAllVendor(){
-        VendorDeleteAllResponse vendorDeleteAllResponse = vendorService.vendorDeleteAll("");
+        VendorDeleteAllResponse vendorDeleteAllResponse = vendorService.vendorDeleteAll();
         System.out.println(vendorDeleteAllResponse);
         assertEquals("All vendors deleted ", vendorDeleteAllResponse.getMessage());
     }

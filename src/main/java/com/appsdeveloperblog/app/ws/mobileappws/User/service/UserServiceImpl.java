@@ -9,6 +9,7 @@ import com.appsdeveloperblog.app.ws.mobileappws.User.model.User;
 
 
 import com.appsdeveloperblog.app.ws.mobileappws.User.reponseAndrequest.request.LoginRequest;
+import com.appsdeveloperblog.app.ws.mobileappws.User.validator.UserDetailValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -26,6 +27,18 @@ public class UserServiceImpl implements UserService{
         user.setFirstName(registrationRequest.getFirstName());
         user.setLastName(registrationRequest.getLastName());
         user.setPassword(registrationRequest.getPassword());
+        user.setPhoneNumber(registrationRequest.getPhoneNumber());
+
+        if(!UserDetailValidator.isValidEmail(registrationRequest.getEmail())){
+            throw new RuntimeException(String.format("Email %s is invalid",registrationRequest.getEmail()));
+        }
+        if(!UserDetailValidator.isValidPassword(registrationRequest.getPassword())){
+            throw new RuntimeException(String.format("%s your password must contain special character",registrationRequest.getPassword()));
+        }
+        if(!UserDetailValidator.isValidPhoneNumber(registrationRequest.getPhoneNumber())){
+            throw new RuntimeException(String.format("Phone number %s is not complete", registrationRequest.getPhoneNumber()));
+        }
+
         User savedUser = userRepository.save(user);
         UserResponse response = new UserResponse();
         response.setId(savedUser.getId());
@@ -75,8 +88,9 @@ public class UserServiceImpl implements UserService{
         return new DeleteResponse("User Deleted");
     }
 
+
     @Override
-    public DeleteAllResponse deleteAll(String id){
+    public DeleteAllResponse deleteAll(){
         userRepository.deleteAll();
         return new DeleteAllResponse("All user Deleted");
 

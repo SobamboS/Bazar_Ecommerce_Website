@@ -50,7 +50,7 @@ public class ProductServiceImpl implements ProductService{
 
     @Override
     public ProductDeleteAllResponse deleteAllProduct( ){
-        productRepository.deleteAll();;
+        productRepository.deleteAll();
         return new ProductDeleteAllResponse("All Product Deleted");
     }
 
@@ -60,7 +60,7 @@ public class ProductServiceImpl implements ProductService{
         return new ProductDeleteResponse("Product Deleted");
     }
     @Override
-    public void showAllProducts( ){
+    public void showAllProducts(){
         productRepository.findAll();
     }
 

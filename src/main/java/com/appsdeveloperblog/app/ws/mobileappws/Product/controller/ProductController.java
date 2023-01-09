@@ -1,18 +1,23 @@
 package com.appsdeveloperblog.app.ws.mobileappws.Product.controller;
 
-import com.appsdeveloperblog.app.ws.mobileappws.Product.responseAndrequest.request.ProductCreateRequest;
-import com.appsdeveloperblog.app.ws.mobileappws.Product.responseAndrequest.request.ProductUpdateRequest;
-import com.appsdeveloperblog.app.ws.mobileappws.Product.responseAndrequest.response.ProductCreateResponse;
-import com.appsdeveloperblog.app.ws.mobileappws.Product.responseAndrequest.response.ProductDeleteResponse;
-import com.appsdeveloperblog.app.ws.mobileappws.Product.responseAndrequest.response.ProductUpdateResponse;
+import com.appsdeveloperblog.app.ws.mobileappws.Order.service.OrderService;
+import com.appsdeveloperblog.app.ws.mobileappws.Product.dto.request.ProductCreateRequest;
+import com.appsdeveloperblog.app.ws.mobileappws.Product.dto.request.ProductUpdateRequest;
+import com.appsdeveloperblog.app.ws.mobileappws.Product.dto.response.ProductCreateResponse;
+import com.appsdeveloperblog.app.ws.mobileappws.Product.dto.response.ProductDeleteResponse;
+import com.appsdeveloperblog.app.ws.mobileappws.Product.dto.response.ProductUpdateResponse;
 import com.appsdeveloperblog.app.ws.mobileappws.Product.service.ProductService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
 public class ProductController{
+    @Autowired
     private ProductService productService;
+    @Autowired
+    OrderService orderService;
 
     @PostMapping("/createProduct")
     public ResponseEntity<ProductCreateResponse> createProduct(@RequestBody ProductCreateRequest productCreateRequest){

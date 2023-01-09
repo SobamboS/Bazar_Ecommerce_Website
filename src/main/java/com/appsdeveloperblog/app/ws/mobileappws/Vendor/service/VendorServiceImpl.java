@@ -1,12 +1,14 @@
 package com.appsdeveloperblog.app.ws.mobileappws.Vendor.service;
 
+import com.appsdeveloperblog.app.ws.mobileappws.Vendor.dto.response.*;
+import com.appsdeveloperblog.app.ws.mobileappws.Vendor.exception.VendorLoginException;
 import com.appsdeveloperblog.app.ws.mobileappws.Vendor.exception.VendorRegistrationException;
-import com.appsdeveloperblog.app.ws.mobileappws.Vendor.repository.VendorRepository;
-import com.appsdeveloperblog.app.ws.mobileappws.Vendor.ResponseAndRequest.request.VendorLoginRequest;
-import com.appsdeveloperblog.app.ws.mobileappws.Vendor.ResponseAndRequest.request.VendorRegistrationRequest;
-import com.appsdeveloperblog.app.ws.mobileappws.Vendor.ResponseAndRequest.request.VendorUpdateRequest;
-import com.appsdeveloperblog.app.ws.mobileappws.Vendor.ResponseAndRequest.response.*;
-import com.appsdeveloperblog.app.ws.mobileappws.Vendor.model.Vendor;
+import com.appsdeveloperblog.app.ws.mobileappws.Vendor.exception.VendorUpdateException;
+import com.appsdeveloperblog.app.ws.mobileappws.Vendor.data.repository.VendorRepository;
+import com.appsdeveloperblog.app.ws.mobileappws.Vendor.dto.request.VendorLoginRequest;
+import com.appsdeveloperblog.app.ws.mobileappws.Vendor.dto.request.VendorRegistrationRequest;
+import com.appsdeveloperblog.app.ws.mobileappws.Vendor.dto.request.VendorUpdateRequest;
+import com.appsdeveloperblog.app.ws.mobileappws.Vendor.data.model.Vendor;
 import com.appsdeveloperblog.app.ws.mobileappws.Vendor.validator.VendorDetailValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -36,38 +38,29 @@ public class VendorServiceImpl implements VendorService{
         }
         
         Vendor savedVendor = vendorRepository.save(vendor);
-        VendorRegistrationResponse response = new VendorRegistrationResponse();
-        response.setId(savedVendor.getId());
-        response.setStatusCode(201);
-        response.setMessage("Registration Successful");
-        return response;
+
+        return new VendorRegistrationResponse(201,"Registration Successful");
     }
 
     @Override
     public VendorLoginResponse vendorLogin(VendorLoginRequest vendorLoginRequest){
-Vendor foundVendor = vendorRepository.findByEmail(vendorLoginRequest.getEmail())
-        .orElseThrow(()-> new RuntimeException("Email not found"));
-VendorLoginResponse vendorLoginResponse = new VendorLoginResponse();
-if(foundVendor.getPassword().equals(vendorLoginRequest.getPassword())){
-    vendorLoginResponse.setMessage("Login Successful");
-    return  vendorLoginResponse;
+    Vendor foundVendor = vendorRepository.findByEmail(vendorLoginRequest.getEmail())
+        .orElseThrow(()-> new VendorLoginException("Email not found"));
+    if(foundVendor.getPassword().equals(vendorLoginRequest.getPassword())){
+       return new VendorLoginResponse("Login Successful") ;
     }else
-        vendorLoginResponse.setMessage("Incorrect user details");
-return vendorLoginResponse;
+       return new VendorLoginResponse("Incorrect login info");
     }
 
     @Override
     public VendorUpdateResponse vendorUpdate(VendorUpdateRequest vendorUpdateRequest){
         Vendor updateVendor = vendorRepository.findById(vendorUpdateRequest.getId())
-                .orElseThrow(()-> new RuntimeException("Id not found"));
-        VendorUpdateResponse updateResponse = new VendorUpdateResponse();
+                .orElseThrow(()-> new VendorUpdateException("Id not found"));
         if(updateVendor.getId().equals(vendorUpdateRequest.getId())){
             vendorRepository.save(updateVendor);
-            updateResponse.setMessage("Update Successful");
-            return updateResponse;
+            return new VendorUpdateResponse("Updated Successful");
         }else
-            updateResponse.setMessage("Update not done");
-        return updateResponse;
+         return new VendorUpdateResponse("Update not done");
     }
 
 

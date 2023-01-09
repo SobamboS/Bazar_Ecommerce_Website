@@ -1,12 +1,12 @@
 package com.appsdeveloperblog.app.ws.mobileappws.User.controller;
 
-import com.appsdeveloperblog.app.ws.mobileappws.User.reponseAndrequest.request.LoginRequest;
-import com.appsdeveloperblog.app.ws.mobileappws.User.reponseAndrequest.request.RegistrationRequest;
-import com.appsdeveloperblog.app.ws.mobileappws.User.reponseAndrequest.request.UpdateRequest;
-import com.appsdeveloperblog.app.ws.mobileappws.User.reponseAndrequest.response.DeleteResponse;
-import com.appsdeveloperblog.app.ws.mobileappws.User.reponseAndrequest.response.LoginResponse;
-import com.appsdeveloperblog.app.ws.mobileappws.User.reponseAndrequest.response.UpdateResponse;
-import com.appsdeveloperblog.app.ws.mobileappws.User.reponseAndrequest.response.UserResponse;
+import com.appsdeveloperblog.app.ws.mobileappws.User.dto.request.LoginRequest;
+import com.appsdeveloperblog.app.ws.mobileappws.User.dto.request.RegistrationRequest;
+import com.appsdeveloperblog.app.ws.mobileappws.User.dto.request.UpdateRequest;
+import com.appsdeveloperblog.app.ws.mobileappws.User.dto.response.DeleteResponse;
+import com.appsdeveloperblog.app.ws.mobileappws.User.dto.response.LoginResponse;
+import com.appsdeveloperblog.app.ws.mobileappws.User.dto.response.UpdateResponse;
+import com.appsdeveloperblog.app.ws.mobileappws.User.dto.response.UserResponse;
 import com.appsdeveloperblog.app.ws.mobileappws.User.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

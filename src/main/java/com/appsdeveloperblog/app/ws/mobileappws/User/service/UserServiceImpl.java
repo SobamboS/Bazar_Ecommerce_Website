@@ -1,14 +1,16 @@
 package com.appsdeveloperblog.app.ws.mobileappws.User.service;
 
-import com.appsdeveloperblog.app.ws.mobileappws.User.repository.UserRepository;
-import com.appsdeveloperblog.app.ws.mobileappws.User.reponseAndrequest.request.RegistrationRequest;
-import com.appsdeveloperblog.app.ws.mobileappws.User.reponseAndrequest.request.UpdateRequest;
-import com.appsdeveloperblog.app.ws.mobileappws.User.reponseAndrequest.response.*;
-
-import com.appsdeveloperblog.app.ws.mobileappws.User.model.User;
+import com.appsdeveloperblog.app.ws.mobileappws.User.data.repository.UserRepository;
+import com.appsdeveloperblog.app.ws.mobileappws.User.dto.request.RegistrationRequest;
+import com.appsdeveloperblog.app.ws.mobileappws.User.dto.request.UpdateRequest;
+import com.appsdeveloperblog.app.ws.mobileappws.User.dto.response.*;
 
 
-import com.appsdeveloperblog.app.ws.mobileappws.User.reponseAndrequest.request.LoginRequest;
+import com.appsdeveloperblog.app.ws.mobileappws.User.data.model.User;
+
+
+import com.appsdeveloperblog.app.ws.mobileappws.User.dto.request.LoginRequest;
+
 import com.appsdeveloperblog.app.ws.mobileappws.User.validator.UserDetailValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

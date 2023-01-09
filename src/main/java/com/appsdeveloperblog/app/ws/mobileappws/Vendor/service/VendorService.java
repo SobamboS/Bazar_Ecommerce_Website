@@ -1,9 +1,9 @@
 package com.appsdeveloperblog.app.ws.mobileappws.Vendor.service;
 
-import com.appsdeveloperblog.app.ws.mobileappws.Vendor.ResponseAndRequest.request.VendorLoginRequest;
-import com.appsdeveloperblog.app.ws.mobileappws.Vendor.ResponseAndRequest.request.VendorRegistrationRequest;
-import com.appsdeveloperblog.app.ws.mobileappws.Vendor.ResponseAndRequest.request.VendorUpdateRequest;
-import com.appsdeveloperblog.app.ws.mobileappws.Vendor.ResponseAndRequest.response.*;
+import com.appsdeveloperblog.app.ws.mobileappws.Vendor.dto.request.VendorLoginRequest;
+import com.appsdeveloperblog.app.ws.mobileappws.Vendor.dto.request.VendorRegistrationRequest;
+import com.appsdeveloperblog.app.ws.mobileappws.Vendor.dto.request.VendorUpdateRequest;
+import com.appsdeveloperblog.app.ws.mobileappws.Vendor.dto.response.*;
 
 public interface VendorService{
     VendorRegistrationResponse createVendor (VendorRegistrationRequest vendorRegistrationRequest);

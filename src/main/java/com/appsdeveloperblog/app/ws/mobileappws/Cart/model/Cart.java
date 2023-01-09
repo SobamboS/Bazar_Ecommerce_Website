@@ -1,6 +1,6 @@
 package com.appsdeveloperblog.app.ws.mobileappws.Cart.model;
 
-import com.appsdeveloperblog.app.ws.mobileappws.Product.model.Product;
+import com.appsdeveloperblog.app.ws.mobileappws.Product.data.model.Product;
 import jakarta.persistence.Id;
 import lombok.Data;
 

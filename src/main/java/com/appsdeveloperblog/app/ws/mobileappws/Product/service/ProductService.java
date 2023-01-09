@@ -1,11 +1,11 @@
 package com.appsdeveloperblog.app.ws.mobileappws.Product.service;
 
-import com.appsdeveloperblog.app.ws.mobileappws.Product.responseAndrequest.response.ProductDeleteAllResponse;
-import com.appsdeveloperblog.app.ws.mobileappws.Product.responseAndrequest.request.ProductCreateRequest;
-import com.appsdeveloperblog.app.ws.mobileappws.Product.responseAndrequest.request.ProductUpdateRequest;
-import com.appsdeveloperblog.app.ws.mobileappws.Product.responseAndrequest.response.ProductCreateResponse;
-import com.appsdeveloperblog.app.ws.mobileappws.Product.responseAndrequest.response.ProductDeleteResponse;
-import com.appsdeveloperblog.app.ws.mobileappws.Product.responseAndrequest.response.ProductUpdateResponse;
+import com.appsdeveloperblog.app.ws.mobileappws.Product.dto.response.ProductDeleteAllResponse;
+import com.appsdeveloperblog.app.ws.mobileappws.Product.dto.request.ProductCreateRequest;
+import com.appsdeveloperblog.app.ws.mobileappws.Product.dto.request.ProductUpdateRequest;
+import com.appsdeveloperblog.app.ws.mobileappws.Product.dto.response.ProductCreateResponse;
+import com.appsdeveloperblog.app.ws.mobileappws.Product.dto.response.ProductDeleteResponse;
+import com.appsdeveloperblog.app.ws.mobileappws.Product.dto.response.ProductUpdateResponse;
 
 public interface ProductService{
     ProductDeleteResponse deleteProduct (String id);

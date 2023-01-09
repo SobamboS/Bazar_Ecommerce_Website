@@ -1,9 +1,10 @@
 package com.appsdeveloperblog.app.ws.mobileappws;
 
-import com.appsdeveloperblog.app.ws.mobileappws.Vendor.ResponseAndRequest.request.VendorLoginRequest;
-import com.appsdeveloperblog.app.ws.mobileappws.Vendor.ResponseAndRequest.request.VendorRegistrationRequest;
-import com.appsdeveloperblog.app.ws.mobileappws.Vendor.ResponseAndRequest.request.VendorUpdateRequest;
-import com.appsdeveloperblog.app.ws.mobileappws.Vendor.ResponseAndRequest.response.*;
+import com.appsdeveloperblog.app.ws.mobileappws.Vendor.dto.request.VendorLoginRequest;
+import com.appsdeveloperblog.app.ws.mobileappws.Vendor.dto.request.VendorRegistrationRequest;
+import com.appsdeveloperblog.app.ws.mobileappws.Vendor.dto.request.VendorUpdateRequest;
+import com.appsdeveloperblog.app.ws.mobileappws.Vendor.data.repository.VendorRepository;
+import com.appsdeveloperblog.app.ws.mobileappws.Vendor.dto.response.*;
 import com.appsdeveloperblog.app.ws.mobileappws.Vendor.service.VendorService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -15,8 +16,11 @@ import static org.junit.jupiter.api.Assertions.*;
 class VendorServiceImplTest{
     @Autowired
     private VendorService vendorService;
+    @Autowired
+    private VendorRepository vendorRepository;
 
     private VendorRegistrationRequest vendorRegistrationRequest;
+    private VendorUpdateRequest vendorUpdateRequest;
 
     @BeforeEach
     void setUp( ){
@@ -49,15 +53,15 @@ class VendorServiceImplTest{
     @Test
     void canUpdateVendor(){
         VendorUpdateRequest vendorUpdateRequest = new VendorUpdateRequest();
-        vendorUpdateRequest.setId("63aec8205d9b477d67a80f6d");
+        vendorUpdateRequest.setId("63b8c169b1d1ce636aa77b1d");
         vendorUpdateRequest.setEmail("felix@gmail.com");
         VendorUpdateResponse vendorUpdateResponse = vendorService.vendorUpdate(vendorUpdateRequest);
         System.out.println(vendorUpdateResponse);
-        assertEquals("Update Successful", vendorUpdateResponse.getMessage());
+        assertEquals("Updated Successful", vendorUpdateResponse.getMessage());
     }
     @Test
     void canDeleteVendor(){
-        VendorDeleteResponse vendorDeleteResponse = vendorService.vendorDelete("63aec8205d9b477d67a80f6d");
+        VendorDeleteResponse vendorDeleteResponse = vendorService.vendorDelete("63b8c169b1d1ce636aa77b1d");
         System.out.println(vendorDeleteResponse);
         assertEquals("Vendor Deleted", vendorDeleteResponse.getMessage());
     }

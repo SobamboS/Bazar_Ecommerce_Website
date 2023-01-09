@@ -1,7 +1,6 @@
 package com.appsdeveloperblog.app.ws.mobileappws.Order.requestAndresponse.request;
 
-import com.appsdeveloperblog.app.ws.mobileappws.Product.model.Product;
-import jakarta.persistence.Id;
+import com.appsdeveloperblog.app.ws.mobileappws.Product.data.model.Product;
 import lombok.Data;
 
 import java.util.ArrayList;

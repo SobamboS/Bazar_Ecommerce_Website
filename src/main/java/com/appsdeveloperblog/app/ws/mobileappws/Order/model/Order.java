@@ -1,8 +1,7 @@
 package com.appsdeveloperblog.app.ws.mobileappws.Order.model;
 
-import com.appsdeveloperblog.app.ws.mobileappws.Product.model.Product;
+import com.appsdeveloperblog.app.ws.mobileappws.Product.data.model.Product;
 import jakarta.persistence.Id;
-import jdk.jfr.Category;
 import lombok.Data;
 
 import java.util.ArrayList;
@@ -14,7 +13,7 @@ public class Order{
     private String userId;
     private double price;
     private List<Product> productList = new ArrayList<>();
-    private Category category;
     private String productName;
+
     private int quantity;
 }

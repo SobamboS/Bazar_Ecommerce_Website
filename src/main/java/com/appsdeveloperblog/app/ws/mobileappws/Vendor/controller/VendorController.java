@@ -1,12 +1,12 @@
 package com.appsdeveloperblog.app.ws.mobileappws.Vendor.controller;
 
-import com.appsdeveloperblog.app.ws.mobileappws.Vendor.ResponseAndRequest.request.VendorLoginRequest;
-import com.appsdeveloperblog.app.ws.mobileappws.Vendor.ResponseAndRequest.request.VendorRegistrationRequest;
-import com.appsdeveloperblog.app.ws.mobileappws.Vendor.ResponseAndRequest.request.VendorUpdateRequest;
-import com.appsdeveloperblog.app.ws.mobileappws.Vendor.ResponseAndRequest.response.VendorDeleteResponse;
-import com.appsdeveloperblog.app.ws.mobileappws.Vendor.ResponseAndRequest.response.VendorLoginResponse;
-import com.appsdeveloperblog.app.ws.mobileappws.Vendor.ResponseAndRequest.response.VendorRegistrationResponse;
-import com.appsdeveloperblog.app.ws.mobileappws.Vendor.ResponseAndRequest.response.VendorUpdateResponse;
+import com.appsdeveloperblog.app.ws.mobileappws.Vendor.dto.request.VendorLoginRequest;
+import com.appsdeveloperblog.app.ws.mobileappws.Vendor.dto.request.VendorRegistrationRequest;
+import com.appsdeveloperblog.app.ws.mobileappws.Vendor.dto.request.VendorUpdateRequest;
+import com.appsdeveloperblog.app.ws.mobileappws.Vendor.dto.response.VendorDeleteResponse;
+import com.appsdeveloperblog.app.ws.mobileappws.Vendor.dto.response.VendorLoginResponse;
+import com.appsdeveloperblog.app.ws.mobileappws.Vendor.dto.response.VendorRegistrationResponse;
+import com.appsdeveloperblog.app.ws.mobileappws.Vendor.dto.response.VendorUpdateResponse;
 import com.appsdeveloperblog.app.ws.mobileappws.Vendor.exception.VendorRegistrationException;
 import com.appsdeveloperblog.app.ws.mobileappws.Vendor.service.VendorService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,7 +15,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-//@RequestMapping("/vendor") // http://localhost:8080/vendor
+@RequestMapping("/vendor") // http://localhost:8080/vendor
 public class VendorController{
     @Autowired
     private VendorService vendorService;
@@ -25,9 +25,7 @@ public class VendorController{
             VendorRegistrationResponse vendorRegistrationResponse = vendorService.createVendor(vendorRegistrationRequest);
             return ResponseEntity.status(HttpStatus.CREATED).body(vendorRegistrationResponse);
         }catch (VendorRegistrationException exception){
-            VendorRegistrationResponse vendorRegistrationResponse = new VendorRegistrationResponse();
-            vendorRegistrationResponse.setMessage(exception.getMessage());
-            vendorRegistrationResponse.setStatusCode(401);
+            VendorRegistrationResponse vendorRegistrationResponse = new VendorRegistrationResponse(401,exception.getMessage());
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(vendorRegistrationResponse);
         }
     }

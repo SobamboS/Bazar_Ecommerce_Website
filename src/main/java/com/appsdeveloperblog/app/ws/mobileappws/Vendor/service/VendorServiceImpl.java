@@ -36,9 +36,7 @@ public class VendorServiceImpl implements VendorService{
         if(!VendorDetailValidator.isValidPhoneNumber(vendorRegistrationRequest.getPhoneNumber())){
             throw  new VendorRegistrationException(String.format("Phone number %s is not complete", vendorRegistrationRequest.getPhoneNumber()));
         }
-        
         Vendor savedVendor = vendorRepository.save(vendor);
-
         return new VendorRegistrationResponse(201,"Registration Successful");
     }
 

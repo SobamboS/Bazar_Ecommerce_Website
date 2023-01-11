@@ -26,7 +26,8 @@ class VendorServiceImplTest{
     void setUp( ){
         vendorRegistrationRequest = new VendorRegistrationRequest();
         vendorRegistrationRequest.setEmail("Olusola@gmail.com");
-        vendorRegistrationRequest.setPassword("eleven112@");
+      // vendorRegistrationRequest.setPassword("O1@aholaer");
+        vendorRegistrationRequest.setPassword("olusola11");
         vendorRegistrationRequest.setFirstName("Olusola");
         vendorRegistrationRequest.setLastName("Sobambo");
         vendorRegistrationRequest.setPhoneNumber("08144357336");

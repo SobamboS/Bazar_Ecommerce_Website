@@ -15,11 +15,11 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/vendor") // http://localhost:8080/vendor
+@CrossOrigin(origins="*") // http://localhost:8080/vendor
 public class VendorController{
     @Autowired
     private VendorService vendorService;
-    @PostMapping("/registerVendor")
+    @PostMapping("/register_Vendor")
     public ResponseEntity<VendorRegistrationResponse> createVendor(@RequestBody VendorRegistrationRequest vendorRegistrationRequest){
         try {
             VendorRegistrationResponse vendorRegistrationResponse = vendorService.createVendor(vendorRegistrationRequest);

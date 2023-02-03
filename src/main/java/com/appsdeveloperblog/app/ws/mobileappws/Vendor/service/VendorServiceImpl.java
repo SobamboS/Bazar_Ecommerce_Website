@@ -36,7 +36,7 @@ public class VendorServiceImpl implements VendorService{
         if(!VendorDetailValidator.isValidPhoneNumber(vendorRegistrationRequest.getPhoneNumber())){
             throw  new VendorRegistrationException(String.format("Phone number %s is not complete", vendorRegistrationRequest.getPhoneNumber()));
         }
-        Vendor savedVendor = vendorRepository.save(vendor);
+        vendorRepository.save(vendor);
         return new VendorRegistrationResponse(201,"Registration Successful");
     }
 
@@ -64,15 +64,12 @@ public class VendorServiceImpl implements VendorService{
 
     @Override
     public VendorDeleteResponse vendorDelete(String id){
+        boolean exists = vendorRepository.existsById(id);
+        if(!exists){
+            throw new IllegalStateException(String.format("Vendor with %s does not exist",id));
+        }
         vendorRepository.deleteById(id);
         return new VendorDeleteResponse("Vendor Deleted");
-    }
-
-
-    @Override
-    public VendorDeleteAllResponse vendorDeleteAll( ){
-      vendorRepository.deleteAll();
-    return  new VendorDeleteAllResponse("All vendors deleted ");
 
     }
 }

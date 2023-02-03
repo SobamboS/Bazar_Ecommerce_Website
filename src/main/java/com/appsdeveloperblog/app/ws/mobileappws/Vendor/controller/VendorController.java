@@ -1,5 +1,6 @@
 package com.appsdeveloperblog.app.ws.mobileappws.Vendor.controller;
 
+
 import com.appsdeveloperblog.app.ws.mobileappws.Vendor.dto.request.VendorLoginRequest;
 import com.appsdeveloperblog.app.ws.mobileappws.Vendor.dto.request.VendorRegistrationRequest;
 import com.appsdeveloperblog.app.ws.mobileappws.Vendor.dto.request.VendorUpdateRequest;
@@ -7,11 +8,11 @@ import com.appsdeveloperblog.app.ws.mobileappws.Vendor.dto.response.VendorDelete
 import com.appsdeveloperblog.app.ws.mobileappws.Vendor.dto.response.VendorLoginResponse;
 import com.appsdeveloperblog.app.ws.mobileappws.Vendor.dto.response.VendorRegistrationResponse;
 import com.appsdeveloperblog.app.ws.mobileappws.Vendor.dto.response.VendorUpdateResponse;
-import com.appsdeveloperblog.app.ws.mobileappws.Vendor.exception.VendorRegistrationException;
+
 import com.appsdeveloperblog.app.ws.mobileappws.Vendor.service.VendorService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
+
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -20,29 +21,23 @@ public class VendorController{
     @Autowired
     private VendorService vendorService;
     @PostMapping("/register_Vendor")
-    public ResponseEntity<VendorRegistrationResponse> createVendor(@RequestBody VendorRegistrationRequest vendorRegistrationRequest){
-        try {
-            VendorRegistrationResponse vendorRegistrationResponse = vendorService.createVendor(vendorRegistrationRequest);
-            return ResponseEntity.status(HttpStatus.CREATED).body(vendorRegistrationResponse);
-        }catch (VendorRegistrationException exception){
-            VendorRegistrationResponse vendorRegistrationResponse = new VendorRegistrationResponse(401,exception.getMessage());
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(vendorRegistrationResponse);
-        }
+    public VendorRegistrationResponse createVendor(@RequestBody @Valid VendorRegistrationRequest vendorRegistrationRequest){
+        return vendorService.createVendor(vendorRegistrationRequest);
     }
 
-    @GetMapping("/loginVendor")
-    public ResponseEntity<VendorLoginResponse> vendorLogin (@RequestBody VendorLoginRequest vendorLoginRequest){
-        return  ResponseEntity.ok(vendorService.vendorLogin(vendorLoginRequest));
+    @GetMapping("/login_Vendor")
+    public VendorLoginResponse vendorLogin (@RequestBody @Valid VendorLoginRequest vendorLoginRequest){
+        return  vendorService.vendorLogin(vendorLoginRequest);
     }
 
     @PatchMapping("/updateVendorDetails")
-    public ResponseEntity<VendorUpdateResponse> vendorUpdate(@RequestBody VendorUpdateRequest vendorUpdateRequest){
-        return ResponseEntity.ok(vendorService.vendorUpdate(vendorUpdateRequest));
+    public VendorUpdateResponse vendorUpdate(@RequestBody @Valid VendorUpdateRequest vendorUpdateRequest){
+        return vendorService.vendorUpdate(vendorUpdateRequest);
     }
 
     @DeleteMapping("/deleteVendor/{id}")
-    public  ResponseEntity<VendorDeleteResponse> vendorDelete(@PathVariable String id){
-        return ResponseEntity.ok(vendorService.vendorDelete(id));
+    public VendorDeleteResponse vendorDelete(@PathVariable String id){
+        return vendorService.vendorDelete(id);
     }
 
 

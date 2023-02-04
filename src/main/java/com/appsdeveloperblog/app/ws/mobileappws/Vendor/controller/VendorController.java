@@ -20,10 +20,10 @@ import org.springframework.web.bind.annotation.*;
 public class VendorController{
     @Autowired
     private VendorService vendorService;
-    @PostMapping("/register_Vendor")
-    public VendorRegistrationResponse createVendor(@RequestBody @Valid VendorRegistrationRequest vendorRegistrationRequest){
-        return vendorService.createVendor(vendorRegistrationRequest);
-    }
+//    @PostMapping("/register_Vendor")
+//    public VendorRegistrationResponse createVendor(@RequestBody @Valid VendorRegistrationRequest vendorRegistrationRequest){
+//        return vendorService.createVendor(vendorRegistrationRequest);
+//    }
 
     @GetMapping("/login_Vendor")
     public VendorLoginResponse vendorLogin (@RequestBody @Valid VendorLoginRequest vendorLoginRequest){

@@ -10,7 +10,6 @@ import org.springframework.data.mongodb.core.mapping.Document;
 public class Vendor{
     @Id
     private String id;
-   // @NotBlank()
     private String firstName;
     private String lastName;
     private String email;

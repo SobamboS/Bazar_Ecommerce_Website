@@ -6,7 +6,7 @@ import com.appsdeveloperblog.app.ws.mobileappws.Vendor.dto.request.VendorUpdateR
 import com.appsdeveloperblog.app.ws.mobileappws.Vendor.dto.response.*;
 
 public interface VendorService{
-    VendorRegistrationResponse createVendor (VendorRegistrationRequest vendorRegistrationRequest);
+    VendorRegistrationResponse vendorRegister (VendorRegistrationRequest vendorRegistrationRequest);
     VendorLoginResponse vendorLogin(VendorLoginRequest vendorLoginRequest);
     VendorUpdateResponse vendorUpdate(VendorUpdateRequest vendorUpdateRequest);
     VendorDeleteResponse vendorDelete(String id);

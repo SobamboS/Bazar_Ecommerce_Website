@@ -1,8 +1,8 @@
 package com.appsdeveloperblog.app.ws.mobileappws.user;
 
 import com.appsdeveloperblog.app.ws.mobileappws.user.email.EmailSender;
-import com.appsdeveloperblog.app.ws.mobileappws.user.registration.dto.SignupRequest;
-import com.appsdeveloperblog.app.ws.mobileappws.user.registration.dto.SignupResponse;
+import com.appsdeveloperblog.app.ws.mobileappws.user.dto.SignupRequest;
+import com.appsdeveloperblog.app.ws.mobileappws.user.dto.SignupResponse;
 import com.appsdeveloperblog.app.ws.mobileappws.user.token.Token;
 import com.appsdeveloperblog.app.ws.mobileappws.user.token.TokenService;
 import jakarta.mail.MessagingException;
@@ -16,8 +16,7 @@ import java.time.LocalDateTime;
 @Service
 @Slf4j
 public class UserServiceImpl implements UserService{
-    @Autowired
-    UserService userService;
+
     @Autowired
     EmailSender emailSender;
 
@@ -28,7 +27,7 @@ public class UserServiceImpl implements UserService{
     TokenService tokenService;
 
     @Override
-    public String signup(SignupRequest signupRequest) throws MessagingException{
+    public SignupResponse signup(SignupRequest signupRequest) throws MessagingException{
         boolean emailExists = userRepository
                 .findByEmailAddressIgnoreCase(signupRequest.getEmailAddress())
                 .isPresent();
@@ -44,11 +43,13 @@ public class UserServiceImpl implements UserService{
         emailSender.send(signupRequest.getEmailAddress(),
                 buildEmail(signupRequest.getFirstName(), token));
 
-        return new SignupResponse(user.getEmailAddress(),
-                user.getFirstName(),
-                user.getLastName(),
-                user.getToken()
-                );
+        SignupResponse signupResponse = new SignupResponse();
+        signupResponse.setEmailAddress(signupRequest.getEmailAddress());
+        signupResponse.setFirstName(signupRequest.getFirstName());
+        signupResponse.setToken(token);
+        signupResponse.setLastName(signupRequest.getLastName());
+
+        return signupResponse;
     }
 
     private String generateToken(User user){

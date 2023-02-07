@@ -21,6 +21,8 @@ public class SignupRequest{
     @Email(message="Input a valid email")
     private String emailAddress;
 
-    @Pattern(regexp="^[a-z][A-Z]\\d[@$#!%*_?&][A-Za-z\\d@$#!%*_?&]{5,20}$")
+  //  @Pattern(regexp="^[a-z][A-Z]\\d[@$#!%*_?&][A-Za-z\\d@$#!%*_?&]{5,20}$")
     private String password;
+
+    private String confirmPassword;
 }

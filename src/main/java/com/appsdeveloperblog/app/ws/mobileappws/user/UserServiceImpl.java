@@ -1,5 +1,8 @@
 package com.appsdeveloperblog.app.ws.mobileappws.user;
 
+import com.appsdeveloperblog.app.ws.mobileappws.exception.RegistrationException;
+import com.appsdeveloperblog.app.ws.mobileappws.user.dto.LoginRequest;
+import com.appsdeveloperblog.app.ws.mobileappws.user.dto.TokenConfirmationRequest;
 import com.appsdeveloperblog.app.ws.mobileappws.user.email.EmailSender;
 import com.appsdeveloperblog.app.ws.mobileappws.user.dto.SignupRequest;
 import com.appsdeveloperblog.app.ws.mobileappws.user.dto.SignupResponse;
@@ -7,6 +10,7 @@ import com.appsdeveloperblog.app.ws.mobileappws.user.token.Token;
 import com.appsdeveloperblog.app.ws.mobileappws.user.token.TokenService;
 import jakarta.mail.MessagingException;
 import lombok.extern.slf4j.Slf4j;
+import org.mindrot.jbcrypt.BCrypt;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -32,11 +36,14 @@ public class UserServiceImpl implements UserService{
                 .findByEmailAddressIgnoreCase(signupRequest.getEmailAddress())
                 .isPresent();
         if(emailExists)throw new IllegalStateException("Email Address already exist");
+
+        if(!signupRequest.getPassword().equals(signupRequest.getConfirmPassword()))
+            throw new MessagingException("Password does not match");
         User user= new User(
                 signupRequest.getFirstName(),
                 signupRequest.getLastName(),
                 signupRequest.getEmailAddress(),
-                signupRequest.getPassword()
+                hashPassword(signupRequest.getPassword())
         );
         userRepository.save(user);
         String token = generateToken(user);
@@ -48,8 +55,28 @@ public class UserServiceImpl implements UserService{
         signupResponse.setFirstName(signupRequest.getFirstName());
         signupResponse.setToken(token);
         signupResponse.setLastName(signupRequest.getLastName());
-
         return signupResponse;
+    }
+
+    @Override
+    public String login(LoginRequest loginRequest){
+        return null;
+    }
+
+    @Override
+    public String tokenConfirmation(TokenConfirmationRequest tokenConfirmationRequest){
+        var token = tokenService.getTokenConfirmation(tokenConfirmationRequest.getToken())
+                .orElseThrow(()-> new RegistrationException("Invalid Token"));
+        if (token.getExpiredAt().isBefore(LocalDateTime.now()))
+            throw new IllegalStateException("Token has expired");
+        tokenService.setTokenConfirmationAt(token.getToken());
+        userRepository.enableUser(tokenConfirmationRequest.getEmailAddress());
+        return "User Has Been Confirmed";
+    }
+
+
+    private String hashPassword(String password){
+        return BCrypt.hashpw(password, BCrypt.gensalt());
     }
 
     private String generateToken(User user){
@@ -64,6 +91,7 @@ public class UserServiceImpl implements UserService{
         tokenService.saveConfirmationToken(confirmationToken);
     return  confirmationToken.getToken();
     }
+
     private String buildEmail(String firstName,String token){
         return  "<div style=\"font-family:Helvetica,Arial,sans-serif;font-size:16px;margin:0;color:#0b0c0c\">\n" +
                 "\n" +

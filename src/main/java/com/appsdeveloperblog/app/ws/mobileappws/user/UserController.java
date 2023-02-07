@@ -2,6 +2,7 @@ package com.appsdeveloperblog.app.ws.mobileappws.user;
 
 import com.appsdeveloperblog.app.ws.mobileappws.exception.ApiResponse;
 import com.appsdeveloperblog.app.ws.mobileappws.user.dto.SignupRequest;
+import com.appsdeveloperblog.app.ws.mobileappws.user.dto.TokenConfirmationRequest;
 import jakarta.mail.MessagingException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.validation.Valid;
@@ -31,5 +32,18 @@ UserService userService;
                 .build();
         return new ResponseEntity<>(apiResponse, HttpStatus.OK);
     }
+    @PostMapping("/confirm-token")
+    public ResponseEntity<?> tokenConfirmation(@RequestBody @Valid TokenConfirmationRequest tokenConfirmationRequest,HttpServletRequest httpServletRequest) throws MessagingException{
+        ApiResponse apiResponse = ApiResponse.builder()
+                .status(HttpStatus.OK.value())
+                .isSuccessful(true)
+                .path(httpServletRequest.getRequestURI())
+                .timeStamp(ZonedDateTime.now())
+                .data(userService.tokenConfirmation(tokenConfirmationRequest))
+                .build();
+        return new ResponseEntity<>(apiResponse, HttpStatus.OK);
+    }
+
+
     }
 

@@ -12,5 +12,6 @@ public interface UserService {
     String login(LoginRequest loginRequest);
 
     String tokenConfirmation(TokenConfirmationRequest confirmationRequest);
+     void enableUser(String emailAddress);
 
 }

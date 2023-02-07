@@ -58,10 +58,6 @@ public class UserServiceImpl implements UserService{
         return signupResponse;
     }
 
-    @Override
-    public String login(LoginRequest loginRequest){
-        return null;
-    }
 
     @Override
     public String tokenConfirmation(TokenConfirmationRequest tokenConfirmationRequest){
@@ -70,10 +66,22 @@ public class UserServiceImpl implements UserService{
         if (token.getExpiredAt().isBefore(LocalDateTime.now()))
             throw new IllegalStateException("Token has expired");
         tokenService.setTokenConfirmationAt(token.getToken());
-        userRepository.enableUser(tokenConfirmationRequest.getEmailAddress());
+
+        var foundUser = userRepository.findByEmailAddressIgnoreCase
+                (tokenConfirmationRequest.getEmailAddress());
+        foundUser.get().setIsVerified(true);
+       // userRepository.enableUser(tokenConfirmationRequest.getEmailAddress());
         return "User Has Been Confirmed";
     }
+    @Override
+    public String login(LoginRequest loginRequest){
+        return null;
+    }
 
+    public void enableUser(String emailAddress){
+        var foundUser = userRepository.findByEmailAddressIgnoreCase(emailAddress);
+        foundUser.get().setIsVerified(true);
+    }
 
     private String hashPassword(String password){
         return BCrypt.hashpw(password, BCrypt.gensalt());

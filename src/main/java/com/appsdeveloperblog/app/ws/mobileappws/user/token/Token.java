@@ -10,9 +10,9 @@ import java.time.LocalDateTime;
 @Data
 @Document
 public class Token{
-    private String token;
     @Id
     private String id;
+    private String token;
     private LocalDateTime confirmedAt;
     private LocalDateTime expiredAt;
     private LocalDateTime createdAt;

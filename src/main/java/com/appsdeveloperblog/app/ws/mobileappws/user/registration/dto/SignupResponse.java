@@ -1,4 +1,4 @@
-package com.appsdeveloperblog.app.ws.mobileappws.user.dto;
+package com.appsdeveloperblog.app.ws.mobileappws.user.registration.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

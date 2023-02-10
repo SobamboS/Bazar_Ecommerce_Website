@@ -1,4 +1,4 @@
-package com.appsdeveloperblog.app.ws.mobileappws.user.dto;
+package com.appsdeveloperblog.app.ws.mobileappws.user.registration.dto;
 
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
@@ -24,5 +24,6 @@ public class SignupRequest{
     @Pattern(regexp="^([a-zA-Z\\d@*#$&!]{8,15})$")
     private String password;
 
+    @Pattern(regexp="^([a-zA-Z\\d@*#$&!]{8,15})$", message="Password doesn't match")
     private String confirmPassword;
 }

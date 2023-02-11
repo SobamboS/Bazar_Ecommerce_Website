@@ -67,7 +67,11 @@ public class RegistrationServiceImpl implements RegistrationService{
 
     @Override
     public String resendToken(ResendTokenRequest resendTokenRequest) throws MessagingException{
-        return null;
+        var foundUser = userRepository.findByEmailAddressIgnoreCase(resendTokenRequest.getEmailAddress())
+                .orElseThrow(()-> new MessagingException("User not found"));
+        String token = userService.generateToken(foundUser);
+        emailService.send(resendTokenRequest.getEmailAddress(), buildEmail(foundUser.getFirstName(), token));
+        return "Token has been sent successfully ";
     }
 
 

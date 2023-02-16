@@ -13,7 +13,7 @@ public class ScheduleTokenExpiry{
     @Autowired
     TokenService tokenService;
 
-    @Scheduled(cron="0 10 0 * * *")
+    @Scheduled(cron= "0 10 0 * * *")
     public void tokenExpiredAt(){
         System.out.println("Deleted");
         tokenService.deleteExpiredToken();

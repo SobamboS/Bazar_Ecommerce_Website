@@ -19,8 +19,6 @@ public class Token{
     @DBRef
     private User user;
 
-    public Token(){}
-
     public Token(String token,
                  LocalDateTime expiredAt,
                  LocalDateTime createdAt,User user){

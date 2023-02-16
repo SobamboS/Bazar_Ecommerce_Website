@@ -59,7 +59,7 @@ public class RegistrationServiceImpl implements RegistrationService{
         var token = tokenService.getTokenConfirmation(tokenConfirmationRequest.getToken())
                 .orElseThrow(()-> new RegistrationException("Invalid Token"));
         if (token.getExpiredAt().isBefore(LocalDateTime.now()))
-            throw new IllegalStateException("Token has expired");
+            throw new IllegalStateException("Token expired");
         tokenService.setTokenConfirmationAt(token.getToken());
         userService.enableUser(tokenConfirmationRequest.getEmailAddress());
         return "User Has Been Confirmed";

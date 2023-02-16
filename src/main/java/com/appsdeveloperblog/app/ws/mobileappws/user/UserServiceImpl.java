@@ -28,7 +28,7 @@ public class UserServiceImpl implements UserService{
     @Override
     public void enableUser(String emailAddress){
         var foundUser = userRepository.findByEmailAddressIgnoreCase(emailAddress)
-                .orElseThrow(() -> new RegistrationException("invalid email"));
+                .orElseThrow(() -> new RegistrationException("Invalid email"));
         foundUser.setIsVerified(true);
     }
 

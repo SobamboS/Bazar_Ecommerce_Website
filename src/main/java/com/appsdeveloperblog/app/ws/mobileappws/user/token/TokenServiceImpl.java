@@ -10,6 +10,7 @@ import java.util.Optional;
 public class TokenServiceImpl implements TokenService{
     @Autowired
     TokenRepository tokenRepository;
+
     @Override
     public void saveConfirmationToken(Token token){
         tokenRepository.save(token);

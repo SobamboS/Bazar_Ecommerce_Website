@@ -19,10 +19,11 @@ public class Token{
     @DBRef
     private User user;
 
-    public Token(String token,String createdAt,String confirmedAt,User user){
+
+    public Token(String token,String createdAt, String expiredAt, User user){
         this.token=token;
         this.createdAt=createdAt;
-        this.confirmedAt=confirmedAt;
+        this.expiredAt=expiredAt;
         this.user = user;
     }
 }

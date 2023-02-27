@@ -17,7 +17,6 @@ import java.time.LocalDateTime;
 public class RegistrationServiceImpl implements RegistrationService{
     @Autowired
     UserService userService;
-
     @Autowired
     EmailService emailService;
     @Autowired

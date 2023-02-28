@@ -34,7 +34,7 @@ public class RegistrationServiceImpl implements RegistrationService{
         if(emailExists)throw new IllegalStateException("Email Address already exist");
         if(!signupRequest.getPassword().equals(signupRequest.getConfirmPassword()))
             throw new MessagingException("Password does not match");
-        User user= new User(
+        User user = new User(
                 signupRequest.getFirstName(),
                 signupRequest.getLastName(),
                 signupRequest.getEmailAddress(),
@@ -55,10 +55,11 @@ public class RegistrationServiceImpl implements RegistrationService{
 
     @Override
     public String tokenConfirmation(TokenConfirmationRequest tokenConfirmationRequest){
-        var token = tokenService.getTokenConfirmation(tokenConfirmationRequest.getToken())
+        var token = tokenService.getConfirmationToken(tokenConfirmationRequest.getToken())
                 .orElseThrow(()-> new RegistrationException("Invalid Token"));
+
         if (token.getExpiredAt().isBefore(LocalDateTime.now()))
-            throw new IllegalStateException("Token expired");
+            throw new IllegalStateException("Token has expired");
         tokenService.setTokenConfirmationAt(token.getToken());
         userService.enableUser(tokenConfirmationRequest.getEmailAddress());
         return "User Has Been Confirmed";
@@ -71,6 +72,11 @@ public class RegistrationServiceImpl implements RegistrationService{
         String token = userService.generateToken(foundUser);
         emailService.send(resendTokenRequest.getEmailAddress(), buildEmail(foundUser.getFirstName(), token));
         return "Token has been sent successfully ";
+    }
+
+    @Override
+    public String generateToken(User user){
+        return null;
     }
 
 

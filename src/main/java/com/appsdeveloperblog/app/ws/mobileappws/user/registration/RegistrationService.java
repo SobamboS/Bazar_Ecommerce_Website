@@ -1,5 +1,6 @@
 package com.appsdeveloperblog.app.ws.mobileappws.user.registration;
 
+import com.appsdeveloperblog.app.ws.mobileappws.user.User;
 import com.appsdeveloperblog.app.ws.mobileappws.user.registration.dto.*;
 import jakarta.mail.MessagingException;
 import org.springframework.stereotype.Service;
@@ -13,4 +14,5 @@ public interface RegistrationService{
     String tokenConfirmation(TokenConfirmationRequest confirmationRequest);
 
     String resendToken(ResendTokenRequest resendTokenRequest) throws MessagingException;
+    String generateToken(User user);
 }

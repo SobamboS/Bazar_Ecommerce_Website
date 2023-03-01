@@ -12,7 +12,6 @@ import jakarta.mail.MessagingException;
 import org.mindrot.jbcrypt.BCrypt;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import java.time.LocalDateTime;
 @Service
 public class RegistrationServiceImpl implements RegistrationService{
     @Autowired
@@ -52,18 +51,13 @@ public class RegistrationServiceImpl implements RegistrationService{
         return signupResponse;
     }
 
-
     @Override
-    public String tokenConfirmation(TokenConfirmationRequest tokenConfirmationRequest){
-        var token = tokenService.getConfirmationToken(tokenConfirmationRequest.getToken())
+    public String tokenConfirmation(TokenConfirmationRequest confirmationRequest){
+        var foundToken = tokenService.getConfirmationToken(confirmationRequest.getToken())
                 .orElseThrow(()-> new RegistrationException("Invalid Token"));
-
-        if (token.getExpiredAt().isBefore(LocalDateTime.now()))
-            throw new IllegalStateException("Token has expired");
-        tokenService.setTokenConfirmationAt(token.getToken());
-        userService.enableUser(tokenConfirmationRequest.getEmailAddress());
-        return "User Has Been Confirmed";
+        return null;
     }
+
 
     @Override
     public String resendToken(ResendTokenRequest resendTokenRequest) throws MessagingException{
@@ -88,6 +82,8 @@ public class RegistrationServiceImpl implements RegistrationService{
 
         return null;
     }
+
+
     private String hashPassword(String password){
         return BCrypt.hashpw(password, BCrypt.gensalt());
     }

@@ -18,7 +18,5 @@ public class ScheduleTokenExpiry{
     public void tokenExpiredAt(){
        System.out.println("Deleted");
        tokenService.deleteExpiredToken();
-
-
    }
 }

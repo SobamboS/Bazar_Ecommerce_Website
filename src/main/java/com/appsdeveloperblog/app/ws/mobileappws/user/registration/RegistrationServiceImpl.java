@@ -12,6 +12,9 @@ import jakarta.mail.MessagingException;
 import org.mindrot.jbcrypt.BCrypt;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.time.LocalDateTime;
+
 @Service
 public class RegistrationServiceImpl implements RegistrationService{
     @Autowired
@@ -55,7 +58,13 @@ public class RegistrationServiceImpl implements RegistrationService{
     public String tokenConfirmation(TokenConfirmationRequest confirmationRequest){
         var foundToken = tokenService.getConfirmationToken(confirmationRequest.getToken())
                 .orElseThrow(()-> new RegistrationException("Invalid Token"));
-        return null;
+if(foundToken.getExpiredAt().isBefore(LocalDateTime.now())){
+    throw new IllegalStateException("Token Expired");
+}
+tokenService.setTokenConfirmationAt(foundToken.getToken());
+userService.enableUser(confirmationRequest.getEmailAddress());
+
+        return "User has been confirmed successfully";
     }
 
 

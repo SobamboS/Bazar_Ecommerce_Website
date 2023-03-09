@@ -1,6 +1,7 @@
 package com.appsdeveloperblog.app.ws.mobileappws.user.registration;
 
 import com.appsdeveloperblog.app.ws.mobileappws.exception.ApiResponse;
+import com.appsdeveloperblog.app.ws.mobileappws.user.registration.dto.LoginRequest;
 import com.appsdeveloperblog.app.ws.mobileappws.user.registration.dto.SignupRequest;
 import com.appsdeveloperblog.app.ws.mobileappws.user.registration.dto.TokenConfirmationRequest;
 import jakarta.mail.MessagingException;
@@ -9,10 +10,7 @@ import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.time.ZonedDateTime;
 
@@ -45,6 +43,19 @@ public class RegistrationController{
                 .path(httpServletRequest.getRequestURI())
                 .timeStamp(ZonedDateTime.now())
                 .data(registrationService.tokenConfirmation(tokenConfirmationRequest))
+                .build();
+        return new ResponseEntity<>(apiResponse, HttpStatus.OK);
+    }
+
+    @PostMapping("/login")
+    public ResponseEntity<?> login(@RequestBody @Valid LoginRequest loginRequest,
+                                   HttpServletRequest httpServletRequest) throws MessagingException{
+        ApiResponse apiResponse = ApiResponse.builder()
+                .status(HttpStatus.OK.value())
+                .isSuccessful(true)
+                .path(httpServletRequest.getRequestURI())
+                .timeStamp(ZonedDateTime.now())
+                .data(registrationService.login(loginRequest))
                 .build();
         return new ResponseEntity<>(apiResponse, HttpStatus.OK);
     }

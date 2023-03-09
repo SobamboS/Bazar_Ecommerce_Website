@@ -1,6 +1,4 @@
 package com.appsdeveloperblog.app.ws.mobileappws.user.registration;
-
-import com.appsdeveloperblog.app.ws.mobileappws.user.User;
 import com.appsdeveloperblog.app.ws.mobileappws.user.registration.dto.*;
 import jakarta.mail.MessagingException;
 import org.springframework.stereotype.Service;
@@ -9,10 +7,9 @@ import org.springframework.stereotype.Service;
 public interface RegistrationService{
     SignupResponse signup(SignupRequest signupRequest) throws MessagingException;
 
-    String login(LoginRequest loginRequest);
+    String login(LoginRequest loginRequest)throws MessagingException;
 
-    String tokenConfirmation(TokenConfirmationRequest confirmationRequest);
+    String tokenConfirmation(TokenConfirmationRequest confirmationRequest)throws MessagingException;
 
     String resendToken(ResendTokenRequest resendTokenRequest) throws MessagingException;
-    String generateToken(User user);
 }

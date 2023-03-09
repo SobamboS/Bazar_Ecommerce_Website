@@ -67,6 +67,17 @@ userService.enableUser(confirmationRequest.getEmailAddress());
         return "User has been confirmed successfully";
     }
 
+    @Override
+    public String login(LoginRequest loginRequest){
+        var foundUser = userService.findByEmailAddressIgnoreCase(loginRequest.getEmailAddress())
+                .orElseThrow(()-> new RegistrationException("Invalid login details"));
+
+        if(!BCrypt.checkpw(loginRequest.getPassword(),foundUser.getPassword())){
+            throw new RegistrationException("Details doesn't match");
+        }
+        if(foundUser.getIsVerified().equals(false)) throw new RegistrationException("User not yet verified");
+        return "Login Successful";
+    }
 
     @Override
     public String resendToken(ResendTokenRequest resendTokenRequest) throws MessagingException{
@@ -77,20 +88,7 @@ userService.enableUser(confirmationRequest.getEmailAddress());
         return "Token has been sent successfully ";
     }
 
-    @Override
-    public String generateToken(User user){
-        return null;
-    }
 
-
-    @Override
-    public String login(LoginRequest loginRequest){
-        var foundUser = userRepository.findByEmailAddressIgnoreCase(loginRequest.getEmailAddress())
-                .orElseThrow(()-> new RegistrationException("Invalid login details"));
-        if(foundUser.getIsVerified().equals(false)) throw new RegistrationException("User not yet verified");
-
-        return null;
-    }
 
 
     private String hashPassword(String password){

@@ -1,6 +1,6 @@
-package com.appsdeveloperblog.app.ws.mobileappws.Product.data.repository;
+package com.appsdeveloperblog.app.ws.mobileappws.Product;
 
-import com.appsdeveloperblog.app.ws.mobileappws.Product.data.model.Product;
+import com.appsdeveloperblog.app.ws.mobileappws.Product.Product;
 import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.stereotype.Repository;
 

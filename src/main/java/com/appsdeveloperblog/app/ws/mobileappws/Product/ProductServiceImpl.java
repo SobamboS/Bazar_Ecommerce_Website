@@ -1,13 +1,14 @@
-package com.appsdeveloperblog.app.ws.mobileappws.Product.service;
+package com.appsdeveloperblog.app.ws.mobileappws.Product;
 
-import com.appsdeveloperblog.app.ws.mobileappws.Product.data.repository.ProductRepository;
+import com.appsdeveloperblog.app.ws.mobileappws.Product.ProductRepository;
+import com.appsdeveloperblog.app.ws.mobileappws.Product.ProductService;
 import com.appsdeveloperblog.app.ws.mobileappws.Product.dto.request.ProductCreateRequest;
 import com.appsdeveloperblog.app.ws.mobileappws.Product.dto.request.ProductUpdateRequest;
 import com.appsdeveloperblog.app.ws.mobileappws.Product.dto.response.ProductCreateResponse;
 import com.appsdeveloperblog.app.ws.mobileappws.Product.dto.response.ProductDeleteAllResponse;
 import com.appsdeveloperblog.app.ws.mobileappws.Product.dto.response.ProductDeleteResponse;
 import com.appsdeveloperblog.app.ws.mobileappws.Product.dto.response.ProductUpdateResponse;
-import com.appsdeveloperblog.app.ws.mobileappws.Product.data.model.Product;
+import com.appsdeveloperblog.app.ws.mobileappws.Product.Product;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

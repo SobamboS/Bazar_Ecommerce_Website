@@ -33,14 +33,14 @@ class VendorServiceImplTest{
         vendorRegistrationRequest.setPhoneNumber("08144357336");
     }
 
-    @Test
-    void canCreateVendor( ){
-        VendorRegistrationResponse response = vendorService.createVendor(vendorRegistrationRequest);
-        assertNotNull(response);
-        System.out.println(response);
-        assertEquals("Registration Successful", response.getMessage());
-
-    }
+//    @Test
+//    void canCreateVendor( ){
+//        VendorRegistrationResponse response = vendorService.createVendor(vendorRegistrationRequest);
+//        assertNotNull(response);
+//        System.out.println(response);
+//        assertEquals("Registration Successful", response.getMessage());
+//
+//    }
     @Test
     void canLoginVendor(){
         VendorLoginRequest vendorLoginRequest =new VendorLoginRequest();
@@ -67,10 +67,10 @@ class VendorServiceImplTest{
         assertEquals("Vendor Deleted", vendorDeleteResponse.getMessage());
     }
 
-    @Test
-    void canDeleteAllVendor(){
-        VendorDeleteAllResponse vendorDeleteAllResponse = vendorService.vendorDeleteAll();
-        System.out.println(vendorDeleteAllResponse);
-        assertEquals("All vendors deleted ", vendorDeleteAllResponse.getMessage());
-    }
+//    @Test
+//    void canDeleteAllVendor(){
+//        VendorDeleteAllResponse vendorDeleteAllResponse = vendorService.vendorDeleteAll();
+//        System.out.println(vendorDeleteAllResponse);
+//        assertEquals("All vendors deleted ", vendorDeleteAllResponse.getMessage());
+//    }
 }

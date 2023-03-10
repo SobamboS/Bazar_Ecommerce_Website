@@ -1,6 +1,6 @@
-package com.appsdeveloperblog.app.ws.mobileappws.Order.repository;
+package com.appsdeveloperblog.app.ws.mobileappws.Order;
 
-import com.appsdeveloperblog.app.ws.mobileappws.Order.model.Order;
+import com.appsdeveloperblog.app.ws.mobileappws.Order.Order;
 import org.springframework.data.mongodb.repository.MongoRepository;
 
 import java.util.Optional;

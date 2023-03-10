@@ -1,4 +1,4 @@
-package com.appsdeveloperblog.app.ws.mobileappws.Product.data.model;
+package com.appsdeveloperblog.app.ws.mobileappws.Product;
 
 import jakarta.persistence.Id;
 import lombok.Data;
@@ -14,5 +14,6 @@ public class Product{
     private double price;
     private String description;
     private int quantity;
+    private double weight;
 
 }

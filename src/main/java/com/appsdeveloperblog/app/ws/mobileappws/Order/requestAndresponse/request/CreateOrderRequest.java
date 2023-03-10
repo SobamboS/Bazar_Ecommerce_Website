@@ -1,6 +1,6 @@
 package com.appsdeveloperblog.app.ws.mobileappws.Order.requestAndresponse.request;
 
-import com.appsdeveloperblog.app.ws.mobileappws.Product.data.model.Product;
+import com.appsdeveloperblog.app.ws.mobileappws.Product.Product;
 import lombok.Data;
 
 import java.util.ArrayList;

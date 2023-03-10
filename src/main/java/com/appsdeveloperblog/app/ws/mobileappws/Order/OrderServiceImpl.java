@@ -1,7 +1,8 @@
-package com.appsdeveloperblog.app.ws.mobileappws.Order.service;
+package com.appsdeveloperblog.app.ws.mobileappws.Order;
 
-import com.appsdeveloperblog.app.ws.mobileappws.Order.model.Order;
-import com.appsdeveloperblog.app.ws.mobileappws.Order.repository.OrderRepository;
+import com.appsdeveloperblog.app.ws.mobileappws.Order.Order;
+import com.appsdeveloperblog.app.ws.mobileappws.Order.OrderRepository;
+import com.appsdeveloperblog.app.ws.mobileappws.Order.OrderService;
 import com.appsdeveloperblog.app.ws.mobileappws.Order.requestAndresponse.request.CreateOrderRequest;
 import com.appsdeveloperblog.app.ws.mobileappws.Order.requestAndresponse.request.UpdateOrderRequest;
 import com.appsdeveloperblog.app.ws.mobileappws.Order.requestAndresponse.response.CreateOrderResponse;

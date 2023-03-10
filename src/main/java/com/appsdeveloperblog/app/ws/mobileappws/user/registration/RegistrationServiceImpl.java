@@ -72,7 +72,9 @@ userService.enableUser(confirmationRequest.getEmailAddress());
         var foundUser = userService.findByEmailAddressIgnoreCase(loginRequest.getEmailAddress())
                 .orElseThrow(()-> new RegistrationException("Invalid login details"));
 
-        if(!BCrypt.checkpw(loginRequest.getPassword(),foundUser.getPassword())){
+        if(!BCrypt.checkpw(loginRequest.getPassword(),foundUser.getPassword())
+
+        ){
             throw new RegistrationException("Details doesn't match");
         }
         if(foundUser.getIsVerified().equals(false)) throw new RegistrationException("User not yet verified");

@@ -1,6 +1,6 @@
 package com.appsdeveloperblog.app.ws.mobileappws.Product.dto.request;
 
-import com.appsdeveloperblog.app.ws.mobileappws.Product.data.model.ProductCategory;
+import com.appsdeveloperblog.app.ws.mobileappws.Product.ProductCategory;
 import jakarta.persistence.Id;
 import lombok.Data;
 

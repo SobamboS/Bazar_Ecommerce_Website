@@ -1,4 +1,4 @@
-package com.appsdeveloperblog.app.ws.mobileappws.Product.service;
+package com.appsdeveloperblog.app.ws.mobileappws.Product;
 
 import com.appsdeveloperblog.app.ws.mobileappws.Product.dto.response.ProductDeleteAllResponse;
 import com.appsdeveloperblog.app.ws.mobileappws.Product.dto.request.ProductCreateRequest;

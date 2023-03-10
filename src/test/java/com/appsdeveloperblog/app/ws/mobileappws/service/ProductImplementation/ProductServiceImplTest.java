@@ -5,13 +5,13 @@ import com.appsdeveloperblog.app.ws.mobileappws.Product.dto.request.ProductUpdat
 import com.appsdeveloperblog.app.ws.mobileappws.Product.dto.response.ProductCreateResponse;
 import com.appsdeveloperblog.app.ws.mobileappws.Product.dto.response.ProductDeleteResponse;
 import com.appsdeveloperblog.app.ws.mobileappws.Product.dto.response.ProductUpdateResponse;
-import com.appsdeveloperblog.app.ws.mobileappws.Product.service.ProductService;
+import com.appsdeveloperblog.app.ws.mobileappws.Product.ProductService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
-import static com.appsdeveloperblog.app.ws.mobileappws.Product.data.model.ProductCategory.SUPERMARKET;
+import static com.appsdeveloperblog.app.ws.mobileappws.Product.ProductCategory.SUPERMARKET;
 import static org.junit.jupiter.api.Assertions.*;
 @SpringBootTest
 class ProductServiceImplTest{

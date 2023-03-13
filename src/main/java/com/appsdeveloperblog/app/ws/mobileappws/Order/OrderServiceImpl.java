@@ -20,7 +20,7 @@ public class OrderServiceImpl implements OrderService{
     @Override
     public CreateOrderResponse createOrder(CreateOrderRequest createOrderRequest){
         Order order = new Order();
-        order.setProductName(createOrderRequest.getProductName());
+      //  order.setProductName(createOrderRequest.getProductName());
         return null;
     }
 

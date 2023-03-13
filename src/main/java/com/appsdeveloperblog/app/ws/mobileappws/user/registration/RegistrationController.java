@@ -2,6 +2,7 @@ package com.appsdeveloperblog.app.ws.mobileappws.user.registration;
 
 import com.appsdeveloperblog.app.ws.mobileappws.exception.ApiResponse;
 import com.appsdeveloperblog.app.ws.mobileappws.user.registration.dto.LoginRequest;
+import com.appsdeveloperblog.app.ws.mobileappws.user.registration.dto.ResendTokenRequest;
 import com.appsdeveloperblog.app.ws.mobileappws.user.registration.dto.SignupRequest;
 import com.appsdeveloperblog.app.ws.mobileappws.user.registration.dto.TokenConfirmationRequest;
 import jakarta.mail.MessagingException;
@@ -56,6 +57,18 @@ public class RegistrationController{
                 .path(httpServletRequest.getRequestURI())
                 .timeStamp(ZonedDateTime.now())
                 .data(registrationService.login(loginRequest))
+                .build();
+        return new ResponseEntity<>(apiResponse, HttpStatus.OK);
+    }
+    @PostMapping("/resend-token")
+    public ResponseEntity<?> resendToken(@RequestBody @Valid ResendTokenRequest resendTokenRequest,
+                                         HttpServletRequest httpServletRequest) throws MessagingException{
+        ApiResponse apiResponse = ApiResponse.builder()
+                .status(HttpStatus.OK.value())
+                .isSuccessful(true)
+                .path(httpServletRequest.getRequestURI())
+                .timeStamp(ZonedDateTime.now())
+                .data(registrationService.resendToken(resendTokenRequest))
                 .build();
         return new ResponseEntity<>(apiResponse, HttpStatus.OK);
     }

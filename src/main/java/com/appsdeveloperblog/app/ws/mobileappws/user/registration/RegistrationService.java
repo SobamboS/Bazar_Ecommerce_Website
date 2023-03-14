@@ -12,4 +12,5 @@ public interface RegistrationService{
     String tokenConfirmation(TokenConfirmationRequest confirmationRequest)throws MessagingException;
 
     String resendToken(ResendTokenRequest resendTokenRequest) throws MessagingException;
+    String updateAccount(UpdateAccountRequest updateAccountRequest);
 }

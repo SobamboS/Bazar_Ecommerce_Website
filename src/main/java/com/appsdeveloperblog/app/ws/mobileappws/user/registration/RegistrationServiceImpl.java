@@ -4,11 +4,12 @@ import com.appsdeveloperblog.app.ws.mobileappws.exception.RegistrationException;
 import com.appsdeveloperblog.app.ws.mobileappws.user.User;
 import com.appsdeveloperblog.app.ws.mobileappws.user.UserRepository;
 import com.appsdeveloperblog.app.ws.mobileappws.user.UserService;
-import com.appsdeveloperblog.app.ws.mobileappws.user.email.EmailSender;
-import com.appsdeveloperblog.app.ws.mobileappws.user.email.EmailService;
+import com.appsdeveloperblog.app.ws.mobileappws.email.EmailSender;
+import com.appsdeveloperblog.app.ws.mobileappws.email.EmailService;
 import com.appsdeveloperblog.app.ws.mobileappws.user.registration.dto.*;
 import com.appsdeveloperblog.app.ws.mobileappws.user.token.TokenService;
 import jakarta.mail.MessagingException;
+import lombok.extern.slf4j.Slf4j;
 import org.mindrot.jbcrypt.BCrypt;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -16,6 +17,7 @@ import org.springframework.stereotype.Service;
 import java.time.LocalDateTime;
 
 @Service
+@Slf4j
 public class RegistrationServiceImpl implements RegistrationService{
     @Autowired
     UserService userService;
@@ -91,7 +93,6 @@ userService.enableUser(confirmationRequest.getEmailAddress());
 
 
 
-
     private String hashPassword(String password){
         return BCrypt.hashpw(password, BCrypt.gensalt());
     }
@@ -164,5 +165,9 @@ userService.enableUser(confirmationRequest.getEmailAddress());
                 "\n" +
                 "</div></div>";
 
+    }
+    @Override
+    public String updateAccount(UpdateAccountRequest updateAccountRequest){
+        return null;
     }
 }

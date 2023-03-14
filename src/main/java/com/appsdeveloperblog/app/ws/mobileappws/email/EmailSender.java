@@ -1,4 +1,4 @@
-package com.appsdeveloperblog.app.ws.mobileappws.user.email;
+package com.appsdeveloperblog.app.ws.mobileappws.email;
 
 import jakarta.mail.MessagingException;
 

@@ -1,7 +1,8 @@
 package com.appsdeveloperblog.app.ws.mobileappws.user;
 
+import com.appsdeveloperblog.app.ws.mobileappws.Product.Product;
 import com.appsdeveloperblog.app.ws.mobileappws.exception.RegistrationException;
-import com.appsdeveloperblog.app.ws.mobileappws.user.email.EmailSender;
+import com.appsdeveloperblog.app.ws.mobileappws.email.EmailSender;
 import com.appsdeveloperblog.app.ws.mobileappws.user.token.Token;
 import com.appsdeveloperblog.app.ws.mobileappws.user.token.TokenService;
 import lombok.extern.slf4j.Slf4j;
@@ -10,6 +11,7 @@ import org.springframework.stereotype.Service;
 
 import java.security.SecureRandom;
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -50,6 +52,11 @@ public class UserServiceImpl implements UserService{
     @Override
     public Optional<User> findByEmailAddressIgnoreCase(String emailAddress){
         return userRepository.findByEmailAddressIgnoreCase(emailAddress);
+    }
+
+    @Override
+    public List<Product> findProductByName(String productName){
+        return null;
     }
 
 

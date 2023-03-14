@@ -10,10 +10,10 @@ public class Product{
     @Id
     private String id;
     private ProductCategory productCategory;
-    private String name;
-    private double price;
-    private String description;
-    private int quantity;
-    private double weight;
+    private String productName;
+    private double productPrice;
+    private String productDescription;
+    private int productQuantity;
+    private double productWeight;
 
 }

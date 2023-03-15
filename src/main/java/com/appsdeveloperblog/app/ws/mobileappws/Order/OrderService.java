@@ -12,9 +12,9 @@ import com.appsdeveloperblog.app.ws.mobileappws.Order.requestAndresponse.respons
 public interface OrderService{
 
 
-    CreateOrderResponse createOrder (CreateOrderRequest createOrderRequest);
-    UpdateOrderResponse updateOrder (UpdateOrderRequest updateOrderRequest);
-    DeleteOrderResponse deleteOrder (String id);
-    DeleteAllOrderResponse deleteAllOrder ();
+    String  createOrder (CreateOrderRequest createOrderRequest);
+    String  updateOrder (UpdateOrderRequest updateOrderRequest);
+    String deleteOrder (String id);
+    String deleteAllOrder ();
     void showAllOrder();
 }

@@ -9,33 +9,35 @@ import com.appsdeveloperblog.app.ws.mobileappws.Order.requestAndresponse.respons
 import com.appsdeveloperblog.app.ws.mobileappws.Order.requestAndresponse.response.DeleteAllOrderResponse;
 import com.appsdeveloperblog.app.ws.mobileappws.Order.requestAndresponse.response.DeleteOrderResponse;
 import com.appsdeveloperblog.app.ws.mobileappws.Order.requestAndresponse.response.UpdateOrderResponse;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
+@Slf4j
 public class OrderServiceImpl implements OrderService{
     @Autowired
     OrderRepository orderRepository;
 
     @Override
-    public CreateOrderResponse createOrder(CreateOrderRequest createOrderRequest){
+    public String createOrder(CreateOrderRequest createOrderRequest){
         Order order = new Order();
       //  order.setProductName(createOrderRequest.getProductName());
         return null;
     }
 
     @Override
-    public UpdateOrderResponse updateOrder(UpdateOrderRequest updateOrderRequest){
+    public String updateOrder(UpdateOrderRequest updateOrderRequest){
         return null;
     }
 
     @Override
-    public DeleteOrderResponse deleteOrder(String id){
+    public String deleteOrder(String id){
         return null;
     }
 
     @Override
-    public DeleteAllOrderResponse deleteAllOrder( ){
+    public String deleteAllOrder( ){
         return null;
     }
 

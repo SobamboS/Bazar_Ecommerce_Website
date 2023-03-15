@@ -12,8 +12,8 @@ import java.util.List;
 @Document
 public class Cart{
     @Id
-    private String id;
-    private BigDecimal total;
+    private String cartId;
+    private BigDecimal cartTotal;
     private List<Product> cartItem ;
 
 }

@@ -14,11 +14,11 @@ import java.util.List;
 @Document
 public class Order{
     @Id
-    private String id;
+    private String OrderId;
     @DBRef
     private User user;
-    private BigDecimal total;
+    private BigDecimal orderTotal;
     private Boolean orderStatus = false;
     private List<Product> orderItem;
-    private int quantity;
+    private int orderQuantity;
 }

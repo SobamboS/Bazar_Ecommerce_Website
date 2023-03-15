@@ -19,7 +19,7 @@ public class User{
     private String phoneNumber;
     private String password;
 
-    private Boolean isVerified;
+    private Boolean isVerified = false;
     private Address address;
     private Cart cart;
     private Order order;

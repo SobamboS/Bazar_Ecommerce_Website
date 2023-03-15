@@ -15,7 +15,7 @@ public class Product{
     private String productName;
     private BigDecimal productPrice;
     private String productDescription;
-    private int productQuantity;
+    private BigDecimal availableProductQuantity;
     private double productWeight;
     private String productImage;
 

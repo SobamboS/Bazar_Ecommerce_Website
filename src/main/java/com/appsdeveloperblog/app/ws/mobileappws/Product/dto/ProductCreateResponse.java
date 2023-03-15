@@ -1,4 +1,4 @@
-package com.appsdeveloperblog.app.ws.mobileappws.Product.dto.response;
+package com.appsdeveloperblog.app.ws.mobileappws.Product.dto;
 
 import lombok.Data;
 

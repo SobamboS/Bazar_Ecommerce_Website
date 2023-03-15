@@ -1,14 +1,8 @@
 package com.appsdeveloperblog.app.ws.mobileappws.Product;
 
-import com.appsdeveloperblog.app.ws.mobileappws.Product.ProductRepository;
-import com.appsdeveloperblog.app.ws.mobileappws.Product.ProductService;
-import com.appsdeveloperblog.app.ws.mobileappws.Product.dto.request.ProductCreateRequest;
-import com.appsdeveloperblog.app.ws.mobileappws.Product.dto.request.ProductUpdateRequest;
-import com.appsdeveloperblog.app.ws.mobileappws.Product.dto.response.ProductCreateResponse;
-import com.appsdeveloperblog.app.ws.mobileappws.Product.dto.response.ProductDeleteAllResponse;
-import com.appsdeveloperblog.app.ws.mobileappws.Product.dto.response.ProductDeleteResponse;
-import com.appsdeveloperblog.app.ws.mobileappws.Product.dto.response.ProductUpdateResponse;
-import com.appsdeveloperblog.app.ws.mobileappws.Product.Product;
+import com.appsdeveloperblog.app.ws.mobileappws.Product.dto.ProductCreateRequest;
+import com.appsdeveloperblog.app.ws.mobileappws.Product.dto.ProductUpdateRequest;
+import com.appsdeveloperblog.app.ws.mobileappws.Product.dto.ProductCreateResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -20,20 +14,19 @@ public class ProductServiceImpl implements ProductService{
 
 
     @Override
-    public ProductCreateResponse createProduct(ProductCreateRequest productCreateRequest) {
+    public String createProduct(ProductCreateRequest productCreateRequest) {
         Product createProduct = new Product();
-        createProduct.setName(productCreateRequest.getName());
-        createProduct.setPrice(productCreateRequest.getPrice());
+        createProduct.setProductName(productCreateRequest.getProductName());
+        createProduct.setProductPrice(productCreateRequest.getProductPrice());
         createProduct.setProductCategory(productCreateRequest.getProductCategory());
-        createProduct.setDescription(productCreateRequest.getDescription());
+        createProduct.setProductDescription(productCreateRequest.getProductDescription());
         productRepository.save(createProduct);
-        ProductCreateResponse response = new ProductCreateResponse();
-        response.setMessage("Product added");
-        return response;
+        return "Product added successfully";
     }
     @Override
-    public ProductUpdateResponse UpdateProduct(ProductUpdateRequest productUpdateRequest){
-        Product updateProduct = productRepository.findById(productUpdateRequest.getId())
+    public String UpdateProduct(ProductUpdateRequest productUpdateRequest){
+        Product updateProduct = productRepository.findByProductId(productUpdateRequest.getId())
+
                 .orElseThrow(()-> new RuntimeException("Product not found"));
         ProductUpdateResponse productUpdateResponse = new ProductUpdateResponse();
         if(updateProduct.getId().equals(productUpdateRequest.getId())){
@@ -50,15 +43,15 @@ public class ProductServiceImpl implements ProductService{
     }
 
     @Override
-    public ProductDeleteAllResponse deleteAllProduct( ){
+    public String deleteAllProduct( ){
         productRepository.deleteAll();
-        return new ProductDeleteAllResponse("All Product Deleted");
+        return "All Product Deleted";
     }
 
     @Override
-    public ProductDeleteResponse deleteProduct(String id){
+    public String deleteProduct(String id){
         productRepository.deleteById(id);
-        return new ProductDeleteResponse("Product Deleted");
+        return "Product Deleted";
     }
     @Override
     public void showAllProducts(){

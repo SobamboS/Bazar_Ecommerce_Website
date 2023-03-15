@@ -1,4 +1,4 @@
-package com.appsdeveloperblog.app.ws.mobileappws.Product.dto.request;
+package com.appsdeveloperblog.app.ws.mobileappws.Product.dto;
 
 import com.appsdeveloperblog.app.ws.mobileappws.Product.ProductCategory;
 import jakarta.persistence.Id;

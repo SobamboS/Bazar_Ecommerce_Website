@@ -1,9 +1,9 @@
 package com.appsdeveloperblog.app.ws.mobileappws.Product;
 
 import com.appsdeveloperblog.app.ws.mobileappws.Order.OrderService;
-import com.appsdeveloperblog.app.ws.mobileappws.Product.dto.request.ProductCreateRequest;
-import com.appsdeveloperblog.app.ws.mobileappws.Product.dto.request.ProductUpdateRequest;
-import com.appsdeveloperblog.app.ws.mobileappws.Product.dto.response.ProductCreateResponse;
+import com.appsdeveloperblog.app.ws.mobileappws.Product.dto.ProductCreateRequest;
+import com.appsdeveloperblog.app.ws.mobileappws.Product.dto.ProductUpdateRequest;
+import com.appsdeveloperblog.app.ws.mobileappws.Product.dto.ProductCreateResponse;
 import com.appsdeveloperblog.app.ws.mobileappws.Product.dto.response.ProductDeleteResponse;
 import com.appsdeveloperblog.app.ws.mobileappws.Product.dto.response.ProductUpdateResponse;
 import org.springframework.beans.factory.annotation.Autowired;

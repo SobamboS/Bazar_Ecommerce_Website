@@ -4,10 +4,13 @@ import com.appsdeveloperblog.app.ws.mobileappws.Cart.dto.AddItemRequest;
 import com.appsdeveloperblog.app.ws.mobileappws.Cart.dto.AddItemResponse;
 import com.appsdeveloperblog.app.ws.mobileappws.Cart.dto.UpdateItemRequest;
 import com.appsdeveloperblog.app.ws.mobileappws.Product.Product;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
 import java.util.List;
-
+@Service
+@Slf4j
 public class CartServiceImpl implements CartService{
     @Override
     public AddItemResponse addItem(AddItemRequest addItemRequest){
@@ -15,7 +18,7 @@ public class CartServiceImpl implements CartService{
     }
 
     @Override
-    public String deleteItem(String id){
+    public String deleteItem(String cartId){
         return null;
     }
 
@@ -24,18 +27,18 @@ public class CartServiceImpl implements CartService{
         return null;
     }
 
-    @Override
+
     public String recountTotal(BigDecimal total){
         return null;
     }
 
     @Override
-    public String cloneCart( ){
+    public String cloneCart(String cartId ){
         return null;
     }
 
-    @Override
-    public List<Product> findProductByName(String productName){
-        return null;
-    }
+//    @Override
+//    public Product findProductByName(String productName){
+//        return null;
+//    }
 }

@@ -10,10 +10,9 @@ import java.util.List;
 
 public interface CartService{
 AddItemResponse addItem(AddItemRequest addItemRequest);
-String deleteItem(String id);
+String deleteItem(String cartId);
 String updateItemNumber(UpdateItemRequest updateItemRequest);
-String recountTotal(BigDecimal total);
-String cloneCart();
-    List<Product> findProductByName(String productName);
+String cloneCart(String cartId);
+
 
 }

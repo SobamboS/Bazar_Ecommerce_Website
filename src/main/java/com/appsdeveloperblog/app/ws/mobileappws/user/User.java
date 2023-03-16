@@ -3,6 +3,7 @@ package com.appsdeveloperblog.app.ws.mobileappws.user;
 import com.appsdeveloperblog.app.ws.mobileappws.Cart.Cart;
 import com.appsdeveloperblog.app.ws.mobileappws.Order.Order;
 import com.appsdeveloperblog.app.ws.mobileappws.Payment.Payment;
+import com.appsdeveloperblog.app.ws.mobileappws.Product.Product;
 import jakarta.mail.Address;
 import lombok.Data;
 import org.springframework.data.annotation.Id;
@@ -24,6 +25,7 @@ public class User{
     private Cart cart;
     private Order order;
     private Payment payment;
+   private Product product;
 
 
 

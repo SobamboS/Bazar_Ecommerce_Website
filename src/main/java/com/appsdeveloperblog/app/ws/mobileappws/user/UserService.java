@@ -10,6 +10,6 @@ public interface UserService {
      void enableUser(String emailAddress);
 String generateToken(User user);
 Optional<User>findByEmailAddressIgnoreCase(String emailAddress);
-List<Product>findProductByName(FindProductRequest findProductRequest);
+Product findProductByName(FindProductRequest findProductRequest);
 
 }

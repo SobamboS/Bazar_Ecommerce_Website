@@ -2,11 +2,7 @@ package com.appsdeveloperblog.app.ws.mobileappws.Product;
 
 import com.appsdeveloperblog.app.ws.mobileappws.Order.OrderService;
 import com.appsdeveloperblog.app.ws.mobileappws.Product.dto.ProductCreateRequest;
-import com.appsdeveloperblog.app.ws.mobileappws.Product.dto.ProductUpdateRequest;
-import com.appsdeveloperblog.app.ws.mobileappws.Product.dto.ProductCreateResponse;
 import com.appsdeveloperblog.app.ws.mobileappws.exception.ApiResponse;
-import com.appsdeveloperblog.app.ws.mobileappws.user.registration.dto.SignupRequest;
-import jakarta.mail.MessagingException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;

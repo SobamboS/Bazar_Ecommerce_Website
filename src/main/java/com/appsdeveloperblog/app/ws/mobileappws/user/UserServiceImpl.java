@@ -64,18 +64,9 @@ public class UserServiceImpl implements UserService{
     }
 
     @Override
-
-    public List<Product> findProductByName(FindProductRequest findProductRequest){
-        var findProduct=productRepository.findByProductName(findProductRequest.getProductName())
-                .orElseThrow(( ) -> new RuntimeException("Product not found"));
-        List<Product> list=new ArrayList<>();
-
-        if(findProduct.getProductName().equalsIgnoreCase(findProductRequest.getProductName())){
-            return list;
-        }else {
-            return null;
-        }
-
+    public Product findProductByName(FindProductRequest findProductRequest){
+        return productRepository.findByProductName(findProductRequest.getProductName())
+               .orElseThrow(()-> new RuntimeException("Product not found"));
 
     }
 }

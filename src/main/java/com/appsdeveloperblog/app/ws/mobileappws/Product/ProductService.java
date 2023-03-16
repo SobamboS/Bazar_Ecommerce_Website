@@ -1,10 +1,11 @@
 package com.appsdeveloperblog.app.ws.mobileappws.Product;
 
-import com.appsdeveloperblog.app.ws.mobileappws.Product.dto.response.ProductDeleteAllResponse;
 import com.appsdeveloperblog.app.ws.mobileappws.Product.dto.ProductCreateRequest;
 import com.appsdeveloperblog.app.ws.mobileappws.Product.dto.ProductUpdateRequest;
-import com.appsdeveloperblog.app.ws.mobileappws.Product.dto.response.ProductDeleteResponse;
-import com.appsdeveloperblog.app.ws.mobileappws.Product.dto.response.ProductUpdateResponse;
+import com.appsdeveloperblog.app.ws.mobileappws.user.dto.FindProductRequest;
+
+import java.util.List;
+
 
 public interface ProductService{
   String deleteProduct (String id);
@@ -12,7 +13,6 @@ public interface ProductService{
    String UpdateProduct(ProductUpdateRequest productUpdateRequest);
 
     String deleteAllProduct();
-    String deleteProduct();
 
-    void showAllProducts();
+    List<Product> showAllProducts();
 }

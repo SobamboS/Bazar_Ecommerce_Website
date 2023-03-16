@@ -2,9 +2,10 @@ package com.appsdeveloperblog.app.ws.mobileappws.Product;
 
 import com.appsdeveloperblog.app.ws.mobileappws.Product.dto.ProductCreateRequest;
 import com.appsdeveloperblog.app.ws.mobileappws.Product.dto.ProductUpdateRequest;
-import com.appsdeveloperblog.app.ws.mobileappws.Product.dto.ProductCreateResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 public class ProductServiceImpl implements ProductService{
@@ -22,6 +23,7 @@ public class ProductServiceImpl implements ProductService{
         createProduct.setProductDescription(productCreateRequest.getProductDescription());
         productRepository.save(createProduct);
         return "Product added successfully";
+
     }
     @Override
     public String UpdateProduct(ProductUpdateRequest productUpdateRequest){
@@ -45,10 +47,6 @@ public class ProductServiceImpl implements ProductService{
         return "All Product Deleted";
     }
 
-    @Override
-    public String deleteProduct( ){
-        return null;
-    }
 
     @Override
     public String deleteProduct(String id){
@@ -56,8 +54,8 @@ public class ProductServiceImpl implements ProductService{
         return "Product Deleted";
     }
     @Override
-    public void showAllProducts(){
-        productRepository.findAll();
+    public List<Product> showAllProducts(){
+      return   productRepository.findAll();
     }
 
 }

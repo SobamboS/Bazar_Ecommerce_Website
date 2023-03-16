@@ -4,12 +4,17 @@ import com.appsdeveloperblog.app.ws.mobileappws.Order.OrderService;
 import com.appsdeveloperblog.app.ws.mobileappws.Product.dto.ProductCreateRequest;
 import com.appsdeveloperblog.app.ws.mobileappws.Product.dto.ProductUpdateRequest;
 import com.appsdeveloperblog.app.ws.mobileappws.Product.dto.ProductCreateResponse;
-import com.appsdeveloperblog.app.ws.mobileappws.Product.dto.response.ProductDeleteResponse;
-import com.appsdeveloperblog.app.ws.mobileappws.Product.dto.response.ProductUpdateResponse;
+import com.appsdeveloperblog.app.ws.mobileappws.exception.ApiResponse;
+import com.appsdeveloperblog.app.ws.mobileappws.user.registration.dto.SignupRequest;
+import jakarta.mail.MessagingException;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.time.ZonedDateTime;
 
 @RestController
 public class ProductController{
@@ -19,25 +24,17 @@ public class ProductController{
     OrderService orderService;
 
     @PostMapping("/createProduct")
-    public ResponseEntity<ProductCreateResponse> createProduct(@RequestBody ProductCreateRequest productCreateRequest){
-        try{
-            ProductCreateResponse productCreateResponse = productService.createProduct(productCreateRequest);
-        return ResponseEntity.status(HttpStatus.CREATED).body(productCreateResponse);
-        } catch (RuntimeException e){
-            ProductCreateResponse productCreateResponse = new ProductCreateResponse();
-            productCreateResponse.setMessage(e.getMessage());
-            productCreateResponse.setStatusCode(401);
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(productCreateResponse);
-        }
+    public ResponseEntity<?> createProduct(@RequestBody @Valid ProductCreateRequest productCreateRequest,
+                                    HttpServletRequest httpServletRequest){
+        ApiResponse apiResponse = ApiResponse.builder()
+                .status(HttpStatus.OK.value())
+                .isSuccessful(true)
+                .path(httpServletRequest.getRequestURI())
+                .timeStamp(ZonedDateTime.now())
+                .data(productService.createProduct(productCreateRequest))
+                .build();
+        return new ResponseEntity<>(apiResponse, HttpStatus.OK);
     }
 
-    @PutMapping("/updateProduct")
-    public ResponseEntity<ProductUpdateResponse> updateProduct(@RequestBody ProductUpdateRequest productUpdateRequest){
-        return ResponseEntity.ok(productService.UpdateProduct(productUpdateRequest));
-    }
-    @DeleteMapping("/deleteProduct/{id}")
-    public ResponseEntity<ProductDeleteResponse>delete(@PathVariable String id){
-        return ResponseEntity.ok(productService.deleteProduct(id));
-    }
 
 }

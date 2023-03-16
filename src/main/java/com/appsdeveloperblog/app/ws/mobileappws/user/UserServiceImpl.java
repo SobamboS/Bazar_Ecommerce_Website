@@ -1,8 +1,11 @@
 package com.appsdeveloperblog.app.ws.mobileappws.user;
 
 import com.appsdeveloperblog.app.ws.mobileappws.Product.Product;
+import com.appsdeveloperblog.app.ws.mobileappws.Product.ProductRepository;
+import com.appsdeveloperblog.app.ws.mobileappws.Product.ProductService;
 import com.appsdeveloperblog.app.ws.mobileappws.exception.RegistrationException;
 import com.appsdeveloperblog.app.ws.mobileappws.email.EmailSender;
+import com.appsdeveloperblog.app.ws.mobileappws.user.dto.FindProductRequest;
 import com.appsdeveloperblog.app.ws.mobileappws.user.token.Token;
 import com.appsdeveloperblog.app.ws.mobileappws.user.token.TokenService;
 import lombok.extern.slf4j.Slf4j;
@@ -11,6 +14,7 @@ import org.springframework.stereotype.Service;
 
 import java.security.SecureRandom;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -26,27 +30,32 @@ public class UserServiceImpl implements UserService{
 
     @Autowired
     TokenService tokenService;
+    @Autowired
+    ProductService productService;
+
+    @Autowired
+    ProductRepository productRepository;
 
 
     @Override
     public void enableUser(String emailAddress){
-        var foundUser = userRepository.findByEmailAddressIgnoreCase(emailAddress)
-                .orElseThrow(() -> new RegistrationException("Invalid email"));
+        var foundUser=userRepository.findByEmailAddressIgnoreCase(emailAddress)
+                .orElseThrow(( ) -> new RegistrationException("Invalid email"));
         foundUser.setIsVerified(true);
     }
 
-     @Override
+    @Override
     public String generateToken(User user){
-        SecureRandom secureRandom = new SecureRandom();
-        String token = String.valueOf(1000+ secureRandom.nextInt(9999));
-        Token confirmationToken = new Token(
+        SecureRandom secureRandom=new SecureRandom();
+        String token=String.valueOf(1000 + secureRandom.nextInt(9999));
+        Token confirmationToken=new Token(
                 token,
                 LocalDateTime.now(),
                 LocalDateTime.now().plusMinutes(10),
                 user
         );
         tokenService.saveConfirmationToken(confirmationToken);
-    return  confirmationToken.getToken();
+        return confirmationToken.getToken();
     }
 
     @Override
@@ -55,9 +64,18 @@ public class UserServiceImpl implements UserService{
     }
 
     @Override
-    public List<Product> findProductByName(String productName){
-        return null;
+
+    public List<Product> findProductByName(FindProductRequest findProductRequest){
+        var findProduct=productRepository.findByProductName(findProductRequest.getProductName())
+                .orElseThrow(( ) -> new RuntimeException("Product not found"));
+        List<Product> list=new ArrayList<>();
+
+        if(findProduct.getProductName().equalsIgnoreCase(findProductRequest.getProductName())){
+            return list;
+        }else {
+            return null;
+        }
+
+
     }
-
-
 }

@@ -25,27 +25,29 @@ public class ProductServiceImpl implements ProductService{
     }
     @Override
     public String UpdateProduct(ProductUpdateRequest productUpdateRequest){
-        Product updateProduct = productRepository.findByProductId(productUpdateRequest.getId())
-
+        Product updateProduct = productRepository.findByProductId(productUpdateRequest.getProductId())
                 .orElseThrow(()-> new RuntimeException("Product not found"));
-        ProductUpdateResponse productUpdateResponse = new ProductUpdateResponse();
-        if(updateProduct.getId().equals(productUpdateRequest.getId())){
-            updateProduct.setPrice(productUpdateRequest.getPrice());
+
+        if(!updateProduct.getProductId().equals(productUpdateRequest.getProductId())){
+            updateProduct.setProductPrice(productUpdateRequest.getProductPrice());
             updateProduct.setProductCategory(productUpdateRequest.getProductCategory());
-            updateProduct.setName(productUpdateRequest.getName());
-            updateProduct.setDescription(productUpdateRequest.getDescription());
+            updateProduct.setProductName(productUpdateRequest.getProductName());
+            updateProduct.setProductDescription(productUpdateRequest.getProductDescription());
             productRepository.save(updateProduct);
-            productUpdateResponse.setMessage("Product Added Successfully");
-            return productUpdateResponse;
-        }else
-            productUpdateResponse.setMessage("Product Not Added");
-        return productUpdateResponse;
+
+        }
+        return "";
     }
 
     @Override
     public String deleteAllProduct( ){
         productRepository.deleteAll();
         return "All Product Deleted";
+    }
+
+    @Override
+    public String deleteProduct( ){
+        return null;
     }
 
     @Override

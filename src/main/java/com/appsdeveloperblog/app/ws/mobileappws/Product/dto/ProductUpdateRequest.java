@@ -4,13 +4,15 @@ import com.appsdeveloperblog.app.ws.mobileappws.Product.ProductCategory;
 import jakarta.persistence.Id;
 import lombok.Data;
 
+import java.math.BigDecimal;
+
 @Data
 public class ProductUpdateRequest{
     @Id
-    private String id;
+    private String productId;
     private ProductCategory productCategory;
-    private String name;
-    private double price;
-    private String description;
-    private int quantity;
+    private String productName;
+    private BigDecimal productPrice;
+    private String productDescription;
+    private BigDecimal availableProductQuantity;
 }

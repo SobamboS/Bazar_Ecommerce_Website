@@ -14,5 +14,5 @@ public interface ProductService{
 
     String deleteAllProduct();
 
-    List<Product> showAllProducts();
+   // Product showAllProducts();
 }

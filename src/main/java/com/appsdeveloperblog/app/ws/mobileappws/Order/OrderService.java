@@ -11,7 +11,6 @@ import com.appsdeveloperblog.app.ws.mobileappws.Order.requestAndresponse.respons
 
 public interface OrderService{
 
-
     String  createOrder (CreateOrderRequest createOrderRequest);
     String  updateOrder (UpdateOrderRequest updateOrderRequest);
     String deleteOrder (String id);

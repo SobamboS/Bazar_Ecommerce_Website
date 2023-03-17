@@ -53,9 +53,9 @@ public class ProductServiceImpl implements ProductService{
         productRepository.deleteById(id);
         return "Product Deleted";
     }
-    @Override
-    public List<Product> showAllProducts(){
-      return   productRepository.findAll();
-    }
+//    @Override
+//    public Product showAllProducts(){
+//      return   productRepository.findAll();
+//    }
 
 }

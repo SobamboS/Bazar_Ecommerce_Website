@@ -9,6 +9,8 @@ import lombok.Data;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import java.util.List;
+
 @Data
 @Document
 public class User{
@@ -22,7 +24,7 @@ public class User{
 
     private Boolean isVerified = false;
     private Address address;
-    private Cart cart;
+    private List<Cart> cart;
     private Order order;
     private Payment payment;
    private Product product;

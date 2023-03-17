@@ -14,8 +14,7 @@ import org.springframework.stereotype.Service;
 
 import java.security.SecureRandom;
 import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.List;
+
 import java.util.Optional;
 
 @Service
@@ -65,8 +64,13 @@ public class UserServiceImpl implements UserService{
 
     @Override
     public Product findProductByName(FindProductRequest findProductRequest){
-        return productRepository.findByProductName(findProductRequest.getProductName())
-               .orElseThrow(()-> new RuntimeException("Product not found"));
+        Product product=productRepository.findByProductName(findProductRequest.getProductName())
+                .orElseThrow(( ) -> new RuntimeException("Product not found"));
 
+        if(product.getProductName().equalsIgnoreCase(findProductRequest.getProductName())){
+            return product;
+
+        }
+        return product;
     }
 }

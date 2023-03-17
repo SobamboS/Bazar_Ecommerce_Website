@@ -26,7 +26,7 @@ public class ProductServiceImpl implements ProductService{
 
     }
     @Override
-    public String UpdateProduct(ProductUpdateRequest productUpdateRequest){
+    public String updateProduct(ProductUpdateRequest productUpdateRequest){
         Product updateProduct = productRepository.findByProductId(productUpdateRequest.getProductId())
                 .orElseThrow(()-> new RuntimeException("Product not found"));
 

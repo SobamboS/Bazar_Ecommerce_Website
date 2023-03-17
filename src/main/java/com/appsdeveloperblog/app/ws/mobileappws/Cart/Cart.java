@@ -14,6 +14,7 @@ public class Cart{
     @Id
     private String cartId;
     private BigDecimal cartTotal;
-    private Product cartItem ;
+    private Product product ;
+    private List<Cart> cart;
 
 }

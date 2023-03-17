@@ -14,7 +14,7 @@ import java.util.List;
 @Document
 public class Order{
     @Id
-    private String OrderId;
+    private String orderId;
     @DBRef
     private User user;
     private BigDecimal orderTotal;

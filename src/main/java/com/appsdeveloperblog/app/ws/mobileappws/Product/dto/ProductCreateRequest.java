@@ -15,17 +15,20 @@ public class ProductCreateRequest{
     @Size(max=100)
     private String productName;
 
+    @NotBlank
+    private ProductCategory productCategory;
+
+    @Pattern(regexp="^\\d+$")
+    private BigDecimal productPrice;
+
     @NotBlank(message="Field is required")
     @Size(max=5000)
     private String productDescription;
 
     @Pattern(regexp="^\\d+$")
-    private BigDecimal productPrice;
-
-    @NotBlank
-    private ProductCategory productCategory;
+    private BigDecimal availableProductQuantity;
 
     @Pattern(regexp="^\\d+$")
-    private BigDecimal availableProductQuantity;
+    private double productWeight;
 
 }

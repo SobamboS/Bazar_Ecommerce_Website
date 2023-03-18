@@ -25,6 +25,17 @@ public class ProductServiceImpl implements ProductService{
         return "Product added successfully";
 
     }
+    public String newProduct(ProductCreateRequest productCreateRequest){
+        Product product = new Product(
+                productCreateRequest.getProductName(),
+                productCreateRequest.getProductCategory(),
+                productCreateRequest.getProductPrice(),
+                productCreateRequest.getProductDescription(),
+                productCreateRequest.getAvailableProductQuantity(),
+                productCreateRequest.getProductWeight());
+
+        return "";
+    }
     @Override
     public String updateProduct(ProductUpdateRequest productUpdateRequest){
         Product updateProduct = productRepository.findByProductId(productUpdateRequest.getProductId())
@@ -38,7 +49,7 @@ public class ProductServiceImpl implements ProductService{
             productRepository.save(updateProduct);
 
         }
-        return "";
+        return "Product Updated successfully ";
     }
 
     @Override

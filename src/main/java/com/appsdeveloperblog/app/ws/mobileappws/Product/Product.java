@@ -21,7 +21,24 @@ public class Product{
     private BigDecimal availableProductQuantity;
     private double productWeight;
     private String productImage;
+
     @DBRef
-    private User user;
-    
+    Admin admin;
+
+    public Product(Admin admin){
+        this.admin=admin;
+    }
+
+    public Product(ProductCategory productCategory,
+                   String productName,BigDecimal productPrice,String productDescription,
+                   BigDecimal availableProductQuantity,double productWeight,Admin admin){
+        this.productName=productName;
+        this.productCategory=productCategory;
+        this.productPrice=productPrice;
+        this.productDescription=productDescription;
+        this.availableProductQuantity=availableProductQuantity;
+        this.productWeight=productWeight;
+        this.admin=admin;
+
+    }
 }

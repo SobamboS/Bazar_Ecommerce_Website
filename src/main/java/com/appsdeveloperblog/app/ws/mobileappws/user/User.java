@@ -7,6 +7,7 @@ import com.appsdeveloperblog.app.ws.mobileappws.Product.Product;
 import jakarta.mail.Address;
 import lombok.Data;
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.util.List;
@@ -24,7 +25,9 @@ public class User{
 
     private Boolean isVerified = false;
     private Address address;
-    private List<Cart> cart;
+    @DBRef
+    private Cart cart;
+    @DBRef
     private Order order;
     private Payment payment;
    private Product product;

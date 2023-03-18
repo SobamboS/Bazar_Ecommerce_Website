@@ -32,14 +32,14 @@ public class CartController{
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<?> deleteItem(@RequestBody @Valid String cartId,
+    public ResponseEntity<?> removeItem(@RequestBody @Valid String cartId,
                                      HttpServletRequest httpServletRequest){
         ApiResponse apiResponse = ApiResponse.builder()
                 .status(HttpStatus.OK.value())
                 .isSuccessful(true)
                 .path(httpServletRequest.getRequestURI())
                 .timeStamp(ZonedDateTime.now())
-                .data(cartService.deleteItem(cartId))
+                .data(cartService.removeItem(cartId))
                 .build();
         return new ResponseEntity<>(apiResponse, HttpStatus.OK);
     }
@@ -56,19 +56,5 @@ public class CartController{
                 .build();
         return new ResponseEntity<>(apiResponse, HttpStatus.OK);
     }
-
-    @PostMapping("/cloneCart")
-    public ResponseEntity<?> cloneCart(@RequestBody @Valid String cartId,
-                                              HttpServletRequest httpServletRequest){
-        ApiResponse apiResponse = ApiResponse.builder()
-                .status(HttpStatus.OK.value())
-                .isSuccessful(true)
-                .path(httpServletRequest.getRequestURI())
-                .timeStamp(ZonedDateTime.now())
-                .data(cartService.cloneCart(cartId))
-                .build();
-        return new ResponseEntity<>(apiResponse, HttpStatus.OK);
-    }
-
 
 }

@@ -16,7 +16,7 @@ import java.util.List;
 @Document
 public class User{
     @Id
-    private String id;
+    private String userId;
     private String firstName;
     private String lastName;
     private String emailAddress;

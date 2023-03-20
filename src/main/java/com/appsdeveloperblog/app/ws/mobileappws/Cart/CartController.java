@@ -18,15 +18,15 @@ public class CartController{
     @Autowired
     CartService cartService;
 
-    @PostMapping("/signup")
-    public ResponseEntity<?> addItem(@RequestBody @Valid AddItemRequest addItemRequest,
+    @PostMapping("/createCart")
+    public ResponseEntity<?> createCart(@RequestBody @Valid AddItemRequest addItemRequest,
                                     HttpServletRequest httpServletRequest){
         ApiResponse apiResponse = ApiResponse.builder()
                 .status(HttpStatus.OK.value())
                 .isSuccessful(true)
                 .path(httpServletRequest.getRequestURI())
                 .timeStamp(ZonedDateTime.now())
-                .data(cartService.addItem(addItemRequest))
+                .data(cartService.createCart(addItemRequest))
                 .build();
         return new ResponseEntity<>(apiResponse, HttpStatus.OK);
     }

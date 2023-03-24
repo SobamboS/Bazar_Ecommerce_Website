@@ -1,4 +1,4 @@
-# REST API for an E-Commerce Application
+# REST API for Bazazr E-Commerce Website
 
 * I developed this REST API for my e-commerce application. This API performs all the fundamental CRUD operations of any e-commerce platform with user validation at every step.
 * This project was developed and continuosly developing as one of my final projects @SEMICOLON AFRICA. 

@@ -8,9 +8,11 @@ import java.util.List;
 
 
 public interface CartService{
- Cart createCart(AddItemRequest addItemRequest);
-String removeItem(String cartId);
-String updateItemNumber(UpdateItemRequest updateItemRequest);
+ Cart addItemToCart(AddItemRequest addItemRequest);
+ Cart removeItem(String cartId);
+Cart updateItemNumber(UpdateItemRequest updateItemRequest);
+Cart viewProductInCart();
+
 
 
 

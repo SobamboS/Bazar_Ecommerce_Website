@@ -18,9 +18,11 @@ public class SignupRequest{
     @Size(max=20)
     private String lastName;
 
+    @NotBlank
     @Email(message="Input a valid email")
     private String emailAddress;
 
+    @NotBlank
     @Pattern(regexp="^([a-zA-Z\\d@*#$&!]{8,15})$")
     private String password;
 

@@ -26,7 +26,7 @@ public class CartServiceImpl implements CartService{
     UserRepository userRepository;
 
     @Override
-    public Cart createCart(AddItemRequest addItemRequest){
+    public Cart addItemToCart(AddItemRequest addItemRequest){
 //        var product = productRepository.findByProductName
 //                        (addItemRequest.getProduct().getProductName())
 //                .orElseThrow(()-> new ArrayIndexOutOfBoundsException("Product not available"));
@@ -43,7 +43,7 @@ public class CartServiceImpl implements CartService{
                 (testing.getUser().getEmailAddress());
         var findUserId = userRepository.findById(testing.getUser().getUserId());
 
-        Cart newCart =cartRepository.findCartByUserId(testing.getUser().getUserId(),l)
+        Cart newCart =cartRepository.findCartByUserId(testing.getUserId());
 
 return "";
     }

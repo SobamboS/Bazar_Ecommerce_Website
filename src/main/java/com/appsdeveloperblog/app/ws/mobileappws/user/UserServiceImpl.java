@@ -43,6 +43,7 @@ public class UserServiceImpl implements UserService{
         foundUser.setIsVerified(true);
     }
 
+
     @Override
     public String generateToken(User user){
         SecureRandom secureRandom=new SecureRandom();
@@ -60,6 +61,9 @@ public class UserServiceImpl implements UserService{
     @Override
     public Optional<User> findByEmailAddressIgnoreCase(String emailAddress){
         return userRepository.findByEmailAddressIgnoreCase(emailAddress);
+    }
+    public Optional<User>findByUserId(String userId){
+        return userRepository.findById(userId);
     }
 
     @Override

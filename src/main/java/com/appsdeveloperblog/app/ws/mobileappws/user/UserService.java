@@ -11,5 +11,6 @@ public interface UserService {
 String generateToken(User user);
 Optional<User>findByEmailAddressIgnoreCase(String emailAddress);
 Product findProductByName(FindProductRequest findProductRequest);
+Optional<User>findByUserId(String userId);
 
 }

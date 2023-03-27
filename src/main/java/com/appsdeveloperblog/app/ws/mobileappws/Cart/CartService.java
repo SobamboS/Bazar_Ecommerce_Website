@@ -9,7 +9,7 @@ import java.util.List;
 
 public interface CartService{
  Cart addItemToCart(AddItemRequest addItemRequest);
- Cart removeItem(String cartId);
+ Cart removeProduct(String cartId);
 Cart updateItemNumber(UpdateItemRequest updateItemRequest);
 Cart viewProductInCart();
 

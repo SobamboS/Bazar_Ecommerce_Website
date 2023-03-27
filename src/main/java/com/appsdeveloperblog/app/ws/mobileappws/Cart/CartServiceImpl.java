@@ -1,12 +1,14 @@
 package com.appsdeveloperblog.app.ws.mobileappws.Cart;
 
 import com.appsdeveloperblog.app.ws.mobileappws.Cart.dto.AddItemRequest;
-import com.appsdeveloperblog.app.ws.mobileappws.Cart.dto.Testing;
+
 import com.appsdeveloperblog.app.ws.mobileappws.Cart.dto.UpdateItemRequest;
 import com.appsdeveloperblog.app.ws.mobileappws.Product.Product;
 import com.appsdeveloperblog.app.ws.mobileappws.Product.ProductRepository;
 import com.appsdeveloperblog.app.ws.mobileappws.user.UserRepository;
+import com.appsdeveloperblog.app.ws.mobileappws.user.UserService;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.catalina.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -22,11 +24,15 @@ public class CartServiceImpl implements CartService{
     @Autowired
     CartRepository cartRepository;
 
-    @Autowired
-    UserRepository userRepository;
-
+   @Autowired
+    UserService userService;
+@Autowired
+   UserRepository userRepository;
     @Override
     public Cart addItemToCart(AddItemRequest addItemRequest){
+//        var findUser = userRepository.findByEmailAddressIgnoreCase(addItemRequest.get().ge)
+//                .orElseThrow(()->  new RuntimeException("User not found"));
+        Cart userCart = new Cart();
 //        var product = productRepository.findByProductName
 //                        (addItemRequest.getProduct().getProductName())
 //                .orElseThrow(()-> new ArrayIndexOutOfBoundsException("Product not available"));
@@ -38,15 +44,30 @@ public class CartServiceImpl implements CartService{
         return null;
     }
 
-    public String createCart(Testing testing){
-        var findUser = userRepository.findByEmailAddressIgnoreCase
-                (testing.getUser().getEmailAddress());
-        var findUserId = userRepository.findById(testing.getUser().getUserId());
-
-        Cart newCart =cartRepository.findCartByUserId(testing.getUserId());
-
-return "";
+    @Override
+    public Cart removeProduct(String cartId){
+        return null;
     }
+
+    @Override
+    public Cart updateItemNumber(UpdateItemRequest updateItemRequest){
+        return null;
+    }
+
+    @Override
+    public Cart viewProductInCart( ){
+        return null;
+    }
+
+//    public String createCart(Testing testing){
+//        var findUser = userRepository.findByEmailAddressIgnoreCase
+//                (testing.getUser().getEmailAddress());
+//        var findUserId = userRepository.findById(testing.getUser().getUserId());
+//
+//        Cart newCart =cartRepository.findCartByUserId(testing.getUserId());
+//
+//return "";
+//    }
 
 
 //    public Cart getOrCreateCart(Testing testing) {
@@ -62,10 +83,10 @@ return "";
 //    }
 
 
-    public void addProducts(Product product){
-        Cart addProduct = new Cart();
-        addProduct.getProductContainer().add(product);
-    }
+//    public void addProducts(Product product){
+//        Cart addProduct = new Cart();
+//        addProduct.getProductContainer().add(product);
+//    }
 
 
 
@@ -73,19 +94,19 @@ return "";
 
 
 
-    @Override
-    public String removeItem(String cartId){
+//    @Override
+//    public String removeItem(String cartId){
+//
+//       // cartRepository.
+//
+//
+//        return null;
+//    }
 
-       // cartRepository.
-
-
-        return null;
-    }
-
-    @Override
-    public String updateItemNumber(UpdateItemRequest updateItemRequest){
-        return null;
-    }
+//    @Override
+//    public String updateItemNumber(UpdateItemRequest updateItemRequest){
+//        return null;
+//    }
 
 
     public String  recountTotal(BigDecimal total){

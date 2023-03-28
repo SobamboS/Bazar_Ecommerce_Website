@@ -30,8 +30,8 @@ public class CartServiceImpl implements CartService{
    UserRepository userRepository;
     @Override
     public Cart addItemToCart(AddItemRequest addItemRequest){
-//        var findUser = userRepository.findByEmailAddressIgnoreCase(addItemRequest.get().ge)
-//                .orElseThrow(()->  new RuntimeException("User not found"));
+        var findUser = userRepository.findByEmailAddressIgnoreCase(addItemRequest.getUser().get)
+                .orElseThrow(()->  new RuntimeException("User not found"));
         Cart userCart = new Cart();
 //        var product = productRepository.findByProductName
 //                        (addItemRequest.getProduct().getProductName())

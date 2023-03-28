@@ -31,14 +31,13 @@ public class Product{
 
     public Product(ProductCategory productCategory,
                    String productName,BigDecimal productPrice,String productDescription,
-                   BigDecimal availableProductQuantity,double productWeight,Admin admin){
+                   BigDecimal availableProductQuantity,double productWeight){
         this.productName=productName;
         this.productCategory=productCategory;
         this.productPrice=productPrice;
         this.productDescription=productDescription;
         this.availableProductQuantity=availableProductQuantity;
         this.productWeight=productWeight;
-        this.admin=admin;
 
     }
 }

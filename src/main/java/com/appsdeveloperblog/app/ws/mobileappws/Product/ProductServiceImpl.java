@@ -5,37 +5,24 @@ import com.appsdeveloperblog.app.ws.mobileappws.Product.dto.ProductUpdateRequest
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
 
 @Service
 public class ProductServiceImpl implements ProductService{
     @Autowired
     ProductRepository productRepository;
-
-
-
     @Override
-    public String createProduct(ProductCreateRequest productCreateRequest) {
-        Product createProduct = new Product();
-        createProduct.setProductName(productCreateRequest.getProductName());
-        createProduct.setProductPrice(productCreateRequest.getProductPrice());
-        createProduct.setProductCategory(productCreateRequest.getProductCategory());
-        createProduct.setProductDescription(productCreateRequest.getProductDescription());
-        productRepository.save(createProduct);
-        return "Product added successfully";
-
-    }
-    public String newProduct(ProductCreateRequest productCreateRequest){
+    public String createProduct(ProductCreateRequest productCreateRequest){
         Product product = new Product(
-                productCreateRequest.getProductName(),
                 productCreateRequest.getProductCategory(),
+                productCreateRequest.getProductName(),
                 productCreateRequest.getProductPrice(),
                 productCreateRequest.getProductDescription(),
                 productCreateRequest.getAvailableProductQuantity(),
                 productCreateRequest.getProductWeight());
-
-        return "";
+        productRepository.save(product);
+        return (String.format("%s added successfully", product));
     }
+
     @Override
     public String updateProduct(ProductUpdateRequest productUpdateRequest){
         Product updateProduct = productRepository.findByProductId(productUpdateRequest.getProductId())

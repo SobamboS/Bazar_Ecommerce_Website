@@ -2,7 +2,7 @@ package com.appsdeveloperblog.app.ws.mobileappws.Product;
 
 import com.appsdeveloperblog.app.ws.mobileappws.Product.dto.ProductCreateRequest;
 import com.appsdeveloperblog.app.ws.mobileappws.Product.dto.ProductUpdateRequest;
-import com.appsdeveloperblog.app.ws.mobileappws.user.dto.FindProductRequest;
+import com.appsdeveloperblog.app.ws.mobileappws.Product.dto.FindProductRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

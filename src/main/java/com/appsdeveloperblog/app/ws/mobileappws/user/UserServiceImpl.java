@@ -1,11 +1,9 @@
 package com.appsdeveloperblog.app.ws.mobileappws.user;
 
-import com.appsdeveloperblog.app.ws.mobileappws.Product.Product;
 import com.appsdeveloperblog.app.ws.mobileappws.Product.ProductRepository;
 import com.appsdeveloperblog.app.ws.mobileappws.Product.ProductService;
 import com.appsdeveloperblog.app.ws.mobileappws.exception.RegistrationException;
 import com.appsdeveloperblog.app.ws.mobileappws.email.EmailSender;
-import com.appsdeveloperblog.app.ws.mobileappws.user.dto.FindProductRequest;
 import com.appsdeveloperblog.app.ws.mobileappws.user.token.Token;
 import com.appsdeveloperblog.app.ws.mobileappws.user.token.TokenService;
 import lombok.extern.slf4j.Slf4j;
@@ -15,7 +13,6 @@ import org.springframework.stereotype.Service;
 import java.security.SecureRandom;
 import java.time.LocalDateTime;
 
-import java.util.List;
 import java.util.Optional;
 
 @Service

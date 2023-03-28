@@ -2,8 +2,11 @@ package com.appsdeveloperblog.app.ws.mobileappws.Product;
 
 import com.appsdeveloperblog.app.ws.mobileappws.Product.dto.ProductCreateRequest;
 import com.appsdeveloperblog.app.ws.mobileappws.Product.dto.ProductUpdateRequest;
+import com.appsdeveloperblog.app.ws.mobileappws.user.dto.FindProductRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 
 @Service
@@ -40,6 +43,22 @@ public class ProductServiceImpl implements ProductService{
     }
 
     @Override
+    public List<Product> findProduct(FindProductRequest findProductRequest){
+            List<Product> product=productRepository.findByProductName(findProductRequest.getProductName())
+                    .orElseThrow(( ) -> new RuntimeException("Product not found"));
+
+//        if(product.getProductName().isEmpty()){
+//            throw new RuntimeException(String.format("%s not found ",findProductRequest.getProductName()));
+//        }
+
+            if(!product.getProductName().equalsIgnoreCase(findProductRequest.getProductName())){
+                throw new RuntimeException(String.format(" %s not found, please check for another product",findProductRequest.getProductName()));
+            }
+            return product ;
+        }
+
+
+    @Override
     public String deleteAllProduct( ){
         productRepository.deleteAll();
         return "All Product Deleted";
@@ -51,9 +70,6 @@ public class ProductServiceImpl implements ProductService{
         productRepository.deleteById(id);
         return "Product Deleted";
     }
-//    @Override
-//    public Product showAllProducts(){
-//      return   productRepository.findAll();
-//    }
+
 
 }

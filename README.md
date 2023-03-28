@@ -1,6 +1,6 @@
 # REST API for Bazazr E-Commerce Website
 
-* I developed this REST API for my e-commerce application. This API performs all the fundamental CRUD operations of any e-commerce platform with user validation at every step.
+* I developed this REST API for one of my capstone projects. This API performs all the fundamental CRUD operations of any e-commerce platform with user validation at every step.
 * This project was developed and continuosly developing as one of my final projects @SEMICOLON AFRICA. 
 
 ## Tech Stack
@@ -68,26 +68,26 @@ spring.mail.properties.mail.smtp.writetime=5000
 
 ### Login & Logout 
 
-* `POST /register/customer` : Register a new customer
-* `POST /login/customer` : Logging in customer with valid mobile number & password
-* `POST /logout/customer` : Logging out customer based on session token
+* `POST /register/customer` : Register a new user
+* `POST /login/customer` : Logging in customer with valid email address & password
+* `POST /logout/customer` : Logging out user
 * `POST /register/seller` : Register a new seller
 * `POST /login/seller` : Logging in Seller
 * `POST /logout/seller` : Logging out Seller based on session token
 
 
-### Customer 
+### User
 
-* `GET /customer/current` : Getting currently logged in customer
-* `GET /customer/orders` : Getting order history of logged in customer
-* `GET /customers` : Getting All customers
-* `PUT /customer` : Updates logged in customer
-* `PUT /customer/update/password` : Updates customer password
+* `GET /customer/current` : Getting currently logged in user
+* `GET /customer/orders` : Getting order history of logged in user
+* `GET /customers` : Getting All user
+* `PUT /customer` : Updates logged in user
+* `PUT /customer/update/password` : Updates user password
 * `PUT /customer/update/card` : Updates credit card details
-* `PUT /customer/update/address?type=home` : Updates customer's home address
-* `PUT /customer/update/credentials` : Updates email address and mobile number
-* `DELETE /customer` : Deletes logged in user with valid session token
-* `DELETE /customer/delete/address?type=home` : Deletes customer's home address
+* `PUT /customer/update/address?type=home` : Updates user's home address
+* `PUT /customer/update/credentials` : Updates email address
+* `DELETE /customer` : Deletes registered user
+* `DELETE /customer/delete/address?type=home` : Deletes user's home address
 
 
 ### Product 
@@ -118,30 +118,3 @@ spring.mail.properties.mail.smtp.writetime=5000
 * `POST /order/place` : Places a new order based on cart items
 * `PUT /orders/{id}` : Updates a pending order
 * `DELETE /orders/{id}` : Cancels an order
-
-
-### Sample API Response for Customer Login
-
-`POST   localhost:8009/login/customer`
-
-* Request Body
-
-```
-    {
-        "mobileId": "9999999999",
-        "password": "shyam123456"
-    }
-```
-
-* Response
-
-```
-    {
-        "sessionId": 23,
-        "token": "customer_0ad57094",
-        "userId": 19,
-        "userType": "customer",
-        "sessionStartTime": "2022-06-10T10:48:20.0109626",
-        "sessionEndTime": "2022-06-10T11:48:20.0109626"
-    }
-```

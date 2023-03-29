@@ -43,13 +43,22 @@ public class ProductServiceImpl implements ProductService{
     }
 
     @Override
-    public List<Product> findProduct(FindProductRequest findProductRequest){
-            List<Product> product=productRepository.findByProductName(findProductRequest.getProductName());
+    public List<Product> findProduct(String productName){
+            List<Product> product=productRepository.findByProductName(productName);
 
-            if(!(findProductRequest.getProductName().isEmpty())){
-                throw new RuntimeException(String.format(" %s not found, please check for another product",findProductRequest.getProductName()));
+            if(productName.isEmpty()){
+                throw new RuntimeException(String.format(" %s not found, please check for another product",productName));
             }
             return product ;
+        }
+
+        public List<Product>findProductById(String productId){
+        List<Product> products= productRepository.findByProductsId(productId);
+
+        if(productId.isEmpty()){
+            throw new RuntimeException(String.format("%s not found", productId));
+        }
+        return products;
         }
 
 

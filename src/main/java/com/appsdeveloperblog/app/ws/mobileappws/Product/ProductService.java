@@ -11,7 +11,8 @@ public interface ProductService{
   String deleteProduct (String productId);
     String createProduct(ProductCreateRequest productCreateRequest);
    String updateProduct(ProductUpdateRequest productUpdateRequest);
-   List<Product> findProduct(FindProductRequest findProductRequest);
+   List<Product> findProduct(String productName);
+   List<Product> findProductById(String productId);
 
     String deleteAllProduct();
 

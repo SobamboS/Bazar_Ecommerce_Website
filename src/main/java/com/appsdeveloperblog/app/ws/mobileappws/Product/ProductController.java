@@ -1,6 +1,7 @@
 package com.appsdeveloperblog.app.ws.mobileappws.Product;
 
 import com.appsdeveloperblog.app.ws.mobileappws.Order.OrderService;
+import com.appsdeveloperblog.app.ws.mobileappws.Product.dto.FindProductRequest;
 import com.appsdeveloperblog.app.ws.mobileappws.Product.dto.ProductCreateRequest;
 import com.appsdeveloperblog.app.ws.mobileappws.Product.dto.ProductUpdateRequest;
 import com.appsdeveloperblog.app.ws.mobileappws.exception.ApiResponse;
@@ -46,7 +47,7 @@ public class ProductController{
         return new ResponseEntity<>(apiResponse, HttpStatus.OK);
     }
 
-    @PostMapping("/updateProduct")
+    @PutMapping("/updateProduct")
     public ResponseEntity<?> updateProduct(@RequestBody @Valid ProductUpdateRequest productUpdateRequest,
                                            HttpServletRequest httpServletRequest){
         ApiResponse apiResponse = ApiResponse.builder()
@@ -55,6 +56,32 @@ public class ProductController{
                 .path(httpServletRequest.getRequestURI())
                 .timeStamp(ZonedDateTime.now())
                 .data(productService.updateProduct(productUpdateRequest))
+                .build();
+        return new ResponseEntity<>(apiResponse, HttpStatus.OK);
+    }
+
+    @PostMapping("/findProduct")
+    public ResponseEntity<?> findProduct(@RequestBody @Valid String productName,
+                                         HttpServletRequest httpServletRequest){
+        ApiResponse apiResponse = ApiResponse.builder()
+                .status(HttpStatus.OK.value())
+                .isSuccessful(true)
+                .path(httpServletRequest.getRequestURI())
+                .timeStamp(ZonedDateTime.now())
+                .data(productService.findProduct(productName))
+                .build();
+        return new ResponseEntity<>(apiResponse, HttpStatus.OK);
+    }
+
+    @PostMapping("/findProductById")
+    public ResponseEntity<?> findProductById(@RequestBody @Valid String productId,
+                                           HttpServletRequest httpServletRequest){
+        ApiResponse apiResponse = ApiResponse.builder()
+                .status(HttpStatus.OK.value())
+                .isSuccessful(true)
+                .path(httpServletRequest.getRequestURI())
+                .timeStamp(ZonedDateTime.now())
+                .data(productService.findProductById(productId))
                 .build();
         return new ResponseEntity<>(apiResponse, HttpStatus.OK);
     }

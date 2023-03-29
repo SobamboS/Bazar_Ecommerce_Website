@@ -8,11 +8,12 @@ import com.appsdeveloperblog.app.ws.mobileappws.Product.ProductRepository;
 import com.appsdeveloperblog.app.ws.mobileappws.user.UserRepository;
 import com.appsdeveloperblog.app.ws.mobileappws.user.UserService;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.catalina.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.List;
 
 
 @Service
@@ -30,10 +31,18 @@ public class CartServiceImpl implements CartService{
    UserRepository userRepository;
     @Override
     public Cart addItemToCart(AddItemRequest addItemRequest){
-        var findUser = userRepository.findByEmailAddressIgnoreCase(addItemRequest.getUser().get)
-                .orElseThrow(()->  new RuntimeException("User not found"));
-        Cart userCart = new Cart();
-//        var product = productRepository.findByProductName
+       // Cart userCart = new Cart();
+        Product product = productRepository.findByProductId(addItemRequest.getProduct().getProductId())
+                .orElseThrow(()-> new RuntimeException(String.format("%s product not available",addItemRequest.getProduct().getProductId())));
+
+        List<Product> cartItem=null;
+                //= (List<Product>);
+        if(cartItem == null){
+            cartItem =new ArrayList<>();
+        }
+
+
+        //        var product = productRepository.findByProductName
 //                        (addItemRequest.getProduct().getProductName())
 //                .orElseThrow(()-> new ArrayIndexOutOfBoundsException("Product not available"));
 //

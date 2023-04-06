@@ -2,15 +2,14 @@ package com.appsdeveloperblog.app.ws.mobileappws.Product;
 
 import com.appsdeveloperblog.app.ws.mobileappws.Product.dto.ProductCreateRequest;
 import com.appsdeveloperblog.app.ws.mobileappws.Product.dto.ProductUpdateRequest;
-import com.appsdeveloperblog.app.ws.mobileappws.Product.dto.FindProductRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
 
 
 @Service
 public class ProductServiceImpl implements ProductService{
+
     @Autowired
     ProductRepository productRepository;
     @Override
@@ -30,7 +29,6 @@ public class ProductServiceImpl implements ProductService{
     public String updateProduct(ProductUpdateRequest productUpdateRequest){
         Product updateProduct = productRepository.findByProductId(productUpdateRequest.getProductId())
                 .orElseThrow(()-> new RuntimeException("Product not found"));
-
         if(!updateProduct.getProductId().equals(productUpdateRequest.getProductId())){
             updateProduct.setProductPrice(productUpdateRequest.getProductPrice());
             updateProduct.setProductCategory(productUpdateRequest.getProductCategory());
@@ -43,17 +41,18 @@ public class ProductServiceImpl implements ProductService{
     }
 
     @Override
-    public List<Product> findProduct(String productName){
-            List<Product> product=productRepository.findByProductName(productName);
-
+    public Product findProduct(String productName){
+            Product product= productRepository.findByProductName(productName);
             if(productName.isEmpty()){
                 throw new RuntimeException(String.format(" %s not found, please check for another product",productName));
             }
-            return product ;
+            return product;
         }
 
-        public List<Product>findProductById(String productId){
-        List<Product> products= productRepository.findByProductsId(productId);
+
+        @Override
+        public Product findProductById(String productId){
+        Product products= productRepository.findById(productId).orElseThrow(()-> new RuntimeException("Not found"));
 
         if(productId.isEmpty()){
             throw new RuntimeException(String.format("%s not found", productId));

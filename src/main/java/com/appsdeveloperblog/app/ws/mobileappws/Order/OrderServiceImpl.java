@@ -37,6 +37,13 @@ public class OrderServiceImpl implements OrderService{
     }
 
     @Override
+    public Order findOrder(String orderId){
+        Order order = orderRepository.findByOrderId(orderId);
+        if(!order)
+        return order;
+    }
+
+    @Override
     public String deleteAllOrder( ){
         return null;
     }

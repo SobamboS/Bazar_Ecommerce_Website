@@ -10,6 +10,7 @@ public interface OrderService{
     String  createOrder (CreateOrderRequest createOrderRequest);
     String  updateOrder (UpdateOrderRequest updateOrderRequest);
     String deleteOrder (String orderId);
+    Order findOrder(String orderId);
     String deleteAllOrder ();
     void showAllOrder();
 }

@@ -32,7 +32,7 @@ public class CartServiceImpl implements CartService{
     @Override
     public Cart addItemToCart(AddItemRequest addItemRequest){
        // Cart userCart = new Cart();
-        Product product = productRepository.findByProductId(addItemRequest.getProduct().getProductId())
+       List< Product>   product =(List<Product>) productRepository.findByProductId(addItemRequest.getProduct().getProductId())
                 .orElseThrow(()-> new RuntimeException(String.format("%s product not available",addItemRequest.getProduct().getProductId())));
 
         List<Product> cartItem=null;

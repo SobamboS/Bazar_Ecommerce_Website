@@ -19,27 +19,27 @@ public class CartController{
     CartService cartService;
 
     @PostMapping("/createCart")
-    public ResponseEntity<?> createCart(@RequestBody @Valid AddItemRequest addItemRequest,
+    public ResponseEntity<?> addItemToCart(@RequestBody @Valid AddItemRequest addItemRequest,
                                     HttpServletRequest httpServletRequest){
         ApiResponse apiResponse = ApiResponse.builder()
                 .status(HttpStatus.OK.value())
                 .isSuccessful(true)
                 .path(httpServletRequest.getRequestURI())
                 .timeStamp(ZonedDateTime.now())
-                .data(cartService.createCart(addItemRequest))
+                .data(cartService.addItemToCart(addItemRequest))
                 .build();
         return new ResponseEntity<>(apiResponse, HttpStatus.OK);
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<?> removeItem(@RequestBody @Valid String cartId,
+    public ResponseEntity<?> removeProduct(@RequestBody @Valid String cartId,
                                      HttpServletRequest httpServletRequest){
         ApiResponse apiResponse = ApiResponse.builder()
                 .status(HttpStatus.OK.value())
                 .isSuccessful(true)
                 .path(httpServletRequest.getRequestURI())
                 .timeStamp(ZonedDateTime.now())
-                .data(cartService.removeItem(cartId))
+                .data(cartService.removeProduct(cartId))
                 .build();
         return new ResponseEntity<>(apiResponse, HttpStatus.OK);
     }

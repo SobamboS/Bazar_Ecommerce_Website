@@ -2,5 +2,5 @@ package com.appsdeveloperblog.app.ws.mobileappws.Payment;
 
 public interface PaymentService {
 
-String makePayment()
+ public MakePaymentResponse makePayment(MakePaymentRequest makePaymentRequest);
 }

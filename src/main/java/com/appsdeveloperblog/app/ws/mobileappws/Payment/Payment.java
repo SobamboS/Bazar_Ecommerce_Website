@@ -1,5 +1,6 @@
 package com.appsdeveloperblog.app.ws.mobileappws.Payment;
 
+import com.appsdeveloperblog.app.ws.mobileappws.Cart.Cart;
 import jakarta.persistence.Id;
 import jakarta.persistence.criteria.Order;
 import lombok.Data;
@@ -17,12 +18,10 @@ public class Payment{
     private BigDecimal paymentTotal;
 
     @DBRef
-    private Order order;
+    Cart cart;
 
-    private Boolean paymentStatus = false;
+    private Boolean paymentStatus=false;
 
     @DBRef
     private User user;
-
-
 }

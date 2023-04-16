@@ -1,5 +1,20 @@
 package com.appsdeveloperblog.app.ws.mobileappws.Payment;
 
+import com.appsdeveloperblog.app.ws.mobileappws.user.UserRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+@Service
 public class PaymentServiceImpl implements PaymentService{
+    @Autowired
+    UserRepository userRepository;
+
+    @Override
+    public Payment makePayment(MakePaymentRequest makePaymentRequest){
+
+
+
+        return null;
+    }
 
 }

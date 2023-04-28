@@ -1,10 +1,9 @@
 package com.appsdeveloperblog.app.ws.mobileappws.Payment;
 
 import com.appsdeveloperblog.app.ws.mobileappws.Cart.Cart;
-import jakarta.persistence.Id;
-import jakarta.persistence.criteria.Order;
 import lombok.Data;
 import org.apache.catalina.User;
+import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 
@@ -16,7 +15,7 @@ public class Payment{
     private String paymentId;
     private PaymentType paymentType;
     private BigDecimal paymentTotal;
-
+    private String userEmail;
     @DBRef
     Cart cart;
 

@@ -1,10 +1,9 @@
 package com.appsdeveloperblog.app.ws.mobileappws.Cart;
 
 import com.appsdeveloperblog.app.ws.mobileappws.CartItem.CartItem;
-import com.appsdeveloperblog.app.ws.mobileappws.Product.Product;
 import com.appsdeveloperblog.app.ws.mobileappws.user.User;
-import jakarta.persistence.Id;
 import lombok.Data;
+import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 

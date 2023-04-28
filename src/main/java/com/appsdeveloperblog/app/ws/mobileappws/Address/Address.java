@@ -6,6 +6,7 @@ import org.apache.catalina.User;
 import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+
 @Data
 @Document
 public class Address{

@@ -1,7 +1,6 @@
 package com.appsdeveloperblog.app.ws.mobileappws.Product.dto;
 
 import com.appsdeveloperblog.app.ws.mobileappws.Product.ProductCategory;
-import jakarta.persistence.Id;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Size;

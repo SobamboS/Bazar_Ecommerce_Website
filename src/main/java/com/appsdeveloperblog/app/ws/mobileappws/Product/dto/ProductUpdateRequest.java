@@ -1,8 +1,8 @@
 package com.appsdeveloperblog.app.ws.mobileappws.Product.dto;
 
 import com.appsdeveloperblog.app.ws.mobileappws.Product.ProductCategory;
-import jakarta.persistence.Id;
 import lombok.Data;
+import org.springframework.data.annotation.Id;
 
 import java.math.BigDecimal;
 

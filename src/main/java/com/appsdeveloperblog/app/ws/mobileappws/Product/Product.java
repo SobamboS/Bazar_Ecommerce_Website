@@ -1,7 +1,6 @@
 package com.appsdeveloperblog.app.ws.mobileappws.Product;
 
 
-import com.appsdeveloperblog.app.ws.mobileappws.user.User;
 import jakarta.persistence.Id;
 import lombok.Data;
 import org.springframework.data.mongodb.core.mapping.Document;

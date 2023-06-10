@@ -3,7 +3,6 @@ package com.appsdeveloperblog.app.ws.mobileappws.Cart;
 import com.appsdeveloperblog.app.ws.mobileappws.Cart.dto.AddItemRequest;
 
 import com.appsdeveloperblog.app.ws.mobileappws.Cart.dto.UpdateItemRequest;
-import com.appsdeveloperblog.app.ws.mobileappws.Product.Product;
 import com.appsdeveloperblog.app.ws.mobileappws.Product.ProductRepository;
 import com.appsdeveloperblog.app.ws.mobileappws.user.UserRepository;
 import com.appsdeveloperblog.app.ws.mobileappws.user.UserService;
@@ -12,8 +11,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
-import java.util.ArrayList;
-import java.util.List;
 
 
 @Service
@@ -68,54 +65,7 @@ public class CartServiceImpl implements CartService{
         return null;
     }
 
-//    public String createCart(Testing testing){
-//        var findUser = userRepository.findByEmailAddressIgnoreCase
-//                (testing.getUser().getEmailAddress());
-//        var findUserId = userRepository.findById(testing.getUser().getUserId());
-//
-//        Cart newCart =cartRepository.findCartByUserId(testing.getUserId());
-//
-//return "";
-//    }
 
-
-//    public Cart getOrCreateCart(Testing testing) {
-//
-//        Cart optionalCart = cartRepository.findCartByUserId(testing.getUser().getUserId());
-//        if (optionalCart.isPresent()) {
-//            return optionalCart.get();
-//        } else {
-//            Cart newCart = new Cart();
-//            newCart.setUsername(username);
-//            return cartRepository.save(newCart);
-//        }
-//    }
-
-
-//    public void addProducts(Product product){
-//        Cart addProduct = new Cart();
-//        addProduct.getProductContainer().add(product);
-//    }
-
-
-
-
-
-
-
-//    @Override
-//    public String removeItem(String cartId){
-//
-//       // cartRepository.
-//
-//
-//        return null;
-//    }
-
-//    @Override
-//    public String updateItemNumber(UpdateItemRequest updateItemRequest){
-//        return null;
-//    }
 
 
     public String  recountTotal(BigDecimal total){

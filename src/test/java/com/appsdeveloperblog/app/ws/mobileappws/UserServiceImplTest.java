@@ -6,6 +6,8 @@
 //import com.appsdeveloperblog.app.ws.mobileappws.customer.service.UserService;
 //
 //import com.appsdeveloperblog.app.ws.mobileappws.customer.dto.request.LoginRequest;
+//import com.appsdeveloperblog.app.ws.mobileappws.user.UserService;
+//import com.appsdeveloperblog.app.ws.mobileappws.user.registration.dto.LoginRequest;
 //import org.junit.jupiter.api.BeforeEach;
 //import org.junit.jupiter.api.Test;
 //import org.springframework.beans.factory.annotation.Autowired;

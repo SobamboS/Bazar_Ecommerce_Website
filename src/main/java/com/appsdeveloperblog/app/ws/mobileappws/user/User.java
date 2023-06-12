@@ -10,7 +10,6 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-import java.util.List;
 
 @Data
 @Document
@@ -20,6 +19,7 @@ public class User{
     private String firstName;
     private String lastName;
     private String emailAddress;
+
     private String phoneNumber;
     private String password;
 
@@ -30,7 +30,7 @@ public class User{
     @DBRef
     private Order order;
     private Payment payment;
-   private Product product;
+    private Product product;
 
 
 

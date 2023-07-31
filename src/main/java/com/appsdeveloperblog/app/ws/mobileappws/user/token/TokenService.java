@@ -8,4 +8,5 @@ void setTokenConfirmationAt(String token);
 void deleteExpiredToken();
 Optional<Token>getConfirmationToken(String token);
 
+
 }

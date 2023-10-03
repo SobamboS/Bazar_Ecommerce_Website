@@ -1,8 +1,8 @@
 package com.appsdeveloperblog.app.ws.mobileappws.security;
 
 import com.appsdeveloperblog.app.ws.mobileappws.exception.UserException;
-import com.appsdeveloperblog.app.ws.mobileappws.user.User;
-import com.appsdeveloperblog.app.ws.mobileappws.user.UserRepository;
+import com.appsdeveloperblog.app.ws.mobileappws.model.User;
+import com.appsdeveloperblog.app.ws.mobileappws.Repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.stereotype.Service;

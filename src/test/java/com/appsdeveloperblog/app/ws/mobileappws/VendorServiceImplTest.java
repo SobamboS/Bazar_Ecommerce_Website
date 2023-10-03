@@ -1,11 +1,11 @@
 //package com.appsdeveloperblog.app.ws.mobileappws;
 //
-//import com.appsdeveloperblog.app.ws.mobileappws.Vendor.dto.request.VendorLoginRequest;
-//import com.appsdeveloperblog.app.ws.mobileappws.Vendor.dto.request.VendorRegistrationRequest;
-//import com.appsdeveloperblog.app.ws.mobileappws.Vendor.dto.request.VendorUpdateRequest;
-//import com.appsdeveloperblog.app.ws.mobileappws.Vendor.data.repository.VendorRepository;
+//import com.appsdeveloperblog.app.ws.mobileappws.dto.request.response.VendorLoginRequest;
+//import com.appsdeveloperblog.app.ws.mobileappws.dto.request.response.VendorRegistrationRequest;
+//import com.appsdeveloperblog.app.ws.mobileappws.dto.request.response.VendorUpdateRequest;
+//import com.appsdeveloperblog.app.ws.mobileappws.Repository.VendorRepository;
 //import com.appsdeveloperblog.app.ws.mobileappws.Vendor.dto.response.*;
-//import com.appsdeveloperblog.app.ws.mobileappws.Vendor.service.VendorService;
+//import com.appsdeveloperblog.app.ws.mobileappws.service.VendorService;
 //import org.junit.jupiter.api.BeforeEach;
 //import org.junit.jupiter.api.Test;
 //import org.springframework.beans.factory.annotation.Autowired;

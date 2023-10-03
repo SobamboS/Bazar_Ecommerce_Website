@@ -1,6 +1,6 @@
 package com.appsdeveloperblog.app.ws.mobileappws.security;
 
-import com.appsdeveloperblog.app.ws.mobileappws.user.User;
+import com.appsdeveloperblog.app.ws.mobileappws.model.User;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.GrantedAuthority;

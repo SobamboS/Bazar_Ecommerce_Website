@@ -6,7 +6,6 @@ import org.springframework.data.mongodb.repository.config.EnableMongoRepositorie
 
 
 @SpringBootApplication
-@EnableMongoRepositories
 public class MobileAppWsApplication{
 
     public static void main(String[] args){

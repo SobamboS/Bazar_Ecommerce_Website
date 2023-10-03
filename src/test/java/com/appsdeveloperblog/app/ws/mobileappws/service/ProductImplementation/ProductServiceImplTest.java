@@ -1,17 +1,17 @@
 package com.appsdeveloperblog.app.ws.mobileappws.service.ProductImplementation;
 
-import com.appsdeveloperblog.app.ws.mobileappws.Product.dto.ProductCreateRequest;
-import com.appsdeveloperblog.app.ws.mobileappws.Product.dto.ProductUpdateRequest;
-import com.appsdeveloperblog.app.ws.mobileappws.Product.dto.ProductCreateResponse;
+import com.appsdeveloperblog.app.ws.mobileappws.dto.request.response.ProductCreateRequest;
+import com.appsdeveloperblog.app.ws.mobileappws.dto.request.response.ProductUpdateRequest;
+import com.appsdeveloperblog.app.ws.mobileappws.dto.request.response.ProductCreateResponse;
 import com.appsdeveloperblog.app.ws.mobileappws.Product.dto.response.ProductDeleteResponse;
 import com.appsdeveloperblog.app.ws.mobileappws.Product.dto.response.ProductUpdateResponse;
-import com.appsdeveloperblog.app.ws.mobileappws.Product.ProductService;
+import com.appsdeveloperblog.app.ws.mobileappws.service.ProductService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
-import static com.appsdeveloperblog.app.ws.mobileappws.Product.ProductCategory.SUPERMARKET;
+import static com.appsdeveloperblog.app.ws.mobileappws.Enum.ProductCategory.SUPERMARKET;
 import static org.junit.jupiter.api.Assertions.*;
 @SpringBootTest
 class ProductServiceImplTest{

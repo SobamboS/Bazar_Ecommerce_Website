@@ -9,6 +9,6 @@ public class LoginRequest{
     @Email(message="Input a valid email")
     private String emailAddress;
 
-    @Pattern(regexp="^([a-zA-Z\\d@*#$&!]{8,15})$")
+    @Pattern(regexp="^([a-zA-Z\\d@*#$&!]{5,15})$")
     private String password;
 }

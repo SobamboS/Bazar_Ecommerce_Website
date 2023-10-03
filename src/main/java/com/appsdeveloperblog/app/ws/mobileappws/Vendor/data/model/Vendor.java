@@ -1,8 +1,9 @@
 package com.appsdeveloperblog.app.ws.mobileappws.Vendor.data.model;
 
 
-import jakarta.persistence.Id;
+//import jakarta.persistence.Id;
 import lombok.Data;
+import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 @Document

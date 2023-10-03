@@ -65,7 +65,6 @@ if(foundToken.getExpiredAt().isBefore(LocalDateTime.now())){
 }
 tokenService.setTokenConfirmationAt(foundToken.getToken());
 userService.enableUser(confirmationRequest.getEmailAddress());
-
         return "User has been confirmed successfully";
     }
 

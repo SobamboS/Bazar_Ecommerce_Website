@@ -38,8 +38,6 @@ public class UserServiceImpl implements UserService{
     @Autowired
     ProductRepository productRepository;
 
-    UserService userService;
-
 
     @Override
     public void enableUser(String emailAddress){

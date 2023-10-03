@@ -1,12 +1,9 @@
 package com.appsdeveloperblog.app.ws.mobileappws.Payment;
 
-import com.appsdeveloperblog.app.ws.mobileappws.Cart.Cart;
+import com.appsdeveloperblog.app.ws.mobileappws.Payment.dto.MakePaymentRequest;
 import com.appsdeveloperblog.app.ws.mobileappws.user.UserRepository;
-import org.apache.catalina.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import java.math.BigDecimal;
 
 @Service
 public class PaymentServiceImpl implements PaymentService{

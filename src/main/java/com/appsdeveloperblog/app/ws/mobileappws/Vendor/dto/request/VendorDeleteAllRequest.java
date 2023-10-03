@@ -1,6 +1,5 @@
 package com.appsdeveloperblog.app.ws.mobileappws.Vendor.dto.request;
 
-import jakarta.persistence.Id;
 import lombok.Data;
 
 @Data

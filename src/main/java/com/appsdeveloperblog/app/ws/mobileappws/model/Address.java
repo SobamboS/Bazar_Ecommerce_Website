@@ -1,14 +1,12 @@
 package com.appsdeveloperblog.app.ws.mobileappws.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-
+import jakarta.persistence.*;
 
 
 @Entity
-
 public class Address{
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long addressId;
     private String buildingNo;
     private String street;
@@ -16,6 +14,7 @@ public class Address{
     private String city;
     private String state;
 
+    @OneToOne(mappedBy="address")
     private User user;
 
     

@@ -5,7 +5,6 @@ import com.appsdeveloperblog.app.ws.mobileappws.model.Order;
 import com.appsdeveloperblog.app.ws.mobileappws.model.Payment;
 import com.appsdeveloperblog.app.ws.mobileappws.model.Product;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import jakarta.mail.Address;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.*;
 import lombok.*;
@@ -15,6 +14,7 @@ import org.hibernate.annotations.UpdateTimestamp;
 import org.springframework.data.mongodb.core.mapping.DBRef;
 
 import java.time.Instant;
+import java.util.List;
 
 
 @Setter
@@ -25,6 +25,7 @@ import java.time.Instant;
 @Entity
 @Table(name = "BUser")
 @ToString
+@RequiredArgsConstructor
 public class User{
 
     @Id
@@ -79,21 +80,28 @@ public class User{
     private Instant verifiedAt;
 
     @Column(name="Address")
+    @OneToOne
     private Address address;
 
     @Column(name="Cart")
+    @OneToOne
     private Cart cart;
 
     @Column(name="Order")
+    @OneToOne
     private Order order;
 
     @Column(name="Payment")
+    @OneToOne
     private Payment payment;
 
     @Column(name="Product")
-    private Product product;
+    @OneToMany(mappedBy = "user")
+    private List<Product> products;
 
-    @Column(name="Role_Id")
+    @NotNull(message = "Role is required")
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "role_id")
     private Role role;
 
 

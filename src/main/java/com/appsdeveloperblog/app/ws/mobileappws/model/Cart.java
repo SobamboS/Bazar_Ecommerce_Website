@@ -1,8 +1,6 @@
 package com.appsdeveloperblog.app.ws.mobileappws.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -18,13 +16,15 @@ import java.util.List;
 public class Cart{
 
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
     private BigDecimal cartTotal;
 
+//    @OneToMany(mappedBy = "cart")
+//    private List<CartItem> cartItems;
 
-    private List<CartItem> cartItems;
-
-    User user;
+    @OneToOne(mappedBy = "cart")
+    private User user;
 
 }

@@ -1,8 +1,7 @@
 package com.appsdeveloperblog.app.ws.mobileappws.model;
 
 import com.appsdeveloperblog.app.ws.mobileappws.Enum.PaymentType;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.Data;
 import org.apache.catalina.User;
 
@@ -14,14 +13,17 @@ import java.math.BigDecimal;
 public class Payment{
 
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private String paymentId;
     private PaymentType paymentType;
     private BigDecimal paymentTotal;
     private String userEmail;
 
+    @OneToOne(mappedBy = "payment")
     Cart cart;
 
     private Boolean paymentStatus=false;
 
+    @ManyToOne
     private User user;
 }

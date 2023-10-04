@@ -2,9 +2,7 @@ package com.appsdeveloperblog.app.ws.mobileappws.model;
 
 
 import com.appsdeveloperblog.app.ws.mobileappws.Enum.ProductCategory;
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -15,6 +13,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.math.BigDecimal;
 import java.time.Instant;
+import java.util.List;
 
 @Entity
 @AllArgsConstructor
@@ -22,7 +21,8 @@ import java.time.Instant;
 public class Product{
 
     @Id
-    private Long productId;
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long id;
     private ProductCategory productCategory;
     private String productName;
     private BigDecimal productPrice;
@@ -42,6 +42,9 @@ public class Product{
     @Column(name = "updated_at")
     @UpdateTimestamp
     private Instant updatedAt;
+
+    @ManyToMany(mappedBy="products")
+    private List<User> users;
 
 
     public Product(ProductCategory productCategory,

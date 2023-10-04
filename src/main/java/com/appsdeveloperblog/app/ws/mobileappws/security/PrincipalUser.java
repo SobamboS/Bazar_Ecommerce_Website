@@ -1,5 +1,6 @@
 package com.appsdeveloperblog.app.ws.mobileappws.security;
 
+
 import com.appsdeveloperblog.app.ws.mobileappws.model.User;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
@@ -68,7 +69,7 @@ public class PrincipalUser implements UserDetails{
 
     @Override
     public boolean isEnabled() {
-        return user.getIsActive().booleanValue();
+        return user.getIsActive();
     }
 
     private void writeObject(java.io.ObjectOutputStream stream)

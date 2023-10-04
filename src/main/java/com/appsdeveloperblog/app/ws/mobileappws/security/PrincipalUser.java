@@ -28,7 +28,7 @@ public class PrincipalUser implements UserDetails{
 
     public static PrincipalUser create(User user) {
         Collection<? extends GrantedAuthority> authorities = getAuthorities(user);
-        return new PrincipalUser(user, user.getEmailAddress(), user.getPassword(), authorities);
+        return new PrincipalUser(user, user.getEmail(), user.getPassword(), authorities);
     }
 
     public static PrincipalUser create(User user, Map<String, Object> attributes) {

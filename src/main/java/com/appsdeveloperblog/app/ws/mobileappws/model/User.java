@@ -4,13 +4,17 @@ import com.appsdeveloperblog.app.ws.mobileappws.model.Cart;
 import com.appsdeveloperblog.app.ws.mobileappws.model.Order;
 import com.appsdeveloperblog.app.ws.mobileappws.model.Payment;
 import com.appsdeveloperblog.app.ws.mobileappws.model.Product;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.mail.Address;
 import jakarta.persistence.*;
-import jakarta.validation.constraints.Email;
-import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.*;
 import lombok.*;
-import org.springframework.data.annotation.Id;
+import org.hibernate.annotations.NaturalId;
+import org.hibernate.annotations.UpdateTimestamp;
+
 import org.springframework.data.mongodb.core.mapping.DBRef;
+
+import java.time.Instant;
 
 
 @Setter
@@ -29,24 +33,50 @@ public class User{
     @GeneratedValue(generator = "seq",strategy= GenerationType.AUTO)
     private Long id;
 
-    @Column(name="First_Name")
+    @Column(name="First_Name", length=50)
+    @NotBlank(message="First name cannot be blank")
+    @Size(min = 3, max = 45, message = "First name must be between 3 and 45 characters long")
     private String firstName;
     @Column(name="Last_Name")
+    @NotBlank(message="Last name cannot be blank")
+    @Size(min = 3, max = 45, message = "Last name must be between 3 and 45 characters long")
     private String lastName;
 
-    @Column(name="Email")
-    @NotBlank(message = "This field is required")
+    @Column(name="Email", length = 50, unique = true)
+    @NotBlank(message = "Email is required")
     @Email(message = "Invalid email") // To validate email address
     @NaturalId
     private String email;
 
-    @Column(name="Phone_Number")
+    @Column(name="Phone_Number", length = 20, unique = true)
+    @NotBlank(message="Phone number is required")
+    @Pattern(regexp = "^(\\d{11})$\n", message = "Invalid phone number")
     private String phoneNumber;
-    @Column(name="Password")
+    @Column(name="Password", length=100)
+    @JsonIgnore
+    @NotBlank(message="Password cannot be blank")
     private String password;
 
-    @Column(name="IsVerified")
-    private Boolean isVerified = false;
+    @Column(name = "updated_at")
+    @UpdateTimestamp
+    private Instant updatedAt;
+
+    @Column(name = "deactivated_by")
+    private String deactivatedBy;
+
+    @Column(name = "deactivated_at")
+    private Instant deactivatedAt;
+
+    @NotNull
+    @Column(name = "is_active")
+    private Boolean isActive;
+
+    @NotNull
+    @Column(name = "is_verified")
+    private Boolean isVerified;
+
+    @Column(name = "verified_at")
+    private Instant verifiedAt;
 
     @Column(name="Address")
     private Address address;
@@ -62,6 +92,9 @@ public class User{
 
     @Column(name="Product")
     private Product product;
+
+    @Column(name="Role_Id")
+    private Role role;
 
 
     public User(String firstName,String lastName,String email, String password){

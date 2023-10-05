@@ -10,8 +10,9 @@
 * Spring Boot
 * Spring Data JPA
 * Hibernate
-* MongoDB
+* Postgres
 *Javamail Sender
+*Twillio
 
 ## Modules
 

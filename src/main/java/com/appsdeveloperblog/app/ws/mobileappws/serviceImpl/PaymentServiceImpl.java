@@ -1,6 +1,6 @@
 package com.appsdeveloperblog.app.ws.mobileappws.serviceImpl;
 
-import com.appsdeveloperblog.app.ws.mobileappws.dto.request.response.MakePaymentRequest;
+import com.appsdeveloperblog.app.ws.mobileappws.dto.request.MakePaymentRequest;
 import com.appsdeveloperblog.app.ws.mobileappws.Repository.UserRepository;
 import com.appsdeveloperblog.app.ws.mobileappws.model.Payment;
 import com.appsdeveloperblog.app.ws.mobileappws.service.PaymentService;

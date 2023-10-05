@@ -1,8 +1,8 @@
 package com.appsdeveloperblog.app.ws.mobileappws.controller;
 
 import com.appsdeveloperblog.app.ws.mobileappws.service.OrderService;
-import com.appsdeveloperblog.app.ws.mobileappws.dto.request.response.CreateOrderRequest;
-import com.appsdeveloperblog.app.ws.mobileappws.dto.request.response.UpdateOrderRequest;
+import com.appsdeveloperblog.app.ws.mobileappws.dto.request.CreateOrderRequest;
+import com.appsdeveloperblog.app.ws.mobileappws.dto.request.UpdateOrderRequest;
 import com.appsdeveloperblog.app.ws.mobileappws.exception.ApiResponse;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.validation.Valid;

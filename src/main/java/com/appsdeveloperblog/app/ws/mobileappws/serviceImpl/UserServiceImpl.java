@@ -12,6 +12,7 @@ import com.appsdeveloperblog.app.ws.mobileappws.service.UserService;
 import com.squareup.okhttp.OkHttpClient;
 import com.squareup.okhttp.Request;
 import com.squareup.okhttp.Response;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,21 +26,21 @@ import java.util.Optional;
 
 @Service
 @Slf4j
+@RequiredArgsConstructor
 public class UserServiceImpl implements UserService{
 
-    @Autowired
-    EmailSender emailSender;
 
-    @Autowired
-    UserRepository userRepository;
+    private final EmailSender emailSender;
 
-    @Autowired
-    TokenService tokenService;
-    @Autowired
-    ProductService productService;
+    private final UserRepository userRepository;
 
-    @Autowired
-    ProductRepository productRepository;
+
+   private final TokenService tokenService;
+
+  private final   ProductService productService;
+
+
+   private final ProductRepository productRepository;
 
 
     @Override

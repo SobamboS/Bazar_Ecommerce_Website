@@ -1,6 +1,9 @@
 package com.appsdeveloperblog.app.ws.mobileappws.serviceImpl;
 
-import com.appsdeveloperblog.app.ws.mobileappws.dto.request.response.*;
+import com.appsdeveloperblog.app.ws.mobileappws.dto.*;
+import com.appsdeveloperblog.app.ws.mobileappws.dto.request.VendorLoginRequest;
+import com.appsdeveloperblog.app.ws.mobileappws.dto.request.VendorRegistrationRequest;
+import com.appsdeveloperblog.app.ws.mobileappws.dto.request.VendorUpdateRequest;
 import com.appsdeveloperblog.app.ws.mobileappws.exception.VendorLoginException;
 import com.appsdeveloperblog.app.ws.mobileappws.exception.VendorUpdateException;
 import com.appsdeveloperblog.app.ws.mobileappws.Repository.VendorRepository;

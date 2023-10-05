@@ -1,13 +1,13 @@
-package com.appsdeveloperblog.app.ws.mobileappws.dto.request.response;
+package com.appsdeveloperblog.app.ws.mobileappws.dto.request;
 
 
 import lombok.Data;
-import org.springframework.data.annotation.Id;
+
 
 
 @Data
 public class VendorUpdateRequest{
-    @Id
+
     private String id;
     private String firstName;
     private String lastName;

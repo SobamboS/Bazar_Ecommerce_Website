@@ -1,11 +1,11 @@
 package com.appsdeveloperblog.app.ws.mobileappws.controller;
 
 
-import com.appsdeveloperblog.app.ws.mobileappws.dto.request.response.VendorLoginRequest;
-import com.appsdeveloperblog.app.ws.mobileappws.dto.request.response.VendorUpdateRequest;
-import com.appsdeveloperblog.app.ws.mobileappws.dto.request.response.VendorDeleteResponse;
-import com.appsdeveloperblog.app.ws.mobileappws.dto.request.response.VendorLoginResponse;
-import com.appsdeveloperblog.app.ws.mobileappws.dto.request.response.VendorUpdateResponse;
+import com.appsdeveloperblog.app.ws.mobileappws.dto.request.VendorLoginRequest;
+import com.appsdeveloperblog.app.ws.mobileappws.dto.request.VendorUpdateRequest;
+import com.appsdeveloperblog.app.ws.mobileappws.dto.VendorDeleteResponse;
+import com.appsdeveloperblog.app.ws.mobileappws.dto.VendorLoginResponse;
+import com.appsdeveloperblog.app.ws.mobileappws.dto.VendorUpdateResponse;
 
 import com.appsdeveloperblog.app.ws.mobileappws.service.VendorService;
 import jakarta.validation.Valid;

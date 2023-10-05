@@ -1,8 +1,8 @@
 package com.appsdeveloperblog.app.ws.mobileappws.controller;
 
 import com.appsdeveloperblog.app.ws.mobileappws.service.CartService;
-import com.appsdeveloperblog.app.ws.mobileappws.dto.request.response.AddItemRequest;
-import com.appsdeveloperblog.app.ws.mobileappws.dto.request.response.UpdateItemRequest;
+import com.appsdeveloperblog.app.ws.mobileappws.dto.request.AddItemRequest;
+import com.appsdeveloperblog.app.ws.mobileappws.dto.request.UpdateItemRequest;
 import com.appsdeveloperblog.app.ws.mobileappws.exception.ApiResponse;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.validation.Valid;

@@ -1,8 +1,8 @@
 package com.appsdeveloperblog.app.ws.mobileappws.service.ProductImplementation;
 
-import com.appsdeveloperblog.app.ws.mobileappws.dto.request.response.ProductCreateRequest;
-import com.appsdeveloperblog.app.ws.mobileappws.dto.request.response.ProductUpdateRequest;
-import com.appsdeveloperblog.app.ws.mobileappws.dto.request.response.ProductCreateResponse;
+import com.appsdeveloperblog.app.ws.mobileappws.dto.request.ProductCreateRequest;
+import com.appsdeveloperblog.app.ws.mobileappws.dto.request.ProductUpdateRequest;
+import com.appsdeveloperblog.app.ws.mobileappws.dto.request.ProductCreateResponse;
 import com.appsdeveloperblog.app.ws.mobileappws.Product.dto.response.ProductDeleteResponse;
 import com.appsdeveloperblog.app.ws.mobileappws.Product.dto.response.ProductUpdateResponse;
 import com.appsdeveloperblog.app.ws.mobileappws.service.ProductService;

@@ -1,4 +1,4 @@
-package com.appsdeveloperblog.app.ws.mobileappws.dto.request.response;
+package com.appsdeveloperblog.app.ws.mobileappws.dto.request;
 
 import com.appsdeveloperblog.app.ws.mobileappws.Enum.ProductCategory;
 import jakarta.validation.constraints.NotBlank;

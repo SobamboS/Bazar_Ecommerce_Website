@@ -1,7 +1,7 @@
 package com.appsdeveloperblog.app.ws.mobileappws.service;
 
-import com.appsdeveloperblog.app.ws.mobileappws.dto.request.response.AddItemRequest;
-import com.appsdeveloperblog.app.ws.mobileappws.dto.request.response.UpdateItemRequest;
+import com.appsdeveloperblog.app.ws.mobileappws.dto.request.AddItemRequest;
+import com.appsdeveloperblog.app.ws.mobileappws.dto.request.UpdateItemRequest;
 import com.appsdeveloperblog.app.ws.mobileappws.model.Cart;
 
 

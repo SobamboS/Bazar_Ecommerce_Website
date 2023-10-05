@@ -1,8 +1,8 @@
 package com.appsdeveloperblog.app.ws.mobileappws.serviceImpl;
 
 import com.appsdeveloperblog.app.ws.mobileappws.Repository.ProductRepository;
-import com.appsdeveloperblog.app.ws.mobileappws.dto.request.response.ProductCreateRequest;
-import com.appsdeveloperblog.app.ws.mobileappws.dto.request.response.ProductUpdateRequest;
+import com.appsdeveloperblog.app.ws.mobileappws.dto.request.ProductCreateRequest;
+import com.appsdeveloperblog.app.ws.mobileappws.dto.request.ProductUpdateRequest;
 import com.appsdeveloperblog.app.ws.mobileappws.model.Product;
 import com.appsdeveloperblog.app.ws.mobileappws.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;

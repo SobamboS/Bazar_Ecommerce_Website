@@ -1,9 +1,6 @@
 package com.appsdeveloperblog.app.ws.mobileappws.model;
 
-import com.appsdeveloperblog.app.ws.mobileappws.model.Cart;
-import com.appsdeveloperblog.app.ws.mobileappws.model.Order;
-import com.appsdeveloperblog.app.ws.mobileappws.model.Payment;
-import com.appsdeveloperblog.app.ws.mobileappws.model.Product;
+
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.*;
@@ -11,7 +8,6 @@ import lombok.*;
 import org.hibernate.annotations.NaturalId;
 import org.hibernate.annotations.UpdateTimestamp;
 
-import org.springframework.data.mongodb.core.mapping.DBRef;
 
 import java.time.Instant;
 import java.util.List;
@@ -96,7 +92,7 @@ public class User{
     private Payment payment;
 
     @Column(name="Product")
-    @OneToMany(mappedBy = "user")
+    @ManyToMany(mappedBy = "user")
     private List<Product> products;
 
     @NotNull(message = "Role is required")

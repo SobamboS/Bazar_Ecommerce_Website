@@ -1,7 +1,7 @@
 package com.appsdeveloperblog.app.ws.mobileappws.service;
 
-import com.appsdeveloperblog.app.ws.mobileappws.dto.request.response.ProductCreateRequest;
-import com.appsdeveloperblog.app.ws.mobileappws.dto.request.response.ProductUpdateRequest;
+import com.appsdeveloperblog.app.ws.mobileappws.dto.request.ProductCreateRequest;
+import com.appsdeveloperblog.app.ws.mobileappws.dto.request.ProductUpdateRequest;
 import com.appsdeveloperblog.app.ws.mobileappws.model.Product;
 
 

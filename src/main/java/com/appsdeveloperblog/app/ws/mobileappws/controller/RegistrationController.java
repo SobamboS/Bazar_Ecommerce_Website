@@ -1,10 +1,10 @@
 package com.appsdeveloperblog.app.ws.mobileappws.controller;
 
 import com.appsdeveloperblog.app.ws.mobileappws.exception.ApiResponse;
-import com.appsdeveloperblog.app.ws.mobileappws.dto.request.response.LoginRequest;
-import com.appsdeveloperblog.app.ws.mobileappws.dto.request.response.ResendTokenRequest;
-import com.appsdeveloperblog.app.ws.mobileappws.dto.request.response.SignupRequest;
-import com.appsdeveloperblog.app.ws.mobileappws.dto.request.response.TokenConfirmationRequest;
+import com.appsdeveloperblog.app.ws.mobileappws.dto.request.LoginRequest;
+import com.appsdeveloperblog.app.ws.mobileappws.dto.request.ResendTokenRequest;
+import com.appsdeveloperblog.app.ws.mobileappws.dto.request.SignupRequest;
+import com.appsdeveloperblog.app.ws.mobileappws.dto.request.TokenConfirmationRequest;
 import com.appsdeveloperblog.app.ws.mobileappws.service.RegistrationService;
 import jakarta.mail.MessagingException;
 import jakarta.servlet.http.HttpServletRequest;

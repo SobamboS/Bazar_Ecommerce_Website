@@ -1,35 +1,38 @@
 package com.appsdeveloperblog.app.ws.mobileappws.serviceImpl;
 
-import com.appsdeveloperblog.app.ws.mobileappws.dto.request.response.*;
+import com.appsdeveloperblog.app.ws.mobileappws.dto.*;
+import com.appsdeveloperblog.app.ws.mobileappws.dto.request.*;
 import com.appsdeveloperblog.app.ws.mobileappws.exception.RegistrationException;
 import com.appsdeveloperblog.app.ws.mobileappws.service.RegistrationService;
 import com.appsdeveloperblog.app.ws.mobileappws.model.User;
 import com.appsdeveloperblog.app.ws.mobileappws.Repository.UserRepository;
+import com.appsdeveloperblog.app.ws.mobileappws.service.UnauthenticatedUserService;
 import com.appsdeveloperblog.app.ws.mobileappws.service.UserService;
 import com.appsdeveloperblog.app.ws.mobileappws.email.EmailSender;
 import com.appsdeveloperblog.app.ws.mobileappws.email.EmailService;
 import com.appsdeveloperblog.app.ws.mobileappws.Utils.token.TokenService;
 import jakarta.mail.MessagingException;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.mindrot.jbcrypt.BCrypt;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
 
 @Service
 @Slf4j
-public class RegistrationServiceImpl implements RegistrationService{
-    @Autowired
-    UserService userService;
-    @Autowired
-    EmailService emailService;
-    @Autowired
-    TokenService tokenService;
-    @Autowired
-    EmailSender emailSender;
-    @Autowired
-    UserRepository userRepository;
+@RequiredArgsConstructor
+public class UnauthenticatedUserImpl implements UnauthenticatedUserService{
+
+   private final UserService userService;
+
+   private final EmailService emailService;
+
+  private final TokenService tokenService;
+
+   private final EmailSender emailSender;
+
+  private final UserRepository userRepository;
 
     @Override
     public SignupResponse signup(SignupRequest signupRequest) throws MessagingException{

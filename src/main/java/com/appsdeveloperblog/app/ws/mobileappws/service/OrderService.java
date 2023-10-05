@@ -1,7 +1,7 @@
 package com.appsdeveloperblog.app.ws.mobileappws.service;
 
-import com.appsdeveloperblog.app.ws.mobileappws.dto.request.response.CreateOrderRequest;
-import com.appsdeveloperblog.app.ws.mobileappws.dto.request.response.UpdateOrderRequest;
+import com.appsdeveloperblog.app.ws.mobileappws.dto.request.CreateOrderRequest;
+import com.appsdeveloperblog.app.ws.mobileappws.dto.request.UpdateOrderRequest;
 import com.appsdeveloperblog.app.ws.mobileappws.model.Order;
 
 

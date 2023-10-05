@@ -2,6 +2,7 @@ package com.appsdeveloperblog.app.ws.mobileappws.security;
 
 
 import com.appsdeveloperblog.app.ws.mobileappws.model.User;
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.GrantedAuthority;
@@ -16,6 +17,7 @@ import java.util.Set;
 
 @Data
 @RequiredArgsConstructor
+@AllArgsConstructor
 public class PrincipalUser implements UserDetails{
 
     private static final long serialVersionUID = -3732949233884048693L;

@@ -1,9 +1,9 @@
 package com.appsdeveloperblog.app.ws.mobileappws.serviceImpl;
 
 import com.appsdeveloperblog.app.ws.mobileappws.Repository.CartRepository;
-import com.appsdeveloperblog.app.ws.mobileappws.dto.request.response.AddItemRequest;
+import com.appsdeveloperblog.app.ws.mobileappws.dto.request.AddItemRequest;
 
-import com.appsdeveloperblog.app.ws.mobileappws.dto.request.response.UpdateItemRequest;
+import com.appsdeveloperblog.app.ws.mobileappws.dto.request.UpdateItemRequest;
 import com.appsdeveloperblog.app.ws.mobileappws.Repository.ProductRepository;
 import com.appsdeveloperblog.app.ws.mobileappws.Repository.UserRepository;
 import com.appsdeveloperblog.app.ws.mobileappws.model.Cart;

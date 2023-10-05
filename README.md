@@ -16,9 +16,9 @@
 
 ## Modules
 
-* Login, Logout 
-* Seller 
-* Customer 
+* User
+* Email
+* Notification 
 * Product 
 * Cart 
 * Order 

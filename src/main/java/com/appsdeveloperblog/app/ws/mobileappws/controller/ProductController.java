@@ -4,7 +4,7 @@ import com.appsdeveloperblog.app.ws.mobileappws.service.OrderService;
 import com.appsdeveloperblog.app.ws.mobileappws.service.ProductService;
 import com.appsdeveloperblog.app.ws.mobileappws.dto.request.ProductCreateRequest;
 import com.appsdeveloperblog.app.ws.mobileappws.dto.request.ProductUpdateRequest;
-import com.appsdeveloperblog.app.ws.mobileappws.exception.ApiResponse;
+import com.appsdeveloperblog.app.ws.mobileappws.Utils.ApiResponse;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;

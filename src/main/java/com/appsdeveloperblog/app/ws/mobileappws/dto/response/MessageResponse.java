@@ -1,11 +1,10 @@
 package com.appsdeveloperblog.app.ws.mobileappws.dto.response;
 
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
-@NoArgsConstructor
+@AllArgsConstructor
 @Data
+@Builder
 public class MessageResponse{
     private String message;
 }

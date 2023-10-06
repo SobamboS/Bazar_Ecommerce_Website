@@ -1,50 +1,52 @@
 package com.appsdeveloperblog.app.ws.mobileappws.exception;
 
+import com.appsdeveloperblog.app.ws.mobileappws.Utils.ApiResponse;
+import com.appsdeveloperblog.app.ws.mobileappws.dto.response.MessageResponse;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.ControllerAdvice;
-import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.FieldError;
+import org.springframework.web.bind.MethodArgumentNotValidException;
+import org.springframework.web.bind.annotation.*;
+import java.time.Instant;
+import java.util.ArrayList;
+import java.util.List;
 
-import java.time.ZonedDateTime;
 
-@ControllerAdvice
+@RestControllerAdvice
 public class GlobalExceptionHandler{
-    @ExceptionHandler
-    public ResponseEntity<?> userAlreadyExistException(com.appsdeveloperblog.app.ws.mobileappws.exception.RegistrationException registrationException,
-                                                       HttpServletRequest httpServletRequest){
-        com.appsdeveloperblog.app.ws.mobileappws.exception.ApiResponse apiResponse = ApiResponse.builder()
-                .timeStamp(ZonedDateTime.now())
-                .status(HttpStatus.BAD_REQUEST.value())
-                .isSuccessful(false)
-                .path(httpServletRequest.getRequestURI())
-                .data(registrationException.getMessage())
-                .build();
 
-        return new ResponseEntity<ApiResponse>(apiResponse, HttpStatus.CONFLICT);
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    @ResponseBody
+    @ExceptionHandler(UserException.class)
+    public ResponseEntity<ApiResponse> handleGenericException(UserException genericException,
+                                                              HttpServletRequest httpServletRequest) {
+        ApiResponse errorResponse = ApiResponse.builder().isSuccessful(false)
+                .data(MessageResponse.builder().message((genericException.getMessage())).build())
+                .status(HttpStatus.BAD_REQUEST.value()).path(httpServletRequest.getRequestURI())
+                .timeStamp(Instant.now()).build();
+        return new ResponseEntity<>(errorResponse, HttpStatus.NOT_FOUND);
     }
-    @ExceptionHandler
-    public ResponseEntity<?> accountException(com.appsdeveloperblog.app.ws.mobileappws.exception.AccountException accountException,
-                                              HttpServletRequest httpServletRequest){
-        ApiResponse apiResponse =  ApiResponse.builder()
-                .timeStamp(ZonedDateTime.now())
-                .status(HttpStatus.BAD_REQUEST.value())
-                .isSuccessful(false)
-                .path(httpServletRequest.getRequestURI())
-                .data(accountException.getMessage())
-                .build();
 
-        return new ResponseEntity<ApiResponse>(apiResponse, HttpStatus.CONFLICT);
-    }
-    @ExceptionHandler
-    public  ResponseEntity<ApiResponse>GenericHandler(Exception exception, HttpServletRequest httpServletRequest){
-        com.appsdeveloperblog.app.ws.mobileappws.exception.ApiResponse apiResponse = ApiResponse.builder()
-                .timeStamp(ZonedDateTime.now())
-                .data(exception.getMessage())
-                .path(httpServletRequest.getRequestURI())
-                .status(HttpStatus.BAD_REQUEST.value())
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    @ResponseBody
+    @ExceptionHandler(MethodArgumentNotValidException.class)
+    public ResponseEntity<ApiResponse> handleValidationException(MethodArgumentNotValidException ex,
+                                                                 HttpServletRequest httpServletRequest) {
+        BindingResult bindingResult = ex.getBindingResult();
+        List<String> errorMessages = new ArrayList<>();
+        for (FieldError fieldError : bindingResult.getFieldErrors()) {
+            errorMessages.add(fieldError.getDefaultMessage());
+        }
+        ApiResponse errorResponse = ApiResponse.builder()
                 .isSuccessful(false)
+                .data(errorMessages)
+                .status(HttpStatus.BAD_REQUEST.value())
+                .path(httpServletRequest.getRequestURI())
+                .timeStamp(Instant.now())
                 .build();
-        return new ResponseEntity<>(apiResponse, HttpStatus.BAD_REQUEST);
+        return new ResponseEntity<>(errorResponse, HttpStatus.BAD_REQUEST);
     }
+
 }

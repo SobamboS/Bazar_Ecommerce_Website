@@ -1,20 +1,21 @@
 package com.appsdeveloperblog.app.ws.mobileappws.serviceImpl;
 
-import com.appsdeveloperblog.app.ws.mobileappws.dto.*;
+import com.appsdeveloperblog.app.ws.mobileappws.Utils.Error;
 import com.appsdeveloperblog.app.ws.mobileappws.dto.request.*;
-import com.appsdeveloperblog.app.ws.mobileappws.exception.RegistrationException;
-import com.appsdeveloperblog.app.ws.mobileappws.service.RegistrationService;
+import com.appsdeveloperblog.app.ws.mobileappws.dto.response.MessageResponse;
+import com.appsdeveloperblog.app.ws.mobileappws.exception.UserException;
 import com.appsdeveloperblog.app.ws.mobileappws.model.User;
 import com.appsdeveloperblog.app.ws.mobileappws.Repository.UserRepository;
 import com.appsdeveloperblog.app.ws.mobileappws.service.UnauthenticatedUserService;
 import com.appsdeveloperblog.app.ws.mobileappws.service.UserService;
 import com.appsdeveloperblog.app.ws.mobileappws.email.EmailSender;
 import com.appsdeveloperblog.app.ws.mobileappws.email.EmailService;
-import com.appsdeveloperblog.app.ws.mobileappws.Utils.token.TokenService;
+import com.appsdeveloperblog.app.ws.mobileappws.token.TokenService;
 import jakarta.mail.MessagingException;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.mindrot.jbcrypt.BCrypt;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
@@ -34,36 +35,38 @@ public class UnauthenticatedUserImpl implements UnauthenticatedUserService{
 
   private final UserRepository userRepository;
 
+    private final PasswordEncoder passwordEncoder;
+
     @Override
-    public SignupResponse signup(SignupRequest signupRequest) throws MessagingException{
+    public MessageResponse signup(SignupRequest signupRequest) throws MessagingException{
         boolean emailExists = userRepository
-                .findByEmailAddressIgnoreCase(signupRequest.getEmailAddress())
+                .findByEmailIgnoreCase(signupRequest.getEmailAddress())
                 .isPresent();
-        if(emailExists)throw new IllegalStateException("Email Address already exist");
+        if(emailExists)throw new UserException(Error.EMAIL_ALREADY_EXIST);
+
         if(!signupRequest.getPassword().equals(signupRequest.getConfirmPassword()))
-            throw new MessagingException("Password does not match");
-        User user = new User(
-                signupRequest.getFirstName(),
-                signupRequest.getLastName(),
-                signupRequest.getEmailAddress(),
-                hashPassword(signupRequest.getPassword())
-        );
+            throw new UserException(Error.PASSWORD_DO_NOT_MATCH);
+
+        User user = User.builder()
+                        .firstName(signupRequest.getFirstName().toLowerCase())
+                        .lastName(signupRequest.getLastName().toLowerCase())
+                        .email(signupRequest.getEmailAddress().toLowerCase())
+                        .password(passwordEncoder.encode(signupRequest.getPassword()))
+                        .build();
                 userRepository.save(user);
+
+
         String token = userService.generateToken(user);
         emailSender.send(signupRequest.getEmailAddress(),
                 buildEmail(signupRequest.getFirstName(), token));
-        SignupResponse signupResponse = new SignupResponse();
-        signupResponse.setEmailAddress(signupRequest.getEmailAddress());
-        signupResponse.setFirstName(signupRequest.getFirstName());
-        signupResponse.setToken(token);
-        signupResponse.setLastName(signupRequest.getLastName());
-        return signupResponse;
+
+        return MessageResponse.builder().message("Sign-up successful").build();
     }
 
     @Override
     public String tokenConfirmation(TokenConfirmationRequest confirmationRequest){
         var foundToken = tokenService.getConfirmationToken(confirmationRequest.getToken())
-                .orElseThrow(()-> new RegistrationException("Invalid Token"));
+                .orElseThrow(()-> new UserException("Invalid Token"));
 if(foundToken.getExpiredAt().isBefore(LocalDateTime.now())){
     throw new IllegalStateException("Token Expired");
 }
@@ -75,19 +78,19 @@ userService.enableUser(confirmationRequest.getEmailAddress());
     @Override
     public String login(LoginRequest loginRequest){
         var foundUser = userService.findByEmailAddressIgnoreCase(loginRequest.getEmailAddress())
-                .orElseThrow(()-> new RegistrationException("Invalid login details"));
+                .orElseThrow(()-> new UserException("Invalid login details"));
 
         if(!BCrypt.checkpw(loginRequest.getPassword(),foundUser.getPassword())){
-            throw new RegistrationException("Details does not match ");
+            throw new UserException("Details does not match ");
         }
 
-        if(foundUser.getIsVerified().equals(false)) throw new RegistrationException("User not yet verified");
+        if(foundUser.getIsVerified().equals(false)) throw new UserException("User not yet verified");
         return "Login Successful";
     }
 
     @Override
     public String resendToken(ResendTokenRequest resendTokenRequest) throws MessagingException{
-        var foundUser = userRepository.findByEmailAddressIgnoreCase(resendTokenRequest.getEmailAddress())
+        var foundUser = userRepository.findByEmailIgnoreCase(resendTokenRequest.getEmailAddress())
                 .orElseThrow(()-> new MessagingException("User not found"));
         String token = userService.generateToken(foundUser);
         emailService.send(resendTokenRequest.getEmailAddress(), buildEmail(foundUser.getFirstName(), token));

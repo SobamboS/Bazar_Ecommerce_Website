@@ -1,4 +1,4 @@
-package com.appsdeveloperblog.app.ws.mobileappws.Utils.token;
+package com.appsdeveloperblog.app.ws.mobileappws.token;
 
 
 import org.springframework.data.mongodb.repository.MongoRepository;

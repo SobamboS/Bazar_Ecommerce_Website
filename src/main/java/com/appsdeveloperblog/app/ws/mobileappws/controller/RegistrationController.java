@@ -1,6 +1,6 @@
 package com.appsdeveloperblog.app.ws.mobileappws.controller;
 
-import com.appsdeveloperblog.app.ws.mobileappws.exception.ApiResponse;
+import com.appsdeveloperblog.app.ws.mobileappws.Utils.ApiResponse;
 import com.appsdeveloperblog.app.ws.mobileappws.dto.request.LoginRequest;
 import com.appsdeveloperblog.app.ws.mobileappws.dto.request.ResendTokenRequest;
 import com.appsdeveloperblog.app.ws.mobileappws.dto.request.SignupRequest;

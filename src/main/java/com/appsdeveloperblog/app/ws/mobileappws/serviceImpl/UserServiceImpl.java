@@ -1,13 +1,13 @@
 package com.appsdeveloperblog.app.ws.mobileappws.serviceImpl;
 
 import com.appsdeveloperblog.app.ws.mobileappws.Repository.ProductRepository;
+import com.appsdeveloperblog.app.ws.mobileappws.exception.UserException;
 import com.appsdeveloperblog.app.ws.mobileappws.model.User;
 import com.appsdeveloperblog.app.ws.mobileappws.service.ProductService;
 import com.appsdeveloperblog.app.ws.mobileappws.Repository.UserRepository;
-import com.appsdeveloperblog.app.ws.mobileappws.exception.RegistrationException;
 import com.appsdeveloperblog.app.ws.mobileappws.email.EmailSender;
-import com.appsdeveloperblog.app.ws.mobileappws.Utils.token.Token;
-import com.appsdeveloperblog.app.ws.mobileappws.Utils.token.TokenService;
+import com.appsdeveloperblog.app.ws.mobileappws.token.Token;
+import com.appsdeveloperblog.app.ws.mobileappws.token.TokenService;
 import com.appsdeveloperblog.app.ws.mobileappws.service.UserService;
 import com.squareup.okhttp.OkHttpClient;
 import com.squareup.okhttp.Request;
@@ -15,7 +15,6 @@ import com.squareup.okhttp.Response;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
@@ -45,8 +44,8 @@ public class UserServiceImpl implements UserService{
 
     @Override
     public void enableUser(String emailAddress){
-        var foundUser=userRepository.findByEmailAddressIgnoreCase(emailAddress)
-                .orElseThrow(( ) -> new RegistrationException("Invalid email"));
+        var foundUser=userRepository.findByEmailIgnoreCase(emailAddress)
+                .orElseThrow(( ) -> new UserException("Invalid email"));
         foundUser.setIsVerified(true);
     }
 
@@ -67,10 +66,10 @@ public class UserServiceImpl implements UserService{
 
     @Override
     public Optional<User> findByEmailAddressIgnoreCase(String emailAddress){
-        return userRepository.findByEmailAddressIgnoreCase(emailAddress);
+        return userRepository.findByEmailIgnoreCase(emailAddress);
     }
-    public Optional<User>findByUserId(String userId){
-        return userRepository.findById(userId);
+    public Optional<User>findByUserId(Long id){
+        return userRepository.findById(id);
     }
 
     @Override

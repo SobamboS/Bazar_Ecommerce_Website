@@ -3,7 +3,7 @@ package com.appsdeveloperblog.app.ws.mobileappws.controller;
 import com.appsdeveloperblog.app.ws.mobileappws.service.OrderService;
 import com.appsdeveloperblog.app.ws.mobileappws.dto.request.CreateOrderRequest;
 import com.appsdeveloperblog.app.ws.mobileappws.dto.request.UpdateOrderRequest;
-import com.appsdeveloperblog.app.ws.mobileappws.exception.ApiResponse;
+import com.appsdeveloperblog.app.ws.mobileappws.Utils.ApiResponse;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -9,7 +9,7 @@ public interface UserService {
      void enableUser(String emailAddress);
 String generateToken(User user);
 Optional<User>findByEmailAddressIgnoreCase(String emailAddress);
-Optional<User>findByUserId(String userId);
+Optional<User>findByUserId(Long id);
 String verifyPhoneNumber(String phoneNumber)throws IOException;
 
 }

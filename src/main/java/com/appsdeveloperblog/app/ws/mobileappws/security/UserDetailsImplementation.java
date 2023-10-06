@@ -17,7 +17,7 @@ public class UserDetailsImplementation implements UserDetailsService{
     @Transactional
     @Override
     public PrincipalUser loadUserByUsername(String username) {
-        User user = userRepository.findByEmailAddressIgnoreCase(username)
+        User user = userRepository.findByEmailIgnoreCase(username)
                 .orElseThrow(() -> new UserException("User not found"));
 
         return PrincipalUser.create(user);

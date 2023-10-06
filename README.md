@@ -10,14 +10,15 @@
 * Spring Boot
 * Spring Data JPA
 * Hibernate
-* MongoDB
+* Postgres
 *Javamail Sender
+*Twillio
 
 ## Modules
 
-* Login, Logout 
-* Seller 
-* Customer 
+* User
+* Email
+* Notification 
 * Product 
 * Cart 
 * Order 

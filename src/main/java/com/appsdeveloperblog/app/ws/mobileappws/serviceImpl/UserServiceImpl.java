@@ -1,13 +1,13 @@
 package com.appsdeveloperblog.app.ws.mobileappws.serviceImpl;
 
 import com.appsdeveloperblog.app.ws.mobileappws.Repository.ProductRepository;
+import com.appsdeveloperblog.app.ws.mobileappws.Utils.token.OTP;
 import com.appsdeveloperblog.app.ws.mobileappws.exception.UserException;
 import com.appsdeveloperblog.app.ws.mobileappws.model.User;
 import com.appsdeveloperblog.app.ws.mobileappws.service.ProductService;
 import com.appsdeveloperblog.app.ws.mobileappws.Repository.UserRepository;
 import com.appsdeveloperblog.app.ws.mobileappws.email.EmailSender;
-import com.appsdeveloperblog.app.ws.mobileappws.token.Token;
-import com.appsdeveloperblog.app.ws.mobileappws.token.TokenService;
+import com.appsdeveloperblog.app.ws.mobileappws.Utils.token.OTPService;
 import com.appsdeveloperblog.app.ws.mobileappws.service.UserService;
 import com.squareup.okhttp.OkHttpClient;
 import com.squareup.okhttp.Request;
@@ -34,7 +34,7 @@ public class UserServiceImpl implements UserService{
     private final UserRepository userRepository;
 
 
-   private final TokenService tokenService;
+   private final OTPService tokenService;
 
   private final   ProductService productService;
 
@@ -54,7 +54,7 @@ public class UserServiceImpl implements UserService{
     public String generateToken(User user){
         SecureRandom secureRandom=new SecureRandom();
         String token=String.valueOf(1000 + secureRandom.nextInt(9999));
-        Token confirmationToken=new Token(
+        OTP confirmationToken=new OTP(
                 token,
                 LocalDateTime.now(),
                 LocalDateTime.now().plusMinutes(10),

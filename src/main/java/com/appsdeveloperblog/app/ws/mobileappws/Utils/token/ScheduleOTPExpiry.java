@@ -1,7 +1,6 @@
-package com.appsdeveloperblog.app.ws.mobileappws.token;
+package com.appsdeveloperblog.app.ws.mobileappws.Utils.token;
 
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.scheduling.annotation.Scheduled;
@@ -9,14 +8,14 @@ import org.springframework.scheduling.annotation.Scheduled;
 @EnableScheduling
 @Configuration
 @RequiredArgsConstructor
-public class ScheduleTokenExpiry{
-    @Autowired
-    TokenService tokenService;
+public class ScheduleOTPExpiry{
+
+    private final OTPService otpService;
 
 
    @Scheduled(cron="0 10 0 * * *")
-    public void tokenExpiredAt(){
+    public void otpExpiredAt(){
        System.out.println("Deleted");
-       tokenService.deleteExpiredToken();
+       otpService.deleteExpiredOtp();
    }
 }

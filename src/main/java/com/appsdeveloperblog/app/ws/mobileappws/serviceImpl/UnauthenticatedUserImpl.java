@@ -10,7 +10,7 @@ import com.appsdeveloperblog.app.ws.mobileappws.service.UnauthenticatedUserServi
 import com.appsdeveloperblog.app.ws.mobileappws.service.UserService;
 import com.appsdeveloperblog.app.ws.mobileappws.email.EmailSender;
 import com.appsdeveloperblog.app.ws.mobileappws.email.EmailService;
-import com.appsdeveloperblog.app.ws.mobileappws.token.TokenService;
+import com.appsdeveloperblog.app.ws.mobileappws.Utils.token.OTPService;
 import jakarta.mail.MessagingException;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -29,7 +29,7 @@ public class UnauthenticatedUserImpl implements UnauthenticatedUserService{
 
    private final EmailService emailService;
 
-  private final TokenService tokenService;
+  private final OTPService tokenService;
 
    private final EmailSender emailSender;
 
@@ -66,9 +66,9 @@ public class UnauthenticatedUserImpl implements UnauthenticatedUserService{
     @Override
     public String tokenConfirmation(TokenConfirmationRequest confirmationRequest){
         var foundToken = tokenService.getConfirmationToken(confirmationRequest.getToken())
-                .orElseThrow(()-> new UserException("Invalid Token"));
+                .orElseThrow(()-> new UserException("Invalid OTP"));
 if(foundToken.getExpiredAt().isBefore(LocalDateTime.now())){
-    throw new IllegalStateException("Token Expired");
+    throw new IllegalStateException("OTP Expired");
 }
 tokenService.setTokenConfirmationAt(foundToken.getToken());
 userService.enableUser(confirmationRequest.getEmailAddress());
@@ -94,7 +94,7 @@ userService.enableUser(confirmationRequest.getEmailAddress());
                 .orElseThrow(()-> new MessagingException("User not found"));
         String token = userService.generateToken(foundUser);
         emailService.send(resendTokenRequest.getEmailAddress(), buildEmail(foundUser.getFirstName(), token));
-        return "Token has been sent successfully ";
+        return "OTP has been sent successfully ";
     }
 
 

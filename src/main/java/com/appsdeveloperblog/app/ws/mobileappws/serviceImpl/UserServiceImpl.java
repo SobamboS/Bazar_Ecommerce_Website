@@ -2,6 +2,8 @@ package com.appsdeveloperblog.app.ws.mobileappws.serviceImpl;
 
 import com.appsdeveloperblog.app.ws.mobileappws.Repository.ProductRepository;
 import com.appsdeveloperblog.app.ws.mobileappws.OTP.OTP;
+import com.appsdeveloperblog.app.ws.mobileappws.Utils.Error;
+import com.appsdeveloperblog.app.ws.mobileappws.dto.request.LoginRequest;
 import com.appsdeveloperblog.app.ws.mobileappws.dto.request.UpdateAccountRequest;
 import com.appsdeveloperblog.app.ws.mobileappws.exception.UserException;
 import com.appsdeveloperblog.app.ws.mobileappws.model.User;
@@ -16,6 +18,7 @@ import com.squareup.okhttp.Response;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
+import org.mindrot.jbcrypt.BCrypt;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
@@ -41,6 +44,23 @@ public class UserServiceImpl implements UserService{
 
 
    private final ProductRepository productRepository;
+
+    @Override
+    public String login(LoginRequest loginRequest){
+        var user = userService.findByEmailAddressIgnoreCase(loginRequest.getEmailAddress())
+                .orElseThrow(()-> new UserException(Error.USER_NOT_FOUND));
+
+        if(!BCrypt.checkpw(loginRequest.getPassword(),user.getPassword())){
+            throw new UserException(Error.INVALID_LOGIN_DETAILS);
+        }
+
+        if (!passwordEncoder.matches(loginRequest.getPassword(), user.getPassword()))
+            throw new UserException(Error.INVALID_LOGIN_DETAILS);
+
+        if(user.getIsVerified().equals(false)) throw new UserException(Error.UNVERIFIED_USER);
+
+        return "Login Successful";
+    }
 
 
     @Override

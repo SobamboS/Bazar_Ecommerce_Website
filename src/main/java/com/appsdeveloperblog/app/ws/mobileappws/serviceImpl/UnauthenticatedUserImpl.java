@@ -81,22 +81,7 @@ userService.enableUser(confirmationRequest.getEmail());
 
     }
 
-    @Override
-    public String login(LoginRequest loginRequest){
-        var user = userService.findByEmailAddressIgnoreCase(loginRequest.getEmailAddress())
-                .orElseThrow(()-> new UserException(Error.USER_NOT_FOUND));
 
-        if(!BCrypt.checkpw(loginRequest.getPassword(),user.getPassword())){
-            throw new UserException(Error.INVALID_LOGIN_DETAILS);
-        }
-
-        if (!passwordEncoder.matches(loginRequest.getPassword(), user.getPassword()))
-            throw new UserException(Error.INVALID_LOGIN_DETAILS);
-
-        if(user.getIsVerified().equals(false)) throw new UserException(Error.UNVERIFIED_USER);
-
-        return "Login Successful";
-    }
 
     @Override
     public String resendOtp(ResendOtpRequest resendOtpRequest){

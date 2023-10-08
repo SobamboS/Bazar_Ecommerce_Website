@@ -1,13 +1,14 @@
 package com.appsdeveloperblog.app.ws.mobileappws.serviceImpl;
 
 import com.appsdeveloperblog.app.ws.mobileappws.Repository.ProductRepository;
-import com.appsdeveloperblog.app.ws.mobileappws.Utils.token.OTP;
+import com.appsdeveloperblog.app.ws.mobileappws.OTP.OTP;
+import com.appsdeveloperblog.app.ws.mobileappws.dto.request.UpdateAccountRequest;
 import com.appsdeveloperblog.app.ws.mobileappws.exception.UserException;
 import com.appsdeveloperblog.app.ws.mobileappws.model.User;
 import com.appsdeveloperblog.app.ws.mobileappws.service.ProductService;
 import com.appsdeveloperblog.app.ws.mobileappws.Repository.UserRepository;
 import com.appsdeveloperblog.app.ws.mobileappws.email.EmailSender;
-import com.appsdeveloperblog.app.ws.mobileappws.Utils.token.OTPService;
+import com.appsdeveloperblog.app.ws.mobileappws.OTP.OTPService;
 import com.appsdeveloperblog.app.ws.mobileappws.service.UserService;
 import com.squareup.okhttp.OkHttpClient;
 import com.squareup.okhttp.Request;
@@ -34,7 +35,7 @@ public class UserServiceImpl implements UserService{
     private final UserRepository userRepository;
 
 
-   private final OTPService tokenService;
+   private final OTPService otpService;
 
   private final   ProductService productService;
 
@@ -51,17 +52,17 @@ public class UserServiceImpl implements UserService{
 
 
     @Override
-    public String generateToken(User user){
+    public String generateOtp(User user){
         SecureRandom secureRandom=new SecureRandom();
-        String token=String.valueOf(1000 + secureRandom.nextInt(9999));
-        OTP confirmationToken=new OTP(
-                token,
+        String otp=String.valueOf(1000 + secureRandom.nextInt(9999));
+        OTP confirmationOtp=new OTP(
+                otp,
                 LocalDateTime.now(),
                 LocalDateTime.now().plusMinutes(10),
                 user
         );
-        tokenService.saveConfirmationToken(confirmationToken);
-        return confirmationToken.getToken();
+        otpService.saveConfirmationOtp(confirmationOtp);
+        return confirmationOtp.getOtp();
     }
 
     @Override
@@ -93,5 +94,9 @@ public class UserServiceImpl implements UserService{
 
     return  "Phone number verified successfully";}
 
+    @Override
+    public String updateAccount(UpdateAccountRequest updateAccountRequest){
+        return null;
+    }
 
 }

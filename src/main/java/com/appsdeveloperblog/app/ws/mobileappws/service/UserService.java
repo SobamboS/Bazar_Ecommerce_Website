@@ -7,7 +7,7 @@ import java.util.Optional;
 
 public interface UserService {
      void enableUser(String emailAddress);
-String generateToken(User user);
+String generateOtp(User user);
 Optional<User>findByEmailAddressIgnoreCase(String emailAddress);
 Optional<User>findByUserId(Long id);
 String verifyPhoneNumber(String phoneNumber)throws IOException;

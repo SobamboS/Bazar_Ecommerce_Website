@@ -1,6 +1,5 @@
-package com.appsdeveloperblog.app.ws.mobileappws.Utils.token;
+package com.appsdeveloperblog.app.ws.mobileappws.OTP;
 
-import com.appsdeveloperblog.app.ws.mobileappws.model.User;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotNull;

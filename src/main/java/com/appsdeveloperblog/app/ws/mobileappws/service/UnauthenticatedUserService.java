@@ -11,8 +11,8 @@ public interface UnauthenticatedUserService{
 
     String login(LoginRequest loginRequest)throws MessagingException;
 
-    String tokenConfirmation(TokenConfirmationRequest confirmationRequest)throws MessagingException;
+    MessageResponse otpConfirmation(OtpConfirmationRequest confirmationRequest)throws MessagingException;
 
-    String resendToken(ResendTokenRequest resendTokenRequest) throws MessagingException;
+    String resendOtp(ResendOtpRequest resendOtpRequest) throws MessagingException;
     String updateAccount(UpdateAccountRequest updateAccountRequest);
 }

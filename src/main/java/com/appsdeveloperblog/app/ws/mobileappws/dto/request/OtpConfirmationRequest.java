@@ -5,9 +5,11 @@ import jakarta.validation.constraints.Pattern;
 import lombok.Data;
 
 @Data
-public class TokenConfirmationRequest{
+public class OtpConfirmationRequest{
+
     @Email(message="Input a valid email address")
-    private String emailAddress;
+    private String email;
+
     @Pattern(regexp="^\\d+$")
-    private String token;
+    private String otp;
 }

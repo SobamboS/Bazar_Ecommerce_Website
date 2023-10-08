@@ -1,4 +1,4 @@
-package com.appsdeveloperblog.app.ws.mobileappws.Utils.token;
+package com.appsdeveloperblog.app.ws.mobileappws.OTP;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

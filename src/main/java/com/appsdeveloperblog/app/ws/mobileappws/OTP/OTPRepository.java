@@ -1,4 +1,4 @@
-package com.appsdeveloperblog.app.ws.mobileappws.Utils.token;
+package com.appsdeveloperblog.app.ws.mobileappws.OTP;
 
 
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -11,6 +11,8 @@ import java.util.Optional;
 @Repository
 public interface OTPRepository extends JpaRepository<OTP, Long>{
     Optional<OTP>findByOtp(String otp);
+
+    Optional<OTP> findByOtpAndEmail(String otp, String email);
 
     void deleteOtpByExpiredAtBefore(LocalDateTime now);
 

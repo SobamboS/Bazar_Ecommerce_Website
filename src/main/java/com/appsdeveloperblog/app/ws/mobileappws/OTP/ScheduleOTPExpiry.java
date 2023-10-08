@@ -1,4 +1,4 @@
-package com.appsdeveloperblog.app.ws.mobileappws.Utils.token;
+package com.appsdeveloperblog.app.ws.mobileappws.OTP;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Configuration;

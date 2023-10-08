@@ -10,7 +10,7 @@ import com.appsdeveloperblog.app.ws.mobileappws.service.UnauthenticatedUserServi
 import com.appsdeveloperblog.app.ws.mobileappws.service.UserService;
 import com.appsdeveloperblog.app.ws.mobileappws.email.EmailSender;
 import com.appsdeveloperblog.app.ws.mobileappws.email.EmailService;
-import com.appsdeveloperblog.app.ws.mobileappws.Utils.token.OTPService;
+import com.appsdeveloperblog.app.ws.mobileappws.OTP.OTPService;
 import jakarta.mail.MessagingException;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -29,7 +29,7 @@ public class UnauthenticatedUserImpl implements UnauthenticatedUserService{
 
    private final EmailService emailService;
 
-  private final OTPService tokenService;
+  private final OTPService otpService;
 
    private final EmailSender emailSender;
 
@@ -63,44 +63,49 @@ public class UnauthenticatedUserImpl implements UnauthenticatedUserService{
         return MessageResponse.builder().message("Sign-up successful").build();
     }
 
+
     @Override
-    public String tokenConfirmation(TokenConfirmationRequest confirmationRequest){
-        var foundToken = tokenService.getConfirmationToken(confirmationRequest.getToken())
+    public MessageResponse otpConfirmation(OtpConfirmationRequest confirmationRequest){
+        var foundOtp = otpService.getConfirmationOtp(confirmationRequest.getOtp())
                 .orElseThrow(()-> new UserException("Invalid OTP"));
-if(foundToken.getExpiredAt().isBefore(LocalDateTime.now())){
-    throw new IllegalStateException("OTP Expired");
+if(foundOtp.getExpiredAt().isBefore(LocalDateTime.now())){
+    throw new UserException(Error.OTP_EXPIRED);
 }
-tokenService.setTokenConfirmationAt(foundToken.getToken());
-userService.enableUser(confirmationRequest.getEmailAddress());
-        return "User has been confirmed successfully";
+otpService.setOtpConfirmationAt(foundOtp.getOtp());
+userService.enableUser(confirmationRequest.getEmail());
+        return
+                MessageResponse.builder()
+                        .message("User has been confirmed successfully")
+                        .build();
+
+
     }
 
     @Override
     public String login(LoginRequest loginRequest){
-        var foundUser = userService.findByEmailAddressIgnoreCase(loginRequest.getEmailAddress())
-                .orElseThrow(()-> new UserException("Invalid login details"));
+        var user = userService.findByEmailAddressIgnoreCase(loginRequest.getEmailAddress())
+                .orElseThrow(()-> new UserException(Error.USER_NOT_FOUND));
 
-        if(!BCrypt.checkpw(loginRequest.getPassword(),foundUser.getPassword())){
-            throw new UserException("Details does not match ");
+        if(!BCrypt.checkpw(loginRequest.getPassword(),user.getPassword())){
+            throw new UserException(Error.INVALID_LOGIN_DETAILS);
         }
 
-        if(foundUser.getIsVerified().equals(false)) throw new UserException("User not yet verified");
+        if (!passwordEncoder.matches(loginRequest.getPassword(), user.getPassword()))
+            throw new UserException(Error.INVALID_LOGIN_DETAILS);
+
+        if(user.getIsVerified().equals(false)) throw new UserException(Error.UNVERIFIED_USER);
+
         return "Login Successful";
     }
 
     @Override
-    public String resendToken(ResendTokenRequest resendTokenRequest) throws MessagingException{
-        var foundUser = userRepository.findByEmailIgnoreCase(resendTokenRequest.getEmailAddress())
-                .orElseThrow(()-> new MessagingException("User not found"));
-        String token = userService.generateToken(foundUser);
-        emailService.send(resendTokenRequest.getEmailAddress(), buildEmail(foundUser.getFirstName(), token));
+    public String resendOtp(ResendOtpRequest resendOtpRequest){
+        var foundUser = userRepository.findByEmailIgnoreCase(resendOtpRequest.getEmail())
+                .orElseThrow(()-> new UserException(Error.USER_NOT_FOUND));
+
+        String otp = userService.generateToken(foundUser);
+        emailService.send(resendOtpRequest.getEmail(), buildEmail(foundUser.getFirstName(), otp));
         return "OTP has been sent successfully ";
-    }
-
-
-
-    private String hashPassword(String password){
-        return BCrypt.hashpw(password, BCrypt.gensalt());
     }
 
     private String buildEmail(String firstName,String token){
@@ -172,8 +177,5 @@ userService.enableUser(confirmationRequest.getEmailAddress());
                 "</div></div>";
 
     }
-    @Override
-    public String updateAccount(UpdateAccountRequest updateAccountRequest){
-        return null;
-    }
+
 }

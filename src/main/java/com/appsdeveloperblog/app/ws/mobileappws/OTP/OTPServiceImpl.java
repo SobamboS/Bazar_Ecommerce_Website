@@ -1,15 +1,18 @@
 package com.appsdeveloperblog.app.ws.mobileappws.OTP;
 
+import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.Instant;
 import java.time.LocalDateTime;
 import java.util.Optional;
 
 @Service
+@AllArgsConstructor
 public class OTPServiceImpl implements OTPService{
-    @Autowired
-    OTPRepository otpRepository;
+
+    private final OTPRepository otpRepository;
 
     @Override
     public void saveConfirmationOtp(OTP token){
@@ -18,13 +21,13 @@ public class OTPServiceImpl implements OTPService{
     }
     @Override
     public void setOtpConfirmationAt(String token){
-        otpRepository.confirmedAt(LocalDateTime.now(), token);
+        otpRepository.confirmedAt(Instant.now(), token);
 
     }
 
     @Override
     public void deleteExpiredOtp( ){
-        otpRepository.deleteOtpByExpiredAtBefore(LocalDateTime.now());
+        otpRepository.deleteOtpByExpiredAtBefore(Instant.now());
 
     }
 

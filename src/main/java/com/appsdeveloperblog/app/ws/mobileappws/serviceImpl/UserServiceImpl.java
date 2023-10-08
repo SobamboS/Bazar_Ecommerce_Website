@@ -19,6 +19,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
 import org.mindrot.jbcrypt.BCrypt;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
@@ -45,22 +46,9 @@ public class UserServiceImpl implements UserService{
 
    private final ProductRepository productRepository;
 
-    @Override
-    public String login(LoginRequest loginRequest){
-        var user = userService.findByEmailAddressIgnoreCase(loginRequest.getEmailAddress())
-                .orElseThrow(()-> new UserException(Error.USER_NOT_FOUND));
+   private final PasswordEncoder passwordEncoder;
 
-        if(!BCrypt.checkpw(loginRequest.getPassword(),user.getPassword())){
-            throw new UserException(Error.INVALID_LOGIN_DETAILS);
-        }
 
-        if (!passwordEncoder.matches(loginRequest.getPassword(), user.getPassword()))
-            throw new UserException(Error.INVALID_LOGIN_DETAILS);
-
-        if(user.getIsVerified().equals(false)) throw new UserException(Error.UNVERIFIED_USER);
-
-        return "Login Successful";
-    }
 
 
     @Override

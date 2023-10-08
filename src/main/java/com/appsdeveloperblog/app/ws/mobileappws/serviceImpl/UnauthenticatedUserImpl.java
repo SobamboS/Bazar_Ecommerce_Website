@@ -1,6 +1,8 @@
 package com.appsdeveloperblog.app.ws.mobileappws.serviceImpl;
 
+import com.appsdeveloperblog.app.ws.mobileappws.OTP.OTP;
 import com.appsdeveloperblog.app.ws.mobileappws.Utils.Error;
+import com.appsdeveloperblog.app.ws.mobileappws.Utils.UtilsClass;
 import com.appsdeveloperblog.app.ws.mobileappws.dto.request.*;
 import com.appsdeveloperblog.app.ws.mobileappws.dto.response.MessageResponse;
 import com.appsdeveloperblog.app.ws.mobileappws.exception.UserException;
@@ -53,14 +55,35 @@ public class UnauthenticatedUserImpl implements UnauthenticatedUserService{
                         .email(signupRequest.getEmailAddress().toLowerCase())
                         .password(passwordEncoder.encode(signupRequest.getPassword()))
                         .build();
-                userRepository.save(user);
 
 
-        String token = userService.generateToken(user);
+                try{
+                    userRepository.save(user);
+                }
+
+        OTP otp = UtilsClass.generateOtp();
+                userService.generateToken(user);
         emailSender.send(signupRequest.getEmailAddress(),
                 buildEmail(signupRequest.getFirstName(), token));
 
         return MessageResponse.builder().message("Sign-up successful").build();
+    }
+
+    @Override
+    public String login(LoginRequest loginRequest){
+        var user = userRepository.findByEmailIgnoreCase(loginRequest.getEmailAddress())
+                .orElseThrow(()-> new UserException(Error.USER_NOT_FOUND));
+
+        if(!BCrypt.checkpw(loginRequest.getPassword(),user.getPassword())){
+            throw new UserException(Error.INVALID_LOGIN_DETAILS);
+        }
+
+        if (!passwordEncoder.matches(loginRequest.getPassword(), user.getPassword()))
+            throw new UserException(Error.INVALID_LOGIN_DETAILS);
+
+        if(user.getIsVerified().equals(false)) throw new UserException(Error.UNVERIFIED_USER);
+
+        return "Login Successful";
     }
 
 

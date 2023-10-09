@@ -1,5 +1,6 @@
 package com.appsdeveloperblog.app.ws.mobileappws.service;
 
+import com.appsdeveloperblog.app.ws.mobileappws.dto.request.UpdateAccountRequest;
 import com.appsdeveloperblog.app.ws.mobileappws.model.User;
 
 import java.io.IOException;
@@ -11,5 +12,7 @@ String generateOtp(User user);
 Optional<User>findByEmailAddressIgnoreCase(String emailAddress);
 Optional<User>findByUserId(Long id);
 String verifyPhoneNumber(String phoneNumber)throws IOException;
+
+     String updateAccount(UpdateAccountRequest updateAccountRequest);
 
 }

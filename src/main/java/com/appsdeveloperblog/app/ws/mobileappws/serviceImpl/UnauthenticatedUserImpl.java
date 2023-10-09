@@ -20,7 +20,9 @@ import org.mindrot.jbcrypt.BCrypt;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.time.Instant;
 import java.time.LocalDateTime;
+import java.time.temporal.ChronoUnit;
 
 @Service
 @Slf4j
@@ -55,20 +57,31 @@ public class UnauthenticatedUserImpl implements UnauthenticatedUserService{
                         .email(signupRequest.getEmailAddress().toLowerCase())
                         .password(passwordEncoder.encode(signupRequest.getPassword()))
                         .build();
-
-
-                try{
+                try {
                     userRepository.save(user);
-                }
 
-        OTP otp = UtilsClass.generateOtp();
-                userService.generateToken(user);
-        emailSender.send(signupRequest.getEmailAddress(),
-                buildEmail(signupRequest.getFirstName(), token));
+                    String otp=UtilsClass.generateOtp();
+                    OTP verificationOtp=OTP.builder()
+                            .otp(otp)
+                            .email(user.getEmail())
+                            .expiredAt(Instant.now().plus(10,ChronoUnit.MINUTES))
+                                    .build();
+
+                    otpService.saveVerificationOtp(verificationOtp);
+                    emailSender.send(signupRequest.getEmailAddress(),
+                            buildEmail(signupRequest.getFirstName(), otp));
+
+                }
+                catch (UserException e){
+                    throw new UserException(Error.ERROR_OCCURRED);
+                }
 
         return MessageResponse.builder().message("Sign-up successful").build();
     }
 
+    public void sendOtp(){
+
+    }
     @Override
     public String login(LoginRequest loginRequest){
         var user = userRepository.findByEmailIgnoreCase(loginRequest.getEmailAddress())
@@ -91,7 +104,7 @@ public class UnauthenticatedUserImpl implements UnauthenticatedUserService{
     public MessageResponse otpConfirmation(OtpConfirmationRequest confirmationRequest){
         var foundOtp = otpService.getConfirmationOtp(confirmationRequest.getOtp())
                 .orElseThrow(()-> new UserException("Invalid OTP"));
-if(foundOtp.getExpiredAt().isBefore(LocalDateTime.now())){
+if(foundOtp.getExpiredAt().isBefore(Instant.now())){
     throw new UserException(Error.OTP_EXPIRED);
 }
 otpService.setOtpConfirmationAt(foundOtp.getOtp());
@@ -111,7 +124,7 @@ userService.enableUser(confirmationRequest.getEmail());
         var foundUser = userRepository.findByEmailIgnoreCase(resendOtpRequest.getEmail())
                 .orElseThrow(()-> new UserException(Error.USER_NOT_FOUND));
 
-        String otp = userService.generateToken(foundUser);
+        String otp = UtilsClass.generateOtp();
         emailService.send(resendOtpRequest.getEmail(), buildEmail(foundUser.getFirstName(), otp));
         return "OTP has been sent successfully ";
     }

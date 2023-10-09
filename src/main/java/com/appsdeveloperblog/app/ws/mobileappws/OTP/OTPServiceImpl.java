@@ -15,7 +15,7 @@ public class OTPServiceImpl implements OTPService{
     private final OTPRepository otpRepository;
 
     @Override
-    public void saveConfirmationOtp(OTP token){
+    public void saveVerificationOtp(OTP token){
         otpRepository.save(token);
 
     }

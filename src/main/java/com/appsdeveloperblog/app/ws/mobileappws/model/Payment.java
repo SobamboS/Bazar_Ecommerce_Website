@@ -5,8 +5,6 @@ import jakarta.persistence.*;
 import lombok.Data;
 import org.apache.catalina.User;
 
-import org.springframework.data.mongodb.core.mapping.DBRef;
-import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.math.BigDecimal;
 @Entity

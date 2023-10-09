@@ -17,6 +17,8 @@ public class Error{
 
     public static final String UNVERIFIED_USER = "User is not verified";
 
+    public static final String ERROR_OCCURRED = "Error occurred while performing action";
+
 
 
 }

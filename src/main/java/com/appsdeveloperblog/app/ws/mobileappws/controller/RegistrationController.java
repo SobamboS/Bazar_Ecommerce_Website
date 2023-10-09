@@ -2,10 +2,8 @@ package com.appsdeveloperblog.app.ws.mobileappws.controller;
 
 import com.appsdeveloperblog.app.ws.mobileappws.Utils.ApiResponse;
 import com.appsdeveloperblog.app.ws.mobileappws.dto.request.LoginRequest;
-import com.appsdeveloperblog.app.ws.mobileappws.dto.request.ResendTokenRequest;
+import com.appsdeveloperblog.app.ws.mobileappws.dto.request.OtpConfirmationRequest;
 import com.appsdeveloperblog.app.ws.mobileappws.dto.request.SignupRequest;
-import com.appsdeveloperblog.app.ws.mobileappws.dto.request.TokenConfirmationRequest;
-import com.appsdeveloperblog.app.ws.mobileappws.service.RegistrationService;
 import jakarta.mail.MessagingException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.validation.Valid;
@@ -14,14 +12,14 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.Instant;
 import java.time.ZonedDateTime;
 
 @RestController
 @RequestMapping("registration")
 public class RegistrationController{
 
-    @Autowired
-    RegistrationService registrationService;
+   private final RegistrationService registrationService;
 
     @PostMapping("/signup")
     public ResponseEntity<?> signup(@RequestBody @Valid SignupRequest signupRequest,
@@ -30,21 +28,21 @@ public class RegistrationController{
                 .status(HttpStatus.OK.value())
                 .isSuccessful(true)
                 .path(httpServletRequest.getRequestURI())
-                .timeStamp(ZonedDateTime.now())
+                .timeStamp(Instant.now())
                 .data(registrationService.signup(signupRequest))
                 .build();
         return new ResponseEntity<>(apiResponse, HttpStatus.OK);
     }
 
     @PostMapping("/confirm-token")
-    public ResponseEntity<?> tokenConfirmation(@RequestBody @Valid TokenConfirmationRequest tokenConfirmationRequest,
+    public ResponseEntity<?> tokenConfirmation(@RequestBody @Valid OtpConfirmationRequest otpConfirmationRequest,
                                                HttpServletRequest httpServletRequest) throws MessagingException{
         ApiResponse apiResponse = ApiResponse.builder()
                 .status(HttpStatus.OK.value())
                 .isSuccessful(true)
                 .path(httpServletRequest.getRequestURI())
-                .timeStamp(ZonedDateTime.now())
-                .data(registrationService.tokenConfirmation(tokenConfirmationRequest))
+                .timeStamp(Instant.now())
+                .data(registrationService.tokenConfirmation(otpConfirmationRequest))
                 .build();
         return new ResponseEntity<>(apiResponse, HttpStatus.OK);
     }
@@ -56,7 +54,7 @@ public class RegistrationController{
                 .status(HttpStatus.OK.value())
                 .isSuccessful(true)
                 .path(httpServletRequest.getRequestURI())
-                .timeStamp(ZonedDateTime.now())
+                .timeStamp(Instant.now())
                 .data(registrationService.login(loginRequest))
                 .build();
         return new ResponseEntity<>(apiResponse, HttpStatus.OK);
@@ -68,7 +66,7 @@ public class RegistrationController{
                 .status(HttpStatus.OK.value())
                 .isSuccessful(true)
                 .path(httpServletRequest.getRequestURI())
-                .timeStamp(ZonedDateTime.now())
+                .timeStamp(Instant.now())
                 .data(registrationService.resendToken(resendTokenRequest))
                 .build();
         return new ResponseEntity<>(apiResponse, HttpStatus.OK);

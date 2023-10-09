@@ -1,6 +1,5 @@
 package com.appsdeveloperblog.app.ws.mobileappws.serviceImpl;
 
-import com.appsdeveloperblog.app.ws.mobileappws.dto.*;
 import com.appsdeveloperblog.app.ws.mobileappws.dto.request.VendorLoginRequest;
 import com.appsdeveloperblog.app.ws.mobileappws.dto.request.VendorRegistrationRequest;
 import com.appsdeveloperblog.app.ws.mobileappws.dto.request.VendorUpdateRequest;
@@ -9,15 +8,16 @@ import com.appsdeveloperblog.app.ws.mobileappws.exception.VendorUpdateException;
 import com.appsdeveloperblog.app.ws.mobileappws.Repository.VendorRepository;
 import com.appsdeveloperblog.app.ws.mobileappws.model.Vendor;
 import com.appsdeveloperblog.app.ws.mobileappws.service.VendorService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
 public class VendorServiceImpl implements VendorService{
-    @Autowired
-    private VendorRepository vendorRepository;
 
+    private final VendorRepository vendorRepository;
 
+    public VendorServiceImpl(VendorRepository vendorRepository){
+        this.vendorRepository=vendorRepository;
+    }
 
 
 //    @Override
@@ -50,12 +50,12 @@ public class VendorServiceImpl implements VendorService{
 
     @Override
     public VendorUpdateResponse vendorUpdate(VendorUpdateRequest vendorUpdateRequest){
-        Vendor updateVendor = vendorRepository.findById(vendorUpdateRequest.getId())
-                .orElseThrow(()-> new VendorUpdateException("Id not found"));
-        if(updateVendor.getId().equals(vendorUpdateRequest.getId())){
-            vendorRepository.save(updateVendor);
-            return new VendorUpdateResponse("Updated Successful");
-        }else
+//        Vendor updateVendor = vendorRepository.findById(vendorUpdateRequest.getId())
+//                .orElseThrow(()-> new VendorUpdateException("Id not found"));
+//        if(updateVendor.getId().equals(vendorUpdateRequest.getId())){
+//            vendorRepository.save(updateVendor);
+//            return new VendorUpdateResponse("Updated Successful");
+//        }else
          return new VendorUpdateResponse("Update not done");
     }
 

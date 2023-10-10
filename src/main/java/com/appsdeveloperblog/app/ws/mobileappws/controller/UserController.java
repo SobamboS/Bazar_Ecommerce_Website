@@ -14,13 +14,17 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.io.IOException;
 import java.time.Instant;
-import java.time.ZonedDateTime;
 
 @RestController
 @RequestMapping("/user")
 public class UserController{
-    @Autowired
-    UserService userService;
+
+   private final UserService userService;
+
+    public UserController(UserService userService){
+        this.userService=userService;
+    }
+
     @PostMapping("/verifyNumber")
     public ResponseEntity<?> verifyPhoneNumber(@RequestBody @Valid String phoneNumber,
                                    HttpServletRequest httpServletRequest)throws IOException{

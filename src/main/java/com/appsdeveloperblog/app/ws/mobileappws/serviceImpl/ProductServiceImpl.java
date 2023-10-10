@@ -5,7 +5,6 @@ import com.appsdeveloperblog.app.ws.mobileappws.dto.request.ProductCreateRequest
 import com.appsdeveloperblog.app.ws.mobileappws.dto.request.ProductUpdateRequest;
 import com.appsdeveloperblog.app.ws.mobileappws.model.Product;
 import com.appsdeveloperblog.app.ws.mobileappws.service.ProductService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 
@@ -13,8 +12,13 @@ import org.springframework.stereotype.Service;
 @Service
 public class ProductServiceImpl implements ProductService{
 
-    @Autowired
-    ProductRepository productRepository;
+
+   private final ProductRepository productRepository;
+
+    public ProductServiceImpl(ProductRepository productRepository){
+        this.productRepository=productRepository;
+    }
+
     @Override
     public String createProduct(ProductCreateRequest productCreateRequest){
         Product product = new Product(
@@ -30,16 +34,20 @@ public class ProductServiceImpl implements ProductService{
 
     @Override
     public String updateProduct(ProductUpdateRequest productUpdateRequest){
-        Product updateProduct = productRepository.findByProductId(productUpdateRequest.getProductId())
-                .orElseThrow(()-> new RuntimeException("Product not found"));
-        if(!updateProduct.getProductId().equals(productUpdateRequest.getProductId())){
-            updateProduct.setProductPrice(productUpdateRequest.getProductPrice());
-            updateProduct.setProductCategory(productUpdateRequest.getProductCategory());
-            updateProduct.setProductName(productUpdateRequest.getProductName());
-            updateProduct.setProductDescription(productUpdateRequest.getProductDescription());
+        Product updateProduct = productRepository.findByProductName(productUpdateRequest.getProductName());
+
+
+//                .orElseThrow(()-> new RuntimeException("Product not found"));
+//
+//
+//        if(!updateProduct.getProductId().equals(productUpdateRequest.getProductId())){
+//            updateProduct.setProductPrice(productUpdateRequest.getProductPrice());
+//            updateProduct.setProductCategory(productUpdateRequest.getProductCategory());
+//            updateProduct.setProductName(productUpdateRequest.getProductName());
+//            updateProduct.setProductDescription(productUpdateRequest.getProductDescription());
             productRepository.save(updateProduct);
 
-        }
+      //  }//
         return "Product Updated successfully ";
     }
 
@@ -54,12 +62,12 @@ public class ProductServiceImpl implements ProductService{
 
 
         @Override
-        public Product findProductById(String productId){
-        Product products= productRepository.findById(productId).orElseThrow(()-> new RuntimeException("Not found"));
+        public Product findProductById(Long id){
+        Product products= productRepository.findById(id).orElseThrow(()-> new RuntimeException("Not found"));
 
-        if(productId.isEmpty()){
-            throw new RuntimeException(String.format("%s not found", productId));
-        }
+//        if(productId.isEmpty()){
+//            throw new RuntimeException(String.format("%s not found", productId));
+//        }
         return products;
         }
 
@@ -72,7 +80,7 @@ public class ProductServiceImpl implements ProductService{
 
 
     @Override
-    public String deleteProduct(String id){
+    public String deleteProduct(Long id){
         productRepository.deleteById(id);
         return "Product Deleted";
     }

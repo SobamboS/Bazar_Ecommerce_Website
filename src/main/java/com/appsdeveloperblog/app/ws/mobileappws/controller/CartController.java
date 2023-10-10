@@ -11,6 +11,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.Instant;
 import java.time.ZonedDateTime;
 
 @RestController
@@ -26,7 +27,7 @@ public class CartController{
                 .status(HttpStatus.OK.value())
                 .isSuccessful(true)
                 .path(httpServletRequest.getRequestURI())
-                .timeStamp(ZonedDateTime.now())
+                .timeStamp(Instant.now())
                 .data(cartService.addItemToCart(addItemRequest))
                 .build();
         return new ResponseEntity<>(apiResponse, HttpStatus.OK);
@@ -39,7 +40,7 @@ public class CartController{
                 .status(HttpStatus.OK.value())
                 .isSuccessful(true)
                 .path(httpServletRequest.getRequestURI())
-                .timeStamp(ZonedDateTime.now())
+                .timeStamp(Instant.now())
                 .data(cartService.removeProduct(cartId))
                 .build();
         return new ResponseEntity<>(apiResponse, HttpStatus.OK);
@@ -52,7 +53,7 @@ public class CartController{
                 .status(HttpStatus.OK.value())
                 .isSuccessful(true)
                 .path(httpServletRequest.getRequestURI())
-                .timeStamp(ZonedDateTime.now())
+                .timeStamp(Instant.now())
                 .data(cartService.updateItemNumber(updateItemRequest))
                 .build();
         return new ResponseEntity<>(apiResponse, HttpStatus.OK);

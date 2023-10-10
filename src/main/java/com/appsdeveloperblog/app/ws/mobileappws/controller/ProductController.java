@@ -12,14 +12,19 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.time.ZonedDateTime;
+import java.time.Instant;
 
 @RestController
 public class ProductController{
-    @Autowired
-    private ProductService productService;
-    @Autowired
-    OrderService orderService;
+
+   private final ProductService productService;
+
+   private final OrderService orderService;
+
+    public ProductController(ProductService productService,OrderService orderService){
+        this.productService=productService;
+        this.orderService = orderService;
+    }
 
     @PostMapping("/createProduct")
     public ResponseEntity<?> createProduct(@RequestBody @Valid ProductCreateRequest productCreateRequest,
@@ -28,21 +33,21 @@ public class ProductController{
                 .status(HttpStatus.OK.value())
                 .isSuccessful(true)
                 .path(httpServletRequest.getRequestURI())
-                .timeStamp(ZonedDateTime.now())
+                .timeStamp(Instant.now())
                 .data(productService.createProduct(productCreateRequest))
                 .build();
         return new ResponseEntity<>(apiResponse, HttpStatus.OK);
     }
 
     @DeleteMapping("/deleteProduct")
-    public ResponseEntity<?> deleteProduct(@RequestBody @Valid String productId,
+    public ResponseEntity<?> deleteProduct(@RequestBody @Valid Long id,
                                            HttpServletRequest httpServletRequest){
         ApiResponse apiResponse = ApiResponse.builder()
                 .status(HttpStatus.OK.value())
                 .isSuccessful(true)
                 .path(httpServletRequest.getRequestURI())
-                .timeStamp(ZonedDateTime.now())
-                .data(productService.deleteProduct(productId))
+                .timeStamp(Instant.now())
+                .data(productService.deleteProduct(id))
                 .build();
         return new ResponseEntity<>(apiResponse, HttpStatus.OK);
     }
@@ -54,7 +59,7 @@ public class ProductController{
                 .status(HttpStatus.OK.value())
                 .isSuccessful(true)
                 .path(httpServletRequest.getRequestURI())
-                .timeStamp(ZonedDateTime.now())
+                .timeStamp(Instant.now())
                 .data(productService.updateProduct(productUpdateRequest))
                 .build();
         return new ResponseEntity<>(apiResponse, HttpStatus.OK);
@@ -67,21 +72,21 @@ public class ProductController{
                 .status(HttpStatus.OK.value())
                 .isSuccessful(true)
                 .path(httpServletRequest.getRequestURI())
-                .timeStamp(ZonedDateTime.now())
+                .timeStamp(Instant.now())
                 .data(productService.findProduct(productName))
                 .build();
         return new ResponseEntity<>(apiResponse, HttpStatus.OK);
     }
 
     @PostMapping("/findProductById")
-    public ResponseEntity<?> findProductById(@RequestBody @Valid String productId,
+    public ResponseEntity<?> findProductById(@RequestBody @Valid Long id,
                                            HttpServletRequest httpServletRequest){
         ApiResponse apiResponse = ApiResponse.builder()
                 .status(HttpStatus.OK.value())
                 .isSuccessful(true)
                 .path(httpServletRequest.getRequestURI())
-                .timeStamp(ZonedDateTime.now())
-                .data(productService.findProductById(productId))
+                .timeStamp(Instant.now())
+                .data(productService.findProductById(id))
                 .build();
         return new ResponseEntity<>(apiResponse, HttpStatus.OK);
     }

@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.io.IOException;
+import java.time.Instant;
 import java.time.ZonedDateTime;
 
 @RestController
@@ -27,7 +28,7 @@ public class UserController{
                 .status(HttpStatus.OK.value())
                 .isSuccessful(true)
                 .path(httpServletRequest.getRequestURI())
-                .timeStamp(ZonedDateTime.now())
+                .timeStamp(Instant.now())
                 .data(userService.verifyPhoneNumber(phoneNumber))
                 .build();
         return new ResponseEntity<>(apiResponse, HttpStatus.OK);

@@ -63,14 +63,15 @@ public class UserServiceImpl implements UserService{
     public String generateOtp(User user){
         SecureRandom secureRandom=new SecureRandom();
         String otp=String.valueOf(1000 + secureRandom.nextInt(9999));
-        OTP confirmationOtp=new OTP(
-                otp,
-                LocalDateTime.now(),
-                LocalDateTime.now().plusMinutes(10),
-                user
-        );
-        otpService.saveConfirmationOtp(confirmationOtp);
-        return confirmationOtp.getOtp();
+//        OTP confirmationOtp=new OTP(
+//                otp,
+//                LocalDateTime.now(),
+//                LocalDateTime.now().plusMinutes(10),
+//                user
+//        );
+//        otpService.saveConfirmationOtp(confirmationOtp);
+        return null;
+        //confirmationOtp.getOtp();
     }
 
     @Override

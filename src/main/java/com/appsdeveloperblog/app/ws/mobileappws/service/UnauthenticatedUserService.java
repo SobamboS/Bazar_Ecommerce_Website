@@ -1,5 +1,4 @@
 package com.appsdeveloperblog.app.ws.mobileappws.service;
-import com.appsdeveloperblog.app.ws.mobileappws.dto.*;
 import com.appsdeveloperblog.app.ws.mobileappws.dto.request.*;
 import com.appsdeveloperblog.app.ws.mobileappws.dto.response.MessageResponse;
 import jakarta.mail.MessagingException;

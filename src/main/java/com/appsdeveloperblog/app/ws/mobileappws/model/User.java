@@ -16,12 +16,9 @@ import java.util.List;
 @Setter
 @Getter
 @Builder
-@AllArgsConstructor
-@NoArgsConstructor
 @Entity
 @Table(name = "BUser")
 @ToString
-@RequiredArgsConstructor
 public class User{
 
     @Id
@@ -100,5 +97,32 @@ public class User{
     @JoinColumn(name = "role_id")
     private Role role;
 
+    public User(Long id,String firstName,String lastName,String email,
+                String phoneNumber,String password,Instant updatedAt,
+                String deactivatedBy,Instant deactivatedAt,Boolean isActive,
+                Boolean isVerified,Instant verifiedAt,Address address,Cart cart,
+                Order order,Payment payment,List<Product> products,Role role){
+        this.id=id;
+        this.firstName=firstName;
+        this.lastName=lastName;
+        this.email=email;
+        this.phoneNumber=phoneNumber;
+        this.password=password;
+        this.updatedAt=updatedAt;
+        this.deactivatedBy=deactivatedBy;
+        this.deactivatedAt=deactivatedAt;
+        this.isActive=isActive;
+        this.isVerified=isVerified;
+        this.verifiedAt=verifiedAt;
+        this.address=address;
+        this.cart=cart;
+        this.order=order;
+        this.payment=payment;
+        this.products=products;
+        this.role=role;
+    }
 
+    public User( ){
+
+    }
 }

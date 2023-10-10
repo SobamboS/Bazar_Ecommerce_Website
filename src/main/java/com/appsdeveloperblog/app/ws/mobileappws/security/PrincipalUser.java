@@ -2,7 +2,6 @@ package com.appsdeveloperblog.app.ws.mobileappws.security;
 
 
 import com.appsdeveloperblog.app.ws.mobileappws.model.User;
-import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.GrantedAuthority;
@@ -10,6 +9,7 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import java.io.IOException;
+import java.io.Serial;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.Map;
@@ -17,9 +17,9 @@ import java.util.Set;
 
 @Data
 @RequiredArgsConstructor
-@AllArgsConstructor
 public class PrincipalUser implements UserDetails{
 
+    @Serial
     private static final long serialVersionUID = -3732949233884048693L;
 
     private final User user;

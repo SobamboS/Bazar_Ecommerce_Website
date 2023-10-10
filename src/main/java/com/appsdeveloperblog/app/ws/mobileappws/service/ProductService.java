@@ -6,11 +6,11 @@ import com.appsdeveloperblog.app.ws.mobileappws.model.Product;
 
 
 public interface ProductService{
-  String deleteProduct (String productId);
+  String deleteProduct (Long id);
     String createProduct(ProductCreateRequest productCreateRequest);
    String updateProduct(ProductUpdateRequest productUpdateRequest);
    Product findProduct(String productName);
-    Product findProductById(String productId);
+    Product findProductById(Long id);
     String deleteAllProduct();
 
 

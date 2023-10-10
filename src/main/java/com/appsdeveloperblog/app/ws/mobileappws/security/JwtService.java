@@ -70,7 +70,7 @@ public class JwtService{
         Map<String, Object> claims = new HashMap<>();
         claims.put(AUTHORITIES_KEY, authorities);
 
-        return generateToken(claims, user.getUsername());
+        return generateToken(claims,user.getUsername());
     }
 
 

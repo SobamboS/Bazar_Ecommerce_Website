@@ -12,13 +12,16 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.Instant;
-import java.time.ZonedDateTime;
 
 @RestController
 @RequestMapping("product")
 public class CartController{
-    @Autowired
-    CartService cartService;
+
+    private final CartService cartService;
+
+    public CartController(CartService cartService){
+        this.cartService=cartService;
+    }
 
     @PostMapping("/createCart")
     public ResponseEntity<?> addItemToCart(@RequestBody @Valid AddItemRequest addItemRequest,
@@ -34,14 +37,14 @@ public class CartController{
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<?> removeProduct(@RequestBody @Valid String cartId,
+    public ResponseEntity<?> removeProduct(@PathVariable @Valid Long id,
                                      HttpServletRequest httpServletRequest){
         ApiResponse apiResponse = ApiResponse.builder()
                 .status(HttpStatus.OK.value())
                 .isSuccessful(true)
                 .path(httpServletRequest.getRequestURI())
                 .timeStamp(Instant.now())
-                .data(cartService.removeProduct(cartId))
+                .data(cartService.removeProduct(id))
                 .build();
         return new ResponseEntity<>(apiResponse, HttpStatus.OK);
     }

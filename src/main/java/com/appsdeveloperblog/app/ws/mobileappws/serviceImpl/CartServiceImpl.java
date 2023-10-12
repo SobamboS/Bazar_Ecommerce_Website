@@ -9,8 +9,8 @@ import com.appsdeveloperblog.app.ws.mobileappws.Repository.UserRepository;
 import com.appsdeveloperblog.app.ws.mobileappws.model.Cart;
 import com.appsdeveloperblog.app.ws.mobileappws.service.CartService;
 import com.appsdeveloperblog.app.ws.mobileappws.service.UserService;
+import lombok.NoArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
@@ -19,16 +19,24 @@ import java.math.BigDecimal;
 @Service
 @Slf4j
 public class CartServiceImpl implements CartService{
-    @Autowired
-    ProductRepository productRepository;
 
-    @Autowired
-    CartRepository cartRepository;
+   private final ProductRepository productRepository;
 
-   @Autowired
-    UserService userService;
-@Autowired
-   UserRepository userRepository;
+
+   private final CartRepository cartRepository;
+
+    private final   UserService userService;
+
+    private final   UserRepository userRepository;
+
+    public CartServiceImpl(ProductRepository productRepository,CartRepository cartRepository,
+                           UserService userService,UserRepository userRepository){
+        this.productRepository=productRepository;
+        this.cartRepository=cartRepository;
+        this.userService=userService;
+        this.userRepository=userRepository;
+    }
+
     @Override
     public Cart addItemToCart(AddItemRequest addItemRequest){
        // Cart userCart = new Cart();
@@ -54,7 +62,7 @@ public class CartServiceImpl implements CartService{
     }
 
     @Override
-    public Cart removeProduct(String cartId){
+    public Cart removeProduct(Long Id){
         return null;
     }
 

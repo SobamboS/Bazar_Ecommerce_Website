@@ -16,7 +16,7 @@ public class Role{
     @Column(nullable = false, name = "Id")
     @SequenceGenerator(name = "seq", initialValue = 100, allocationSize = 1)
     @GeneratedValue(generator = "seq", strategy = GenerationType.AUTO)
-    private Integer id;
+    private Long id;
 
     @Column(name = "name", length = 50)
     private String name;

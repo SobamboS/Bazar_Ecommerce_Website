@@ -2,7 +2,6 @@ package com.appsdeveloperblog.app.ws.mobileappws.model;
 
 import com.appsdeveloperblog.app.ws.mobileappws.Enum.PaymentType;
 import jakarta.persistence.*;
-import lombok.Data;
 import org.apache.catalina.User;
 
 
@@ -12,7 +11,7 @@ public class Payment{
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private String paymentId;
+    private Long id;
     private PaymentType paymentType;
     private BigDecimal paymentTotal;
     private String userEmail;
